@@ -1,0 +1,378 @@
+# BELIEF PREP PIPELINE
+# Topic → Values → Beliefs → Research → Arguments → BeliefTree
+# Style: Presentation (bold colors, high contrast)
+
+direction: down
+
+title: {
+  label: "Belief Prep Pipeline"
+  
+  style.font-size: 28
+  style.bold: true
+}
+
+subtitle: {
+  label: "packages/cognitive/beliefs/refiner.py | orchestrator.py"
+  
+  style.font-size: 12
+  style.italic: true
+}
+
+# =============================================================================
+# INPUT
+# =============================================================================
+
+input: {
+  style.fill: "#EDF2F7"
+  style.stroke: "#4A5568"
+
+  topic: Topic {
+    shape: document
+    style.fill: "#FFFFFF"
+    label: "\"Universal Basic Income\nshould be implemented\""
+  }
+
+  config: Config {
+    shape: rectangle
+    style.fill: "#E2E8F0"
+    label: |md
+      - max_depth: 2
+      - research_per_belief: 3
+      - use_tavily: true
+    |
+  }
+}
+
+# =============================================================================
+# STAGE 1: VALUE EXTRACTION
+# =============================================================================
+
+stage1: Stage 1: Value Extraction {
+  style.fill: "#E6FFFA"
+  style.stroke: "#319795"
+  style.stroke-width: 2
+
+  dspy: DSPy: ValueExtractor {
+    shape: hexagon
+    style.fill: "#B2F5EA"
+    style.stroke: "#319795"
+  }
+
+  output: Values {
+    style.fill: "#81E6D9"
+
+    v1: "Safety & harm prevention" {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+    }
+    v2: "Economic competitiveness" {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+    }
+    v3: "Individual autonomy" {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+    }
+    v4: "Social welfare" {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+    }
+  }
+
+  dspy -> output
+}
+
+# =============================================================================
+# STAGE 2: BELIEF GENERATION
+# =============================================================================
+
+stage2: Stage 2: Belief Generation (D1) {
+  style.fill: "#FFF5F5"
+  style.stroke: "#C53030"
+  style.stroke-width: 2
+
+  dspy: DSPy: BeliefGenerator {
+    shape: hexagon
+    style.fill: "#FED7D7"
+    style.stroke: "#C53030"
+  }
+
+  aff: AFF Beliefs {
+    style.fill: "#C6F6D5"
+    b1: "Regulatory frameworks\nenable safer adoption" {
+      shape: rectangle
+      style.fill: "#9AE6B4"
+    }
+    b2: "Clear guidelines reduce\nliability uncertainty" {
+      shape: rectangle
+      style.fill: "#9AE6B4"
+    }
+  }
+
+  neg: NEG Beliefs {
+    style.fill: "#FED7D7"
+    b3: "Regulations stifle\ninnovation" {
+      shape: rectangle
+      style.fill: "#FC8181"
+    }
+    b4: "Government oversight\nis too slow" {
+      shape: rectangle
+      style.fill: "#FC8181"
+    }
+  }
+
+  dspy -> aff
+  dspy -> neg
+}
+
+# =============================================================================
+# STAGE 3: BELIEF REFINEMENT (RECURSIVE)
+# =============================================================================
+
+stage3: Stage 3: Belief Refinement (D2+) {
+  style.fill: "#EBF8FF"
+  style.stroke: "#3182CE"
+  style.stroke-width: 2
+
+  loop: Recursive Decomposition {
+    style.fill: "#BEE3F8"
+
+    check: depth < max? {
+      shape: diamond
+      style.fill: "#90CDF4"
+    }
+
+    decompose: Decomposition {
+      shape: rectangle
+      style.fill: "#63B3ED"
+      label: "Break into components"
+    }
+
+    specify: Specification {
+      shape: rectangle
+      style.fill: "#63B3ED"
+      label: "Add conditions/context"
+    }
+
+    check -> decompose: yes
+    check -> specify: yes
+  }
+
+  tree: Belief Tree (D2) {
+    style.fill: "#4299E1"
+    style.font-color: "#FFFFFF"
+
+    d1: D1: Root beliefs {
+      shape: rectangle
+      style.fill: "#2B6CB0"
+      style.font-color: "#FFFFFF"
+    }
+    d2_a: D2a: Sub-belief {
+      shape: rectangle
+      style.fill: "#2C5282"
+      style.font-color: "#FFFFFF"
+    }
+    d2_b: D2b: Sub-belief {
+      shape: rectangle
+      style.fill: "#2C5282"
+      style.font-color: "#FFFFFF"
+    }
+
+    d1 -> d2_a
+    d1 -> d2_b
+  }
+
+  loop -> tree
+}
+
+# =============================================================================
+# STAGE 4: RESEARCH PHASE (PER BELIEF)
+# =============================================================================
+
+stage4: Stage 4: Research (per belief) {
+  style.fill: "#FFFAF0"
+  style.stroke: "#DD6B20"
+  style.stroke-width: 2
+
+  v2: V2 Research Pipeline {
+    style.fill: "#FEEBC8"
+
+    queries: Generate\nQueries {
+      shape: rectangle
+      style.fill: "#FBD38D"
+    }
+
+    tavily: Tavily\nSearch {
+      shape: cloud
+      style.fill: "#F6AD55"
+    }
+
+    chunk: Chunk &\nScore {
+      shape: rectangle
+      style.fill: "#ED8936"
+    }
+
+    select: Select\nCards {
+      shape: rectangle
+      style.fill: "#DD6B20"
+      style.font-color: "#FFFFFF"
+    }
+
+    queries -> tavily -> chunk -> select
+  }
+
+  evidence: Evidence Linking {
+    style.fill: "#FED7E2"
+
+    support: SUPPORTS {
+      shape: document
+      style.fill: "#9AE6B4"
+    }
+    oppose: OPPOSES {
+      shape: document
+      style.fill: "#FC8181"
+    }
+  }
+
+  v2 -> evidence
+}
+
+
+# =============================================================================
+# STAGE 5: ARGUMENT GENERATION
+# =============================================================================
+
+stage5: Stage 5: Argument Generation {
+  style.fill: "#FAF5FF"
+  style.stroke: "#6B46C1"
+  style.stroke-width: 2
+
+  dspy: DSPy: ArgumentGenerator {
+    shape: hexagon
+    style.fill: "#E9D8FD"
+    style.stroke: "#6B46C1"
+  }
+
+  output: Claim-Warrant-Impact {
+    style.fill: "#D6BCFA"
+
+    claim: Claim {
+      shape: rectangle
+      style.fill: "#B794F4"
+      label: "Main assertion"
+    }
+    warrant: Warrant {
+      shape: rectangle
+      style.fill: "#9F7AEA"
+      style.font-color: "#FFFFFF"
+      label: "Reasoning"
+    }
+    impact: Impact {
+      shape: rectangle
+      style.fill: "#805AD5"
+      style.font-color: "#FFFFFF"
+      label: "Why it matters"
+    }
+
+    claim -> warrant -> impact
+  }
+
+  dspy -> output
+}
+
+# =============================================================================
+# OUTPUT
+# =============================================================================
+
+output_section: Output {
+  style.fill: "#F0FFF4"
+  style.stroke: "#38A169"
+  style.stroke-width: 2
+
+  tree: BeliefTree {
+    shape: cylinder
+    style.fill: "#48BB78"
+    style.font-color: "#FFFFFF"
+    label: |md
+      **BeliefTree**
+      - beliefs: Dict[str, RefinedBelief]
+      - arguments: Dict[str, Argument]
+      - evidence: Dict[str, Evidence]
+      - values: List[Value]
+    |
+  }
+
+  neo4j: Neo4j Persistence {
+    shape: cylinder
+    style.fill: "#276749"
+    style.font-color: "#FFFFFF"
+    label: "BeliefTreePersistence"
+  }
+
+  json: JSON Trace {
+    shape: document
+    style.fill: "#9AE6B4"
+    label: "logs/belief_traces/"
+  }
+
+  tree -> neo4j
+  tree -> json
+}
+
+# =============================================================================
+# CONNECTIONS
+# =============================================================================
+
+input -> stage1: topic {
+  style.stroke-width: 2
+}
+
+stage1 -> stage2: values {
+  style.stroke-width: 2
+}
+
+stage2 -> stage3: root beliefs {
+  style.stroke-width: 2
+}
+
+stage3 -> stage4: leaf beliefs {
+  style.stroke-width: 2
+}
+
+stage4 -> stage5: evidence {
+  style.stroke-width: 2
+}
+
+stage5 -> output_section: arguments {
+  style.stroke-width: 2
+}
+
+# =============================================================================
+# TIMING ANNOTATIONS
+# =============================================================================
+
+timing: DSPy Calls {
+  style.fill: "#EDF2F7"
+  style.stroke-dash: 3
+
+  t1: "ValueExtractor" {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+  }
+  t2: "BeliefGenerator (x2)" {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+  }
+  t3: "Refinement (recursive)" {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+  }
+  t4: "V2 Research (per belief)" {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+  }
+  t5: "ArgumentGenerator" {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+  }
+}

@@ -1,0 +1,211 @@
+{
+  "trace_id": "t5_fresh_neg_2_panel",
+  "debate_id": "t5_fresh_neg_2",
+  "model_judgments": [
+    {
+      "model_name": "opus_4.5",
+      "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+      "winner": "aff",
+      "scores": {
+        "aff": 67.0,
+        "neg": 64.0
+      },
+      "confidence": 0.62,
+      "reasoning": "This was a close debate hinging on definitional framing. The NEG presented sophisticated arguments about 'ugly stability' and effectively challenged the Suzuki evidence's applicability. However, the NEG's case ultimately required the judge to accept that a region with crises but no war is 'unstable'\u2014a definition that wasn't sufficiently warranted. The AFF's cleaner logical chain (nuclear weapons prevent major war, preventing major war is stability) proved more defensible. The NEG won technical points on methodology and the dropped arms race argument, but these weren't sufficient to overcome AFF's framework victory on the core definitional clash. The AFF's reframing of India-Pakistan evidence as proof of successful deterrence was persuasive. While NEG demonstrated strong debate skills throughout, particularly in the NC and NR, the AFF's framework was more intuitive and their 2AR crystallization was effective.",
+      "key_moments": [
+        {
+          "speech_type": "2AR",
+          "moment_type": "turning_point",
+          "description": "Definition of stability (AFF's 'no major war' standard was more intuitive and defensible than NEG's 'crisis-free' standard)",
+          "impact": -0.5,
+          "affected_side": "neg",
+          "stage": null
+        },
+        {
+          "speech_type": "NC",
+          "moment_type": "evidence_failure",
+          "description": "India-Pakistan evidence interpretation (AFF successfully reframed five contained crises as proof of deterrence success)",
+          "impact": 0.5,
+          "affected_side": "aff",
+          "stage": null
+        },
+        {
+          "speech_type": "NC",
+          "moment_type": "turning_point",
+          "description": "Theoretical coherence (AFF's deterrence logic was cleaner throughout the debate)",
+          "impact": 0.5,
+          "affected_side": "aff",
+          "stage": null
+        },
+        {
+          "speech_type": "AC",
+          "moment_type": "critical_drop",
+          "description": "NEG technical win on arms race argument (dropped by AFF but underdeveloped by NEG)",
+          "impact": -0.5,
+          "affected_side": "neg",
+          "stage": null
+        }
+      ],
+      "voting_issues": [
+        "Definition of stability (AFF's 'no major war' standard was more intuitive and defensible than NEG's 'crisis-free' standard)",
+        "India-Pakistan evidence interpretation (AFF successfully reframed five contained crises as proof of deterrence success)",
+        "Theoretical coherence (AFF's deterrence logic was cleaner throughout the debate)",
+        "NEG technical win on arms race argument (dropped by AFF but underdeveloped by NEG)"
+      ],
+      "judge_quality": 0.7350000000000001,
+      "retry_triggered": false,
+      "rubric_scores": {
+        "evidentiary_fidelity": 8.0,
+        "symmetric_treatment": 6.0,
+        "clash_resolution": 7.0,
+        "decision_clarity": 8.0,
+        "technical_accuracy": 8.0
+      }
+    },
+    {
+      "model_name": "gemini_3.1_pro",
+      "model_id": "gemini/gemini-3.1-pro-preview",
+      "winner": "aff",
+      "scores": {
+        "aff": 85.0,
+        "neg": 81.0
+      },
+      "confidence": 0.85,
+      "reasoning": "The debate ultimately hinged on the framing of 'international stability.' The Negative introduced strong empirical evidence of India-Pakistan crises to argue that proliferation leads to 'ugly stability' characterized by high tension and near-misses. However, the Affirmative successfully established stability as the pragmatic absence of major war, arguing that an 'absence of tension' is an unrealistic threshold. Under this framework, the Affirmative effectively co-opted the Negative's core examples, arguing that the containment of these crises proved deterrence worked. The Affirmative's strategic reframing in the 1AR and excellent crystallization in the 2AR secured their victory.",
+      "key_moments": [
+        {
+          "speech_type": "NC",
+          "moment_type": "turning_point",
+          "description": "Definition of stability (absence of major war vs. absence of tension)",
+          "impact": 0.5,
+          "affected_side": "aff",
+          "stage": null
+        },
+        {
+          "speech_type": "2AR",
+          "moment_type": "turning_point",
+          "description": "India-Pakistan historical examples (co-opted by Aff)",
+          "impact": 0.5,
+          "affected_side": "aff",
+          "stage": null
+        },
+        {
+          "speech_type": "AC",
+          "moment_type": "turning_point",
+          "description": "Arms races and their impact on major conflict",
+          "impact": 0.5,
+          "affected_side": "aff",
+          "stage": null
+        }
+      ],
+      "voting_issues": [
+        "Definition of stability (absence of major war vs. absence of tension)",
+        "India-Pakistan historical examples (co-opted by Aff)",
+        "Arms races and their impact on major conflict"
+      ],
+      "judge_quality": 0.355,
+      "retry_triggered": false,
+      "rubric_scores": {
+        "evidentiary_fidelity": 3.0,
+        "symmetric_treatment": 4.0,
+        "clash_resolution": 2.0,
+        "decision_clarity": 6.0,
+        "technical_accuracy": 4.0
+      }
+    },
+    {
+      "model_name": "gpt_5.2",
+      "model_id": "openai/gpt-5.2",
+      "winner": "neg",
+      "scores": {
+        "aff": 74.0,
+        "neg": 78.0
+      },
+      "confidence": 0.63,
+      "reasoning": "The ballot hinges on the meaning of \u201cinternational stability.\u201d AFF collapses to a bright-line definition\u2014stability equals the absence of major war/nuclear exchange\u2014and uses India\u2013Pakistan (crises without war) as proof deterrence works. NEG answers with a more complete and consistently defended counter-standard: stability requires reduced tensions and predictable relations; repeated high-risk crises are themselves destabilizing even if they do not culminate in full war (\u201cugly stability\u201d). AFF does not sufficiently warrant why its narrowed metric should control the resolutional term \u201cstability,\u201d and does not do enough comparative weighing to explain why frequent crises should be treated as irrelevant or outweighed under common stability evaluation.\n\nOn substance, NEG\u2019s concrete offense\u2014five post-1998 India\u2013Pakistan crises\u2014cleanly links to its framework and becomes decisive. AFF\u2019s response that deterrence prevented escalation is plausible, but under NEG\u2019s (better-developed) standard it is at best mitigation rather than affirmative proof of stability. Additionally, AFF\u2019s reliance on Suzuki for \u201cfewer disputes\u201d is weakened because the round ends on a different dependent variable (\u201cno major war\u201d) and AFF does not resolve the methodological/level-of-analysis critiques with sufficient specificity. NEG also maintains residual independent offense about arms race/escalatory dynamics that AFF does not fully neutralize. Overall, NEG\u2019s framework control plus clearer offense yields the win.",
+      "key_moments": [
+        {
+          "speech_type": "NC",
+          "moment_type": "turning_point",
+          "description": "Framework: NEG better justified stability as reduced tensions/predictability (crisis frequency matters) versus AFF\u2019s narrow 'no major war' metric",
+          "impact": -0.5,
+          "affected_side": "neg",
+          "stage": null
+        },
+        {
+          "speech_type": "NC",
+          "moment_type": "turning_point",
+          "description": "India\u2013Pakistan: NEG\u2019s repeated post-1998 crises function as direct instability offense under NEG\u2019s standard; AFF\u2019s 'no war' response doesn\u2019t outweigh",
+          "impact": -0.5,
+          "affected_side": "neg",
+          "stage": null
+        },
+        {
+          "speech_type": "NC",
+          "moment_type": "evidence_failure",
+          "description": "Evidence/metric coherence: AFF\u2019s Suzuki/systemic 'fewer disputes' claim is not cleanly connected to the final 'no major war' standard, letting NEG\u2019s indicts stick",
+          "impact": -0.5,
+          "affected_side": "neg",
+          "stage": null
+        }
+      ],
+      "voting_issues": [
+        "Framework: NEG better justified stability as reduced tensions/predictability (crisis frequency matters) versus AFF\u2019s narrow 'no major war' metric",
+        "India\u2013Pakistan: NEG\u2019s repeated post-1998 crises function as direct instability offense under NEG\u2019s standard; AFF\u2019s 'no war' response doesn\u2019t outweigh",
+        "Evidence/metric coherence: AFF\u2019s Suzuki/systemic 'fewer disputes' claim is not cleanly connected to the final 'no major war' standard, letting NEG\u2019s indicts stick"
+      ],
+      "judge_quality": 0.72,
+      "retry_triggered": false,
+      "rubric_scores": {
+        "evidentiary_fidelity": 7.0,
+        "symmetric_treatment": 7.5,
+        "clash_resolution": 6.5,
+        "decision_clarity": 8.0,
+        "technical_accuracy": 7.5
+      }
+    }
+  ],
+  "consensus": {
+    "agreement_level": "majority",
+    "consensus_winner": "aff",
+    "vote_count": {
+      "aff": 2,
+      "neg": 1
+    },
+    "score_variance": 54.88888888888889,
+    "disagreement_analysis": "Models disagreeing: ['gpt_5.2']. Reasons: The ballot hinges on the meaning of \u201cinternational stability.\u201d AFF collapses to a bright-line defini"
+  },
+  "final_winner": "aff",
+  "final_scores": {
+    "aff": 73.31491712707182,
+    "neg": 72.90331491712706
+  },
+  "final_confidence": 0.3922333333333333,
+  "agreed_key_moments": [
+    {
+      "speech_type": "2AR",
+      "moment_type": "turning_point",
+      "description": "Definition of stability (AFF's 'no major war' standard was more intuitive and defensible than NEG's 'crisis-free' standard)",
+      "impact": -0.5,
+      "affected_side": "neg",
+      "stage": null
+    },
+    {
+      "speech_type": "NC",
+      "moment_type": "evidence_failure",
+      "description": "India-Pakistan evidence interpretation (AFF successfully reframed five contained crises as proof of deterrence success)",
+      "impact": 0.5,
+      "affected_side": "aff",
+      "stage": null
+    },
+    {
+      "speech_type": "NC",
+      "moment_type": "turning_point",
+      "description": "Theoretical coherence (AFF's deterrence logic was cleaner throughout the debate)",
+      "impact": 0.5,
+      "affected_side": "aff",
+      "stage": null
+    }
+  ],
+  "judged_at": "2026-02-20T00:24:40.546535"
+}

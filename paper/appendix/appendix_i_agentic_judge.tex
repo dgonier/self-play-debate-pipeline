@@ -1,0 +1,206 @@
+\section{Agentic Judge Architecture}
+\label{app:agentic_judge}
+
+The evaluation system is not a single LLM call but a multi-component
+\emph{agentic judge} comprising four dimensional sub-judges, a chronicler
+for argument state tracking, a forensics module for stage attribution,
+and a meta-judge for bias detection and calibration. This appendix
+provides the full architecture.
+
+\subsection{Dimensional Sub-Judges}
+
+Each speech is evaluated by four specialized sub-judges, each with its
+own rubric and GRPO weight. Sub-judges operate independently on the
+same speech and debate context, then their scores are aggregated.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lccp{5.5cm}}
+\toprule
+\textbf{Sub-Judge} & \textbf{Weight} & \textbf{Scale} & \textbf{Rubric Focus} \\
+\midrule
+ArgumentJudge & $1.5\times$ & 0--1 & Claim-warrant linkage, logical validity, argument sophistication, burden of proof allocation \\
+EvidenceJudge & $1.5\times$ & 0--1 & Citation accuracy (verified against source), source credibility, evidence-argument integration \\
+ClashJudge & $1.3\times$ & 0--1 & Response quality to opponent arguments, identification of dropped arguments, attack effectiveness \\
+LanguageJudge & $1.0\times$ & 0--1 & Clarity of expression, persuasive impact, signposting and organization, word economy \\
+\bottomrule
+\end{tabular}
+\caption{Dimensional sub-judges with GRPO weights and rubric focus areas.
+ArgumentJudge and EvidenceJudge receive higher weight ($1.5\times$) because
+argument quality and evidence integrity are most predictive of debate outcomes.}
+\label{tab:sub_judges}
+\end{table}
+
+The composite inline score for speech $s$ is:
+\begin{equation}
+\text{score}_{\text{inline}}(s) = \frac{\sum_{j} w_j \cdot \text{score}_j(s)}{\sum_{j} w_j}
+\end{equation}
+
+\noindent where $j$ indexes the four sub-judges and $w_j$ is the GRPO weight.
+
+\subsection{Speech-Specific Primary Dimensions}
+
+Beyond the four universal dimensions, each IPDA speech type has a
+\emph{primary dimension} reflecting its unique role in the debate structure.
+The primary dimension receives additional weight in the composite score
+for that speech type.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{llcp{5cm}}
+\toprule
+\textbf{Speech} & \textbf{Primary Dimension} & \textbf{Add'l Weight} & \textbf{Evaluation Criteria} \\
+\midrule
+AC & \texttt{prima\_facie\_case} & 0.20 & Establishes complete burden structure with independent contentions, clear link chain, and sufficient warranting \\
+NC & \texttt{offense\_defense\_balance} & 0.18 & Strategic time allocation between attacking the AC and building independent negative offense \\
+1AR & \texttt{triage\_efficiency} & 0.18 & Prioritized response to NC arguments; addresses highest-impact attacks first within time constraints \\
+NR & \texttt{line\_picture\_synthesis} & 0.16 & Extends negative arguments, synthesizes the round into a coherent ``big picture'' narrative \\
+2AR & \texttt{crystallization\_cascade} & 0.18 & Reduces the entire debate to 2--3 decisive voting issues with clear impact calculus \\
+\midrule
+AC\_CX\_Q & \texttt{case\_probe\_extraction} & 0.15 & Negative questions probing the fresh AC for definitional weaknesses and unstated assumptions \\
+AC\_CX\_A & \texttt{case\_fortification} & 0.15 & Affirmative answers that protect case structure without conceding strategic ground \\
+NC\_CX\_Q & \texttt{offense\_limitation} & 0.15 & Affirmative questions limiting the scope and impact of negative attacks \\
+NC\_CX\_A & \texttt{offense\_preservation} & 0.15 & Negative answers defending attacks while avoiding admissions that weaken offense \\
+\bottomrule
+\end{tabular}
+\caption{Speech-specific primary dimensions in the IPDA format.
+Constructive speeches (AC, NC) and final rebuttals (2AR) receive higher
+additional weight because they have the strongest structural requirements.}
+\label{tab:speech_dimensions}
+\end{table}
+
+\subsection{Chronicler: Argument State Tracking}
+
+The Chronicler module maintains a running record of every argument's
+status throughout the debate, enabling the ClashJudge to accurately
+identify dropped arguments and the BackpropScorer
+(Appendix~\ref{app:trajectory}) to attribute outcomes to specific
+decisions.
+
+Each argument is tracked through six possible states:
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lp{8cm}}
+\toprule
+\textbf{State} & \textbf{Definition} \\
+\midrule
+\textsc{Standing} & Introduced and not yet addressed by the opponent \\
+\textsc{Attacked} & Directly refuted or challenged by the opponent \\
+\textsc{Dropped} & Not addressed in the opponent's response when it should have been; typically conceded by omission \\
+\textsc{Extended} & Reaffirmed and developed further by the originating side \\
+\textsc{Conceded} & Explicitly acknowledged as valid by the opponent \\
+\textsc{Turned} & Opponent has reframed the argument to support their own position \\
+\bottomrule
+\end{tabular}
+\caption{Argument state taxonomy maintained by the Chronicler.}
+\label{tab:argument_states}
+\end{table}
+
+The Chronicler processes speeches sequentially, updating its argument
+ledger after each speech. This ledger is provided as context to all
+sub-judges and to the BackpropScorer, ensuring that evaluations reflect
+the actual flow of the debate rather than assessing each speech in isolation.
+
+\subsection{Forensics: Stage Attribution}
+
+When a speech receives a low score, the Forensics module identifies
+\emph{which pipeline stage} caused the failure. This decomposition is
+critical for group-wise GRPO (Appendix~\ref{app:grpo_groups}), as it
+determines which training group should receive the penalty signal.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lp{6cm}c}
+\toprule
+\textbf{Stage} & \textbf{Failure Indicators} & \textbf{GRPO Group} \\
+\midrule
+Tactic selection & Wrong strategy for debate state; misread opponent's position & Group A \\
+Skeleton building & Poor contention structure; missing link in argument chain & Group B \\
+Evidence selection & Irrelevant evidence; fabricated citations; misquoted sources & Group B \\
+Speech execution & Good plan but poor delivery; verbose or unclear prose & Group C \\
+\bottomrule
+\end{tabular}
+\caption{Forensics stage attribution mapping failures to GRPO training groups.}
+\label{tab:forensics}
+\end{table}
+
+The Forensics module produces decomposed rewards:
+$r_{\text{tactic}}$, $r_{\text{skeleton}}$, $r_{\text{evidence}}$,
+and $r_{\text{execution}}$. These are routed to the appropriate training
+group, enabling targeted optimization. For example, a speech with excellent
+argumentation but fabricated evidence receives a high $r_{\text{execution}}$
+but a strongly negative $r_{\text{evidence}}$, penalizing Group~B without
+degrading Group~C's training signal.
+
+\subsection{MetaJudge: Bias Detection and Calibration}
+
+LLM judges exhibit systematic biases that, if uncorrected, contaminate
+training data. The MetaJudge detects and mitigates six bias types:
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lp{7cm}}
+\toprule
+\textbf{Bias Type} & \textbf{Description} \\
+\midrule
+\textsc{No\_Alternative\_Penalty} & Penalizing an argument without considering the opponent's alternative \\
+\textsc{Extension\_Error} & Treating a re-stated argument as a new argument (inflating or deflating scores) \\
+\textsc{Evidence\_Asymmetry} & Applying different evidentiary standards to the two sides \\
+\textsc{Recency\_Bias} & Overweighting later speeches relative to earlier ones \\
+\textsc{Verbosity\_Bias} & Rewarding longer speeches independent of content quality \\
+\textsc{Side\_Bias} & Systematic preference for affirmative or negative regardless of performance \\
+\bottomrule
+\end{tabular}
+\caption{Six bias types detected by the MetaJudge.}
+\label{tab:bias_types}
+\end{table}
+
+\paragraph{UniversalBiasTracker.}
+The MetaJudge maintains a rolling calibration window of the most recent
+50 debates. For each judge model and each bias type, it computes the
+empirical bias rate and applies score corrections when the rate exceeds
+a threshold ($> 0.15$ for most bias types). The calibration window is
+updated after each scored debate, enabling the system to adapt to
+distributional shift as the trained model improves across iterations.
+
+\paragraph{Multi-model retrospective panel.}
+For tournament evaluation and high-stakes training data curation, a
+3-model retrospective panel (Claude Opus, Gemini, GPT-4) independently
+evaluates each debate. Points of agreement across all three models
+(``agreed key moments'') are flagged as the highest-confidence training
+signal and receive elevated weight in GRPO.
+
+\subsection{Judge-the-Judge Rubric}
+
+To validate judge quality, a meta-evaluation rubric scores each judge
+decision across five dimensions:
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lcp{6cm}}
+\toprule
+\textbf{Dimension} & \textbf{Weight} & \textbf{Criteria} \\
+\midrule
+Evidentiary fidelity & 25\% & Does the judge accurately reference what was actually said in speeches? \\
+Symmetric treatment & 20\% & Are the same standards applied to both sides? \\
+Clash resolution & 25\% & Does the judge correctly identify who won contested arguments? \\
+Decision clarity & 15\% & Is the decision logically derived from the analysis? \\
+Technical accuracy & 15\% & Does the judge correctly apply debate norms (dropped arguments, burden of proof, etc.)? \\
+\bottomrule
+\end{tabular}
+\caption{Judge-the-judge rubric for meta-evaluation of scoring quality.}
+\label{tab:judge_rubric}
+\end{table}
+
+Judges scoring below 0.60 on the meta-rubric have their scores discarded
+for that debate. In tournament evaluation, this filtering removed
+approximately 8\% of individual judge decisions, predominantly due to
+evidentiary fidelity failures (the judge misattributed or fabricated
+quotes from speeches).

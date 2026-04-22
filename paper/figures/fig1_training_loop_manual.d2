@@ -1,0 +1,28 @@
+direction: down
+
+Generate Debates: {
+  shape: rectangle
+  style.font-size: 14
+}
+Judge Scoring: {
+  shape: rectangle
+  style.font-size: 14
+}
+Preference Pairs: {
+  shape: rectangle
+  style.font-size: 14
+}
+ORPO Training: {
+  shape: rectangle
+  style.font-size: 14
+}
+Merge Weights: {
+  shape: rectangle
+  style.font-size: 14
+}
+
+Generate Debates -> Judge Scoring
+Judge Scoring -> Preference Pairs
+Preference Pairs -> ORPO Training
+ORPO Training -> Merge Weights
+Merge Weights -> Generate Debates: iterate

@@ -1,0 +1,6 @@
+flowchart LR
+    A[Generate<br/>Debates] --> B[Judge<br/>Scoring]
+    B --> C[Preference<br/>Pairs]
+    C --> D[ORPO<br/>Training]
+    D --> E[Merge<br/>Weights]
+    E --> A

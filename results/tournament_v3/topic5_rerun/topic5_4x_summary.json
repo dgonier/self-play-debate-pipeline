@@ -1,0 +1,245 @@
+{
+  "timestamp": "2026-02-20T01:06:26.621218",
+  "resolution": "Nuclear proliferation increases international stability",
+  "panel_models": [
+    {
+      "name": "opus_4.5",
+      "id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0"
+    },
+    {
+      "name": "gemini_3.1_pro",
+      "id": "gemini/gemini-3.1-pro-preview"
+    },
+    {
+      "name": "gpt_5.2",
+      "id": "openai/gpt-5.2"
+    }
+  ],
+  "generation_results": [
+    {
+      "debate_id": "t5_fresh_aff_1",
+      "resolution": "Nuclear proliferation increases international stability",
+      "trained_side": "aff",
+      "winner_side": "neg",
+      "trained_won": false,
+      "trained_score": 58.0,
+      "base_score": 72.0,
+      "aff_score": 58.0,
+      "neg_score": 72.0,
+      "score_diff": -14.0,
+      "elapsed_s": 1898,
+      "null_speeches": [],
+      "short_speeches": [],
+      "has_template_leak": false,
+      "speech_word_counts": {
+        "AC": 673,
+        "NC": 595,
+        "1AR": 470,
+        "NR": 398,
+        "2AR": 438
+      },
+      "error": null
+    },
+    {
+      "debate_id": "t5_fresh_aff_2",
+      "resolution": "Nuclear proliferation increases international stability",
+      "trained_side": "aff",
+      "winner_side": "neg",
+      "trained_won": false,
+      "trained_score": 73.2,
+      "base_score": 74.3,
+      "aff_score": 73.2,
+      "neg_score": 74.3,
+      "score_diff": -1.1,
+      "elapsed_s": 1772,
+      "null_speeches": [],
+      "short_speeches": [],
+      "has_template_leak": false,
+      "speech_word_counts": {
+        "AC": 557,
+        "NC": 507,
+        "1AR": 400,
+        "NR": 369,
+        "2AR": 277
+      },
+      "error": null
+    },
+    {
+      "debate_id": "t5_fresh_neg_1",
+      "resolution": "Nuclear proliferation increases international stability",
+      "trained_side": "neg",
+      "winner_side": "aff",
+      "trained_won": false,
+      "trained_score": 67.2,
+      "base_score": 73.4,
+      "aff_score": 73.4,
+      "neg_score": 67.2,
+      "score_diff": -6.2,
+      "elapsed_s": 1913,
+      "null_speeches": [],
+      "short_speeches": [],
+      "has_template_leak": false,
+      "speech_word_counts": {
+        "AC": 625,
+        "NC": 626,
+        "1AR": 437,
+        "NR": 408,
+        "2AR": 343
+      },
+      "error": null
+    },
+    {
+      "debate_id": "t5_fresh_neg_2",
+      "resolution": "Nuclear proliferation increases international stability",
+      "trained_side": "neg",
+      "winner_side": "neg",
+      "trained_won": true,
+      "trained_score": 74.4,
+      "base_score": 63.2,
+      "aff_score": 63.2,
+      "neg_score": 74.4,
+      "score_diff": 11.2,
+      "elapsed_s": 1888,
+      "null_speeches": [],
+      "short_speeches": [],
+      "has_template_leak": false,
+      "speech_word_counts": {
+        "AC": 526,
+        "NC": 421,
+        "1AR": 401,
+        "NR": 424,
+        "2AR": 371
+      },
+      "error": null
+    }
+  ],
+  "panel_results": [
+    {
+      "debate_id": "t5_fresh_aff_1",
+      "trained_side": "aff",
+      "panel_winner": "aff",
+      "trained_won": true,
+      "aff_score": 79.1,
+      "neg_score": 69.7,
+      "agreement": "unanimous",
+      "confidence": 0.52,
+      "model_votes": {
+        "opus_4.5": {
+          "winner": "aff",
+          "aff": 68.0,
+          "neg": 63.0,
+          "quality": 0.73
+        },
+        "gemini_3.1_pro": {
+          "winner": "aff",
+          "aff": 89.0,
+          "neg": 73.0,
+          "quality": 1.0
+        },
+        "gpt_5.2": {
+          "winner": "aff",
+          "aff": 76.5,
+          "neg": 72.0,
+          "quality": 0.71
+        }
+      }
+    },
+    {
+      "debate_id": "t5_fresh_aff_2",
+      "trained_side": "aff",
+      "panel_winner": "aff",
+      "trained_won": true,
+      "aff_score": 73.3,
+      "neg_score": 72.7,
+      "agreement": "majority",
+      "confidence": 0.39,
+      "model_votes": {
+        "opus_4.5": {
+          "winner": "aff",
+          "aff": 67.5,
+          "neg": 63.8,
+          "quality": 0.73
+        },
+        "gemini_3.1_pro": {
+          "winner": "aff",
+          "aff": 87.0,
+          "neg": 81.0,
+          "quality": 0.33
+        },
+        "gpt_5.2": {
+          "winner": "neg",
+          "aff": 73.0,
+          "neg": 78.0,
+          "quality": 0.7
+        }
+      }
+    },
+    {
+      "debate_id": "t5_fresh_neg_1",
+      "trained_side": "neg",
+      "panel_winner": "aff",
+      "trained_won": false,
+      "aff_score": 74.1,
+      "neg_score": 73.1,
+      "agreement": "majority",
+      "confidence": 0.4,
+      "model_votes": {
+        "opus_4.5": {
+          "winner": "aff",
+          "aff": 67.4,
+          "neg": 62.8,
+          "quality": 0.73
+        },
+        "gemini_3.1_pro": {
+          "winner": "neg",
+          "aff": 78.0,
+          "neg": 85.0,
+          "quality": 0.7
+        },
+        "gpt_5.2": {
+          "winner": "aff",
+          "aff": 77.0,
+          "neg": 72.0,
+          "quality": 0.72
+        }
+      }
+    },
+    {
+      "debate_id": "t5_fresh_neg_2",
+      "trained_side": "neg",
+      "panel_winner": "aff",
+      "trained_won": false,
+      "aff_score": 73.3,
+      "neg_score": 72.9,
+      "agreement": "majority",
+      "confidence": 0.39,
+      "model_votes": {
+        "opus_4.5": {
+          "winner": "aff",
+          "aff": 67.0,
+          "neg": 64.0,
+          "quality": 0.74
+        },
+        "gemini_3.1_pro": {
+          "winner": "aff",
+          "aff": 85.0,
+          "neg": 81.0,
+          "quality": 0.35
+        },
+        "gpt_5.2": {
+          "winner": "neg",
+          "aff": 74.0,
+          "neg": 78.0,
+          "quality": 0.72
+        }
+      }
+    }
+  ],
+  "summary": {
+    "debates_run": 4,
+    "debates_successful": 4,
+    "pipeline_trained_wins": 1,
+    "panel_trained_wins": 2,
+    "panel_debates_judged": 4
+  }
+}

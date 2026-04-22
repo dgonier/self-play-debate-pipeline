@@ -1,0 +1,423 @@
+# FLOW STUDY - DEBATE STATE ANALYSIS
+# Analyzes debate state before rebuttal speeches
+# Style: Presentation (bold colors, high contrast)
+
+direction: down
+
+title: {
+  label: "Flow Study: Debate State Analysis"
+  
+  style.font-size: 28
+  style.bold: true
+}
+
+subtitle: {
+  label: "packages/debate/flow/flow_study.py"
+  
+  style.font-size: 12
+  style.italic: true
+}
+
+# =============================================================================
+# WHEN FLOW STUDY RUNS
+# =============================================================================
+
+when: When FlowStudy Runs {
+  style.fill: "#EDF2F7"
+  style.stroke: "#4A5568"
+
+  note: {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+    label: |md
+      **Before Rebuttals (not AC/NC)**
+      - NC reads after AC → FlowStudy
+      - 1AR reads after NC → FlowStudy
+      - NR reads after 1AR → FlowStudy
+      - 2AR reads after NR → FlowStudy
+    |
+  }
+}
+
+# =============================================================================
+# INPUT: ALL PRIOR SPEECHES
+# =============================================================================
+
+input: Input: Debate Transcript {
+  style.fill: "#FFF5F5"
+  style.stroke: "#C53030"
+  style.stroke-width: 2
+
+  ac: AC Speech {
+    shape: document
+    style.fill: "#9AE6B4"
+  }
+
+  cx1: AC-CX {
+    shape: document
+    style.fill: "#FEEBC8"
+  }
+
+  nc: NC Speech {
+    shape: document
+    style.fill: "#FC8181"
+  }
+
+  cx2: NC-CX {
+    shape: document
+    style.fill: "#FEEBC8"
+  }
+
+  rebuttals: (Previous Rebuttals) {
+    shape: document
+    style.fill: "#E2E8F0"
+    style.stroke-dash: 3
+  }
+}
+
+# =============================================================================
+# STAGE 1: ARGUMENT INVENTORY
+# =============================================================================
+
+stage1: Stage 1: Argument Inventory {
+  style.fill: "#EBF8FF"
+  style.stroke: "#3182CE"
+  style.stroke-width: 2
+
+  dspy: DSPy: ExtractArguments {
+    shape: hexagon
+    style.fill: "#BEE3F8"
+    style.stroke: "#3182CE"
+  }
+
+  inventory: FlowArgument Inventory {
+    style.fill: "#90CDF4"
+
+    aff_args: AFF Arguments {
+      style.fill: "#C6F6D5"
+
+      a1: "Arg A1" {
+        shape: rectangle
+        style.fill: "#9AE6B4"
+      }
+      a2: "Arg A2" {
+        shape: rectangle
+        style.fill: "#9AE6B4"
+      }
+    }
+
+    neg_args: NEG Arguments {
+      style.fill: "#FED7D7"
+
+      n1: "Arg N1" {
+        shape: rectangle
+        style.fill: "#FC8181"
+      }
+      n2: "Arg N2" {
+        shape: rectangle
+        style.fill: "#FC8181"
+      }
+    }
+  }
+
+  dspy -> inventory
+}
+
+# =============================================================================
+# STAGE 2: STATUS TRACKING
+# =============================================================================
+
+stage2: Stage 2: Status Tracking {
+  style.fill: "#F0FFF4"
+  style.stroke: "#38A169"
+  style.stroke-width: 2
+
+  dspy: DSPy: TrackStatus {
+    shape: hexagon
+    style.fill: "#C6F6D5"
+    style.stroke: "#38A169"
+  }
+
+  statuses: ArgumentStatus {
+    style.fill: "#9AE6B4"
+
+    standing: STANDING {
+      shape: rectangle
+      style.fill: "#48BB78"
+      style.font-color: "#FFFFFF"
+      label: "Made, not\nresponded to"
+    }
+
+    attacked: ATTACKED {
+      shape: rectangle
+      style.fill: "#F56565"
+      style.font-color: "#FFFFFF"
+      label: "Has been\nrefuted"
+    }
+
+    extended: EXTENDED {
+      shape: rectangle
+      style.fill: "#4299E1"
+      style.font-color: "#FFFFFF"
+      label: "Strengthened/\ndeveloped"
+    }
+
+    dropped: DROPPED {
+      shape: rectangle
+      style.fill: "#718096"
+      style.font-color: "#FFFFFF"
+      label: "Not defended\nwhen attacked"
+    }
+
+    turned: TURNED {
+      shape: rectangle
+      style.fill: "#9F7AEA"
+      style.font-color: "#FFFFFF"
+      label: "Used against\noriginal side"
+    }
+  }
+
+  dspy -> statuses
+}
+
+# =============================================================================
+# STAGE 3: CLASH POINT IDENTIFICATION
+# =============================================================================
+
+stage3: Stage 3: Clash Points {
+  style.fill: "#FAF5FF"
+  style.stroke: "#6B46C1"
+  style.stroke-width: 2
+
+  dspy: DSPy: IdentifyClash {
+    shape: hexagon
+    style.fill: "#E9D8FD"
+    style.stroke: "#6B46C1"
+  }
+
+  clash: ClashPoint {
+    style.fill: "#D6BCFA"
+
+    issue: Issue contested {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+    }
+
+    aff_pos: AFF position {
+      shape: rectangle
+      style.fill: "#C6F6D5"
+    }
+
+    neg_pos: NEG position {
+      shape: rectangle
+      style.fill: "#FED7D7"
+    }
+
+    linked: Related arg IDs {
+      shape: rectangle
+      style.fill: "#E9D8FD"
+    }
+  }
+
+  dspy -> clash
+}
+
+# =============================================================================
+# STAGE 4: VOTING ISSUES
+# =============================================================================
+
+stage4: Stage 4: Voting Issues {
+  style.fill: "#FEF3C7"
+  style.stroke: "#D97706"
+  style.stroke-width: 2
+
+  dspy: DSPy: CrystallizeVoting {
+    shape: hexagon
+    style.fill: "#FDE68A"
+    style.stroke: "#D97706"
+  }
+
+  voting: VotingIssue {
+    style.fill: "#FCD34D"
+
+    issue: Issue {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+    }
+
+    favors: "Favors: AFF/NEG/TBD" {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+    }
+
+    weight: "Weight: 0-2" {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+    }
+  }
+
+  dspy -> voting
+}
+
+# =============================================================================
+# STAGE 5: LINE-BY-LINE PRIORITIES
+# =============================================================================
+
+stage5: Stage 5: Line-by-Line Priorities {
+  style.fill: "#FFF5F5"
+  style.stroke: "#C53030"
+  style.stroke-width: 2
+
+  dspy: DSPy: GeneratePriorities {
+    shape: hexagon
+    style.fill: "#FED7D7"
+    style.stroke: "#C53030"
+  }
+
+  lines: FlowLineItem {
+    style.fill: "#FEB2B2"
+
+    defend: DEFEND {
+      shape: rectangle
+      style.fill: "#FC8181"
+      label: "Your arg under\nattack - defend"
+    }
+
+    attack: ATTACK {
+      shape: rectangle
+      style.fill: "#F56565"
+      style.font-color: "#FFFFFF"
+      label: "Opponent's arg -\nrefute"
+    }
+
+    extend: EXTEND {
+      shape: rectangle
+      style.fill: "#48BB78"
+      style.font-color: "#FFFFFF"
+      label: "Your arg -\nstrengthen"
+    }
+
+    capitalize: CAPITALIZE {
+      shape: rectangle
+      style.fill: "#4299E1"
+      style.font-color: "#FFFFFF"
+      label: "Opponent's drop -\npoint out"
+    }
+  }
+
+  priority: Priority Levels {
+    style.fill: "#FC8181"
+
+    critical: CRITICAL {
+      shape: rectangle
+      style.fill: "#9B2C2C"
+      style.font-color: "#FFFFFF"
+      label: "Must address\nor lose"
+    }
+
+    high: HIGH {
+      shape: rectangle
+      style.fill: "#C53030"
+      style.font-color: "#FFFFFF"
+      label: "Should address"
+    }
+
+    medium: MEDIUM {
+      shape: rectangle
+      style.fill: "#E53E3E"
+      style.font-color: "#FFFFFF"
+      label: "Nice to have"
+    }
+
+    low: LOW {
+      shape: rectangle
+      style.fill: "#F56565"
+      style.font-color: "#FFFFFF"
+      label: "If extra time"
+    }
+  }
+
+  dspy -> lines
+  dspy -> priority
+}
+
+# =============================================================================
+# OUTPUT: FLOW STATE
+# =============================================================================
+
+output: Output: FlowState {
+  style.fill: "#EDF2F7"
+  style.stroke: "#4A5568"
+  style.stroke-width: 2
+
+  state: FlowState {
+    shape: cylinder
+    style.fill: "#4A5568"
+    style.font-color: "#FFFFFF"
+    label: |md
+      **FlowState**
+      - arguments: Dict[str, FlowArgument]
+      - clash_points: List[ClashPoint]
+      - voting_issues: List[VotingIssue]
+      - line_items: List[FlowLineItem]
+    |
+  }
+}
+
+# =============================================================================
+# DOWNSTREAM: SKELETON BUILDER
+# =============================================================================
+
+downstream: Feeds into Stage 1-2 {
+  style.fill: "#F0FFF4"
+  style.stroke: "#38A169"
+  style.stroke-dash: 3
+
+  tactic: Tactic Selection {
+    shape: diamond
+    style.fill: "#9AE6B4"
+    label: "Prioritizes based\non flow state"
+  }
+
+  skeleton: Skeleton Builder {
+    shape: rectangle
+    style.fill: "#48BB78"
+    style.font-color: "#FFFFFF"
+    label: "Claims ordered\nby line items"
+  }
+
+  tactic -> skeleton
+}
+
+# =============================================================================
+# CONNECTIONS
+# =============================================================================
+
+input -> stage1.dspy: "transcript" {
+  style.stroke-width: 2
+}
+
+stage1 -> stage2: "arguments" {
+  style.stroke-width: 2
+}
+
+stage2 -> stage3: "with status" {
+  style.stroke-width: 2
+}
+
+stage3 -> stage4: "clash points" {
+  style.stroke-width: 2
+}
+
+stage4 -> stage5: "voting issues" {
+  style.stroke-width: 2
+}
+
+stage5 -> output: "priorities" {
+  style.stroke-width: 2
+}
+
+output.state -> downstream.tactic: "FlowState" {
+  style.stroke: "#38A169"
+  style.stroke-width: 2
+}

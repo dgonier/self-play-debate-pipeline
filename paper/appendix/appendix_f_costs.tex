@@ -1,0 +1,34 @@
+\section{Cost Estimates}
+\label{app:costs}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lrrl}
+\toprule
+\textbf{Component} & \textbf{Per Unit} & \textbf{Total} & \textbf{Notes} \\
+\midrule
+\multicolumn{4}{l}{\textit{Phase 1: Iterative ORPO (12 iterations)}} \\
+Debate generation & \$4/iter & \$48 & 15 debates/iteration \\
+Judge scoring (Sonnet) & \$2/iter & \$24 & All speeches + retries \\
+ORPO training & \$8/iter & \$96 & 8$\times$ A100, 2 epochs \\
+\midrule
+\multicolumn{4}{l}{\textit{Phase 3: CX Training}} \\
+CX data generation & -- & \$15 & 2,830 pairs \\
+GRPO training & -- & \$12 & 200 steps \\
+\midrule
+\multicolumn{4}{l}{\textit{Tournament Evaluation}} \\
+68 debates (generation) & \$3/debate & \$204 & Both models \\
+Panel judging (4 models) & \$5/debate & \$340 & With bias retries \\
+\midrule
+\multicolumn{4}{l}{\textit{Infrastructure}} \\
+AWS p4de.24xlarge & \$33/hr & -- & 8$\times$ A100 80GB \\
+vLLM inference & -- & -- & Included in compute \\
+\midrule
+\textbf{Estimated total} & & \textbf{\$750--1,000} & \\
+\bottomrule
+\end{tabular}
+\caption{Approximate cost breakdown. Total project cost is under \$1,000,
+demonstrating that meaningful RLAIF for debate is accessible without
+large annotation budgets.}
+\end{table}

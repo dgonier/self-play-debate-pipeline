@@ -1,0 +1,156 @@
+\section{Branching Implementation Details}
+\label{app:branching}
+
+The core insight behind our training pipeline is that debate trajectories
+are not linear sequences but \emph{trees}: at key decision points,
+multiple viable continuations exist, and the opponent's response may differ
+depending on which path is taken. We exploit this observation to generate
+high-signal counterfactual training pairs.
+
+\subsection{BranchDecider Algorithm}
+
+At each speech point, the multi-trial generation system produces $k$
+candidate speeches (typically $k{=}4$: two temperature variants and two
+retry variants). The \textsc{BranchDecider} determines whether any pair
+of candidates would produce a meaningfully different debate continuation.
+
+\paragraph{Divergence score computation.}
+For each pair of candidate speeches $(s_i, s_j)$, the BranchDecider
+computes a composite divergence score across four dimensions:
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lp{7cm}c}
+\toprule
+\textbf{Divergence Type} & \textbf{Criteria} & \textbf{Weight} \\
+\midrule
+Tactical & Different macro-tactic or substantially different micro-tactic sequence & 0.30 \\
+Structural & Different contention order, dropped vs.\ addressed arguments, or different voting issues & 0.25 \\
+Evidential & Different evidence cards cited or substantially different warrant construction & 0.25 \\
+Rhetorical & Different framing, tone, or persuasive strategy (e.g., pathos vs.\ logos emphasis) & 0.20 \\
+\bottomrule
+\end{tabular}
+\caption{Divergence dimensions and their weights in the BranchDecider scoring.}
+\label{tab:divergence_types}
+\end{table}
+
+The composite divergence score is the weighted sum:
+\begin{equation}
+d(s_i, s_j) = \sum_{t \in \{\text{tac}, \text{str}, \text{evi}, \text{rhe}\}} w_t \cdot d_t(s_i, s_j)
+\end{equation}
+
+\noindent where each $d_t \in [0, 1]$ is assessed by the scoring LLM
+alongside the standard quality evaluation.
+
+\paragraph{Branching conditions.}
+A branch is created when \emph{both} of the following hold:
+
+\begin{enumerate}
+\item \textbf{Divergence threshold}: $d(s_i, s_j) \geq 0.15$.
+\item \textbf{Viability check}: Both candidates score $\geq 0.65$ on inline quality. This prevents branching on a high-quality speech versus a degenerate one, which would produce a trivial preference pair.
+\end{enumerate}
+
+The key question operationalizing divergence is: \emph{``Would the opponent
+respond differently to $s_i$ versus $s_j$?''} A high divergence score
+implies yes, meaning the downstream trajectory will differ substantively.
+
+\paragraph{Branch limits.}
+Each debate permits at most 4 active branches to bound computational cost.
+When more than 4 branch points are identified, the system selects the
+4 with highest divergence scores. In practice, most debates produce 1--2
+branches, concentrated at the NC (Negative Constructive) and 1AR
+(First Affirmative Rebuttal) speech points where strategic optionality
+is highest.
+
+\subsection{Branch State Tracking}
+
+Each branch maintains a \texttt{BranchState} record:
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lp{8cm}}
+\toprule
+\textbf{Field} & \textbf{Description} \\
+\midrule
+\texttt{branch\_id} & Unique identifier (format: \texttt{debate\_id.branch\_point.variant}) \\
+\texttt{parent} & ID of parent branch (null for the root trajectory) \\
+\texttt{child\_branches} & List of child branch IDs created from this branch \\
+\texttt{speeches} & Ordered list of speeches from the branch point onward \\
+\texttt{divergence\_point} & Speech index where branching occurred \\
+\texttt{divergence\_score} & Composite $d(s_i, s_j)$ at the branch point \\
+\texttt{outcome} & Final debate outcome (win/loss and score) for this branch \\
+\bottomrule
+\end{tabular}
+\caption{BranchState record fields.}
+\label{tab:branch_state}
+\end{table}
+
+Branches share all speeches before the divergence point and maintain
+independent copies thereafter. The opponent model generates fresh
+responses for each branch, ensuring that downstream effects of the
+divergent choice are faithfully captured.
+
+\subsection{Winner-Shift Detection}
+
+The highest-signal training examples arise when different branches
+produce different debate outcomes. The winner-shift detection algorithm
+proceeds as follows:
+
+\begin{enumerate}
+\item For each branch pair $(B_a, B_b)$ sharing a parent, compare final outcomes.
+\item A \emph{winner shift} occurs when $\text{outcome}(B_a) \neq \text{outcome}(B_b)$---i.e., the trained model wins one branch and loses the other.
+\item For winner-shifted pairs, construct a \texttt{CounterfactualInsight}:
+\end{enumerate}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lp{8cm}}
+\toprule
+\textbf{Field} & \textbf{Description} \\
+\midrule
+\texttt{losing\_choice} & The speech variant that led to the losing branch \\
+\texttt{winning\_choice} & The speech variant that led to the winning branch \\
+\texttt{impact\_explanation} & LLM-generated causal narrative explaining why the choice mattered \\
+\texttt{confidence} & Estimated reliability of the causal attribution (0--1) \\
+\texttt{score\_differential} & $|\text{score}(B_\text{win}) - \text{score}(B_\text{lose})|$ \\
+\bottomrule
+\end{tabular}
+\caption{CounterfactualInsight structure for winner-shifted branch pairs.}
+\label{tab:counterfactual_insight}
+\end{table}
+
+The \texttt{impact\_explanation} is generated by prompting the scoring LLM
+with both complete branch trajectories and asking it to identify the causal
+chain from the divergent choice to the outcome difference. These explanations
+are preserved for potential use in reasoning distillation.
+
+\subsection{Preference Pair Types and Weighting}
+
+Branching produces four distinct types of GRPO preference pairs, each
+weighted according to its estimated signal quality:
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lccp{5.5cm}}
+\toprule
+\textbf{Pair Type} & \textbf{GRPO Weight} & \textbf{Typical \%} & \textbf{Construction} \\
+\midrule
+Trial pairs & $1.0\times$ & 55--65\% & Best vs.\ worst among $k$ trials at a single speech point (no branching) \\
+Branch pairs & $2.0\times$ & 10--15\% & Winner-shifted branch pairs: the winning branch's speech is chosen, the losing branch's speech is rejected \\
+Golden pairs & $1.5\times$ & 15--20\% & Opus-generated reference vs.\ best model trial; used in SFT pretraining and as high-quality anchors \\
+Retry pairs & $1.0\times$ & 10--15\% & Original vs.\ retry when score gap $\geq 0.10$; higher-scoring variant is chosen regardless of source \\
+\bottomrule
+\end{tabular}
+\caption{GRPO preference pair types with weights. Branch pairs receive $2\times$ weight because they carry outcome-level causal signal rather than speech-level quality signal alone.}
+\label{tab:pair_types}
+\end{table}
+
+Branch pairs receive elevated weight because they encode a stronger training
+signal: not merely ``this speech scored higher'' but ``this choice changed
+who won the debate.'' The $2.0\times$ weight was selected via ablation
+(Section~\ref{app:grpo_groups}); weights of $1.5\times$ and $3.0\times$
+produced lower validation accuracy on held-out debates.

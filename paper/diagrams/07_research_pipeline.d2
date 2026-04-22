@@ -1,0 +1,384 @@
+# V2 RESEARCH PIPELINE
+# Consolidated multi-hop research with 2-3 LLM calls per hop
+# Style: Presentation (bold colors, high contrast)
+
+direction: down
+
+title: {
+  label: "V2 Research Pipeline (Multi-Hop Tavily)"
+  
+  style.font-size: 28
+  style.bold: true
+}
+
+subtitle: {
+  label: "packages/debate/research/v2/pipeline.py"
+  
+  style.font-size: 12
+  style.italic: true
+}
+
+# =============================================================================
+# COMPARISON: OLD VS NEW
+# =============================================================================
+
+comparison: Pipeline Comparison {
+  style.fill: "#EDF2F7"
+  style.stroke: "#4A5568"
+
+  old: "Old: 9 LLM calls/hop" {
+    shape: rectangle
+    style.fill: "#FED7D7"
+    style.stroke: "#C53030"
+    label: |md
+      1. GenerateQuery
+      2. EvaluateArticle (×3)
+      3. ExtractClues
+      4. DecideAction
+      5. SelectSentences (×3)
+      → Slow, expensive
+    |
+  }
+
+  new: "V2: 2-3 LLM calls/hop" {
+    shape: rectangle
+    style.fill: "#C6F6D5"
+    style.stroke: "#38A169"
+    label: |md
+      1. GenerateQueries (batch)
+      2. SelectArticles (batch)
+      3. SelectSentences (batch)
+      → Auto: clean, chunk, score
+    |
+  }
+}
+
+# =============================================================================
+# INPUT
+# =============================================================================
+
+input: Input {
+  style.fill: "#EBF8FF"
+  style.stroke: "#3182CE"
+  style.stroke-width: 2
+
+  config: V2Config {
+    style.fill: "#BEE3F8"
+
+    topic: "Topic / Claim" {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+    }
+
+    max_hops: "max_hops: 3" {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+    }
+
+    cards_per: "cards_per_hop: 5" {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+    }
+  }
+}
+
+# =============================================================================
+# HOP N (REPEATED)
+# =============================================================================
+
+hop: Hop N {
+  style.fill: "#FFFAF0"
+  style.stroke: "#DD6B20"
+  style.stroke-width: 3
+
+  # Step 1: Generate Queries
+  step1: Step 1: Generate Queries {
+    style.fill: "#FEEBC8"
+
+    dspy: DSPy: GenerateResearchQueries {
+      shape: hexagon
+      style.fill: "#FBD38D"
+      style.stroke: "#DD6B20"
+    }
+
+    output: "3-5 search queries" {
+      shape: document
+      style.fill: "#FFFFFF"
+    }
+
+    dspy -> output
+  }
+
+  # Step 2: Tavily Search
+  step2: Step 2: Tavily Search {
+    style.fill: "#E6FFFA"
+
+    tavily: Tavily API {
+      shape: cloud
+      style.fill: "#B2F5EA"
+      style.stroke: "#319795"
+    }
+
+    articles: Raw Articles {
+      shape: cylinder
+      style.fill: "#81E6D9"
+      label: "~15-30 articles"
+    }
+
+    tavily -> articles
+  }
+
+  # Step 3: Auto Clean
+  step3: Step 3: Clean (Auto) {
+    style.fill: "#E2E8F0"
+
+    clean: Remove HTML/Boilerplate {
+      shape: rectangle
+      style.fill: "#CBD5E0"
+      label: "trafilatura\nbeautifulsoup"
+    }
+  }
+
+  # Step 4: Auto Chunk
+  step4: Step 4: Chunk (Auto) {
+    style.fill: "#E2E8F0"
+
+    chunk: Sentence Splitting {
+      shape: rectangle
+      style.fill: "#A0AEC0"
+      label: "spacy / nltk"
+    }
+  }
+
+  # Step 5: Auto Score
+  step5: Step 5: Score (Auto) {
+    style.fill: "#E2E8F0"
+
+    hybrid: Hybrid Scoring {
+      style.fill: "#718096"
+      style.font-color: "#FFFFFF"
+
+      embed: Embeddings {
+        shape: rectangle
+        style.fill: "#4A5568"
+        style.font-color: "#FFFFFF"
+      }
+
+      bm25: BM25 {
+        shape: rectangle
+        style.fill: "#4A5568"
+        style.font-color: "#FFFFFF"
+      }
+    }
+  }
+
+  # Step 6: Auto Rank & Dedupe
+  step6: Step 6: Rank & Dedupe (Auto) {
+    style.fill: "#E2E8F0"
+
+    rank: Top-K Selection {
+      shape: rectangle
+      style.fill: "#CBD5E0"
+      label: "Window expansion\nDeduplication"
+    }
+  }
+
+  # Step 7: LLM Select
+  step7: Step 7: Select Cards {
+    style.fill: "#FAF5FF"
+
+    dspy: DSPy: SelectSentences {
+      shape: hexagon
+      style.fill: "#E9D8FD"
+      style.stroke: "#6B46C1"
+    }
+
+    cards: Evidence Cards {
+      shape: document
+      style.fill: "#D6BCFA"
+      label: "tag, cite,\nfulltext"
+    }
+
+    dspy -> cards
+  }
+
+  # Connections within hop
+  step1.output -> step2.tavily: "queries"
+  step2.articles -> step3.clean: "raw HTML"
+  step3 -> step4: "clean text"
+  step4 -> step5: "sentences"
+  step5 -> step6: "scored"
+  step6 -> step7.dspy: "top candidates"
+}
+
+# =============================================================================
+# DECISION: CONTINUE OR STOP
+# =============================================================================
+
+decision: Decision: Continue? {
+  style.fill: "#FFF5F5"
+  style.stroke: "#C53030"
+  style.stroke-width: 2
+
+  check: DSPy: DecideResearchAction {
+    shape: diamond
+    style.fill: "#FED7D7"
+    style.stroke: "#C53030"
+  }
+
+  options: {
+    style.fill: "#FEB2B2"
+
+    continue: CONTINUE {
+      shape: rectangle
+      style.fill: "#48BB78"
+      style.font-color: "#FFFFFF"
+      label: "More hops\nneeded"
+    }
+
+    stop: STOP {
+      shape: rectangle
+      style.fill: "#F56565"
+      style.font-color: "#FFFFFF"
+      label: "Sufficient\nevidence"
+    }
+  }
+
+  check -> options.continue
+  check -> options.stop
+}
+
+hop.step7.cards -> decision.check: "cards so far"
+
+# =============================================================================
+# LOOP BACK
+# =============================================================================
+
+loop_back: {
+  style.fill: "#FFFFFF"
+  style.stroke-dash: 3
+
+  clues: ExtractResearchClues {
+    shape: hexagon
+    style.fill: "#BEE3F8"
+    label: "Follow-up\nqueries"
+  }
+}
+
+decision.options.continue -> loop_back.clues: "extract clues"
+loop_back.clues -> hop.step1: "next hop" {
+  style.stroke-dash: 3
+  style.stroke: "#DD6B20"
+}
+
+# =============================================================================
+# OUTPUT
+# =============================================================================
+
+output: Output: V2Result {
+  style.fill: "#F0FFF4"
+  style.stroke: "#38A169"
+  style.stroke-width: 3
+
+  result: V2Result {
+    style.fill: "#C6F6D5"
+
+    cards: "cards: List[SelectedEvidenceCard]" {
+      shape: cylinder
+      style.fill: "#68D391"
+    }
+
+    metrics: Metrics {
+      style.fill: "#48BB78"
+      style.font-color: "#FFFFFF"
+
+      total: "total_cards: int" {
+        shape: rectangle
+        style.fill: "#38A169"
+        style.font-color: "#FFFFFF"
+      }
+
+      hops: "hops_used: int" {
+        shape: rectangle
+        style.fill: "#2F855A"
+        style.font-color: "#FFFFFF"
+      }
+
+      timing: "timing_breakdown: dict" {
+        shape: rectangle
+        style.fill: "#276749"
+        style.font-color: "#FFFFFF"
+      }
+    }
+  }
+}
+
+decision.options.stop -> output: "final cards"
+
+# =============================================================================
+# CONNECTIONS
+# =============================================================================
+
+input -> hop.step1: "config" {
+  style.stroke-width: 2
+}
+
+# =============================================================================
+# LLM CALL TRACKING
+# =============================================================================
+
+tracking: LLM Calls Per Hop {
+  style.fill: "#EDF2F7"
+  style.stroke: "#4A5568"
+  style.stroke-dash: 3
+
+  calls: {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+    label: |md
+      **LLM Calls (V2):**
+      1. GenerateResearchQueries
+      2. SelectSentences
+      3. (optional) DecideResearchAction
+
+      **Auto (no LLM):**
+      - Clean, Chunk, Score, Rank
+    |
+  }
+
+  record: CallRecord {
+    shape: document
+    style.fill: "#48BB78"
+    label: "research_hop: N"
+  }
+}
+
+hop -> tracking.record: "tracked" {
+  style.stroke-dash: 3
+}
+
+# =============================================================================
+# EVIDENCE CARD SCHEMA
+# =============================================================================
+
+schema: SelectedEvidenceCard {
+  style.fill: "#FFFFFF"
+  style.stroke: "#E2E8F0"
+  style.stroke-dash: 3
+
+  fields: {
+    shape: rectangle
+    style.fill: "#F7FAFC"
+    label: |md
+      **SelectedEvidenceCard:**
+      - tag: str (brief label)
+      - cite: str (author/source)
+      - fulltext: str (selected sentences)
+      - relevance_score: float
+      - stance: SUPPORTS / OPPOSES
+      - source_url: str
+      - line_start: int
+      - line_end: int
+    |
+  }
+}

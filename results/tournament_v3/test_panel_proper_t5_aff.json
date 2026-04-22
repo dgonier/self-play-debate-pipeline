@@ -1,0 +1,183 @@
+{
+  "trace_id": "v3_t5_trained_aff_panel_v2",
+  "debate_id": "v3_t5_trained_aff",
+  "model_judgments": [
+    {
+      "model_name": "opus_4.5",
+      "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+      "winner": "neg",
+      "scores": {
+        "aff": 58.0,
+        "neg": 71.0
+      },
+      "confidence": 0.78,
+      "reasoning": "NEG wins this debate on technical execution and logical structure. The central clash over temporal framing was resolved in NEG's favor because AFF introduced the 'net long-term effect' framework late and without sufficient warrant. AFF's concession of short-term instability (67% escalation) required them to prove long-term gains outweigh this cost, which they failed to do with adequate evidence. NEG effectively identified dropped arguments (arms control fragmentation, cascade mechanisms) and turned AFF's evidence against them. AFF's logical structure contained a fundamental category error conflating extended deterrence with actual proliferation. NEG satisfied their burden by demonstrating that proliferation cannot 'increase stability' if its immediate and direct effect is increased instability. The debate's progression showed NEG gaining ground in each exchange - the dimensional scores reflect this trajectory, with NEG improving from the NC through the NR while AFF's responses became increasingly defensive.",
+      "key_moments": [
+        {
+          "speech_type": "2AR",
+          "moment_type": "turning_point",
+          "description": "Temporal framing dispute resolved in NEG's favor - AFF failed to establish warrant for long-term evaluation framework",
+          "impact": -0.5,
+          "affected_side": "neg",
+          "stage": null
+        },
+        {
+          "speech_type": "NC",
+          "moment_type": "turning_point",
+          "description": "67% escalation statistic turned against AFF - conceding short-term instability without proving sufficient long-term gains",
+          "impact": 0.5,
+          "affected_side": "aff",
+          "stage": null
+        },
+        {
+          "speech_type": "2AR",
+          "moment_type": "critical_drop",
+          "description": "Multiple dropped arguments: arms control fragmentation, proliferation cascades, verification complexity",
+          "impact": 0.5,
+          "affected_side": "aff",
+          "stage": null
+        },
+        {
+          "speech_type": "AC",
+          "moment_type": "turning_point",
+          "description": "Category error in AC: Japan/South Korea examples involve extended deterrence, not actual proliferation",
+          "impact": 0.5,
+          "affected_side": "aff",
+          "stage": null
+        },
+        {
+          "speech_type": "2AR",
+          "moment_type": "turning_point",
+          "description": "NEG burden satisfied through critique alone - demonstrated proliferation causes immediate instability",
+          "impact": -0.5,
+          "affected_side": "neg",
+          "stage": null
+        }
+      ],
+      "voting_issues": [
+        "Temporal framing dispute resolved in NEG's favor - AFF failed to establish warrant for long-term evaluation framework",
+        "67% escalation statistic turned against AFF - conceding short-term instability without proving sufficient long-term gains",
+        "Multiple dropped arguments: arms control fragmentation, proliferation cascades, verification complexity",
+        "Category error in AC: Japan/South Korea examples involve extended deterrence, not actual proliferation",
+        "NEG burden satisfied through critique alone - demonstrated proliferation causes immediate instability"
+      ],
+      "judge_quality": 0.67,
+      "retry_triggered": false,
+      "rubric_scores": {
+        "evidentiary_fidelity": 7.0,
+        "symmetric_treatment": 6.0,
+        "clash_resolution": 6.0,
+        "decision_clarity": 8.0,
+        "technical_accuracy": 7.0
+      }
+    },
+    {
+      "model_name": "gemini_3.1_pro",
+      "model_id": "gemini/gemini-3.1-pro-preview",
+      "winner": "neg",
+      "scores": {
+        "aff": 79.0,
+        "neg": 89.0
+      },
+      "confidence": 0.95,
+      "reasoning": "The NEG wins this debate decisively on the flow. The 1AR conceded the NEG's premise of short-term instability and dropped the NC's independent offense regarding arms control fragmentation. The NR flawlessly capitalized on these technical errors, securing the dropped argument as a systemic voting issue and utilizing strong logical framing to sever the AFF's causal link (proving long-term stability is an adaptation to, not a direct result of, proliferation). The 2AR's attempt to win the impact calculus relied entirely on the illicit introduction of new evidence and statistics, which were discarded from evaluation. Without this new evidence, the AFF could not overcome the NEG's conceded offense.",
+      "key_moments": [
+        {
+          "speech_type": "NC",
+          "moment_type": "critical_drop",
+          "description": "Conceded Arms Control Fragmentation: The 1AR dropped the NC's argument regarding multipolar arms control complexity, which the NR correctly extended as uncontested systemic offense.",
+          "impact": 0.5,
+          "affected_side": "aff",
+          "stage": null
+        },
+        {
+          "speech_type": "AC",
+          "moment_type": "turning_point",
+          "description": "Causality vs. Adaptation: The NR effectively utilized the 1AR's concession of short-term instability, arguing that proliferation directly causes instability, and any subsequent peace is an adaptation, severing the AFF's core causal link.",
+          "impact": 0.5,
+          "affected_side": "aff",
+          "stage": null
+        },
+        {
+          "speech_type": "AC",
+          "moment_type": "critical_drop",
+          "description": "2AR Evidentiary Violation: The AFF's final weighing mechanism relied on the abusive introduction of new statistical claims ('95% drop') in the final speech, which could not be evaluated, leaving the NEG's impacts uncontested.",
+          "impact": -0.5,
+          "affected_side": "neg",
+          "stage": null
+        }
+      ],
+      "voting_issues": [
+        "Conceded Arms Control Fragmentation: The 1AR dropped the NC's argument regarding multipolar arms control complexity, which the NR correctly extended as uncontested systemic offense.",
+        "Causality vs. Adaptation: The NR effectively utilized the 1AR's concession of short-term instability, arguing that proliferation directly causes instability, and any subsequent peace is an adaptation, severing the AFF's core causal link.",
+        "2AR Evidentiary Violation: The AFF's final weighing mechanism relied on the abusive introduction of new statistical claims ('95% drop') in the final speech, which could not be evaluated, leaving the NEG's impacts uncontested."
+      ],
+      "judge_quality": 0.32499999999999996,
+      "retry_triggered": true,
+      "rubric_scores": {
+        "evidentiary_fidelity": 2.0,
+        "symmetric_treatment": 4.0,
+        "clash_resolution": 3.0,
+        "decision_clarity": 6.0,
+        "technical_accuracy": 2.0
+      }
+    },
+    {
+      "model_name": "gpt_5.2",
+      "model_id": "openai/gpt-5.2",
+      "winner": "aff",
+      "scores": {
+        "aff": 50.0,
+        "neg": 50.0
+      },
+      "confidence": 0.0,
+      "reasoning": "Model failed: OpenAI's reasoning models require passing temperature=1.0 and max_tokens >= 16000 to `dspy.LM(...)`, e.g., dspy.LM('openai/gpt-5', temperature=1.0, max_tokens=16000)",
+      "key_moments": [],
+      "voting_issues": [],
+      "judge_quality": 0.0,
+      "retry_triggered": false,
+      "rubric_scores": {
+        "evidentiary_fidelity": 0.0,
+        "symmetric_treatment": 0.0,
+        "clash_resolution": 0.0,
+        "decision_clarity": 0.0,
+        "technical_accuracy": 0.0
+      }
+    }
+  ],
+  "consensus": {
+    "agreement_level": "majority",
+    "consensus_winner": "neg",
+    "vote_count": {
+      "aff": 1,
+      "neg": 2
+    },
+    "score_variance": 201.77777777777777,
+    "disagreement_analysis": "Models disagreeing: ['gpt_5.2']. Reasons: Model failed: OpenAI's reasoning models require passing temperature=1.0 and max_tokens >= 16000 to `"
+  },
+  "final_winner": "neg",
+  "final_scores": {
+    "aff": 63.50228310502283,
+    "neg": 74.42465753424658
+  },
+  "final_confidence": 0.37321666666666664,
+  "agreed_key_moments": [
+    {
+      "speech_type": "2AR",
+      "moment_type": "turning_point",
+      "description": "Temporal framing dispute resolved in NEG's favor - AFF failed to establish warrant for long-term evaluation framework",
+      "impact": -0.5,
+      "affected_side": "neg",
+      "stage": null
+    },
+    {
+      "speech_type": "AC",
+      "moment_type": "turning_point",
+      "description": "Category error in AC: Japan/South Korea examples involve extended deterrence, not actual proliferation",
+      "impact": 0.5,
+      "affected_side": "aff",
+      "stage": null
+    }
+  ],
+  "judged_at": "2026-02-19T19:21:44.978395"
+}

@@ -1,0 +1,399 @@
+# 4-STAGE SPEECH GENERATION PIPELINE
+# Tactic → Skeleton → Evidence → Speech
+# With DSPy signatures and call tracking
+# Style: Presentation (bold colors, high contrast)
+
+direction: down
+
+title: {
+  label: "4-Stage Speech Generation Pipeline"
+  
+  style.font-size: 28
+  style.bold: true
+}
+
+subtitle: {
+  label: "packages/debate/pipeline/unified_pipeline.py"
+  
+  style.font-size: 12
+  style.italic: true
+}
+
+# =============================================================================
+# INPUTS (LEFT SIDE)
+# =============================================================================
+
+inputs: Inputs {
+  style.fill: "#EDF2F7"
+  style.stroke: "#4A5568"
+
+  context: Debate Context {
+    style.fill: "#E2E8F0"
+    topic: Topic {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+    }
+    side: Side (AFF/NEG) {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+    }
+    speech_type: Speech Type {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+      label: "AC, NC, 1AR, NR, 2AR"
+    }
+  }
+
+  perspective: Perspective (optional) {
+    shape: cylinder
+    style.fill: "#B2F5EA"
+    style.stroke: "#319795"
+    label: "From BeliefTree:\n- Pre-researched beliefs\n- Arguments\n- Evidence"
+  }
+
+  flow_state: FlowState (rebuttals) {
+    shape: hexagon
+    style.fill: "#FED7D7"
+    style.stroke: "#C53030"
+    label: "From FlowStudy:\n- Standing args\n- Clash points\n- Priorities"
+  }
+
+  playbook: Tactic Playbook {
+    shape: document
+    style.fill: "#E9D8FD"
+    style.stroke: "#6B46C1"
+    label: "Named tactics:\n- Spread\n- Kritik\n- Counterplan\n- etc."
+  }
+}
+
+# =============================================================================
+# STAGE 1: TACTIC SELECTION
+# =============================================================================
+
+stage1: Stage 1: Tactic Selection {
+  style.fill: "#FEF3C7"
+  style.stroke: "#D97706"
+  style.stroke-width: 3
+
+  dspy: DSPy: SelectTactic {
+    shape: hexagon
+    style.fill: "#FDE68A"
+    style.stroke: "#D97706"
+    style.stroke-width: 2
+  }
+
+  exploration: Exploration Mode {
+    style.fill: "#FBBF24"
+
+    exploit: EXPLOIT {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+      label: "Use named tactics\nfrom playbook"
+    }
+    explore: EXPLORE {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+      label: "Try variations\nof known tactics"
+    }
+    innovate: INNOVATE {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+      label: "Generate novel\nmove sequences"
+    }
+  }
+
+  output: TacticSelection {
+    style.fill: "#F59E0B"
+    style.font-color: "#FFFFFF"
+    style.stroke-width: 2
+
+    primary: primary_tactic_id
+    reasoning: selection_reasoning
+    prediction: opponent_prediction
+    budget: word_budget_allocation
+    exp_level: exploration_level (0-1)
+  }
+
+  dspy -> exploration
+  exploration -> output
+}
+
+call1: CallRecord: TACTIC_SELECT {
+  shape: document
+  style.fill: "#48BB78"
+  style.stroke: "#276749"
+  style.font-size: 10
+}
+
+stage1 -> call1: tracked {
+  style.stroke-dash: 3
+}
+
+# =============================================================================
+# STAGE 2: ARGUMENT SKELETON
+# =============================================================================
+
+stage2: Stage 2: Skeleton Building {
+  style.fill: "#EBF8FF"
+  style.stroke: "#3182CE"
+  style.stroke-width: 3
+
+  dspy: DSPy: BuildSkeleton {
+    shape: hexagon
+    style.fill: "#BEE3F8"
+    style.stroke: "#3182CE"
+    style.stroke-width: 2
+  }
+
+  grounding: Belief Grounding {
+    style.fill: "#90CDF4"
+
+    link: Link claims to beliefs {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+      label: "grounded_belief_id\ngrounded_argument_id"
+    }
+    gap: Identify evidence gaps {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+      label: "uniqueness / link\nimpact / solvency"
+    }
+    preload: Mark preloaded {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+      label: "has_preloaded_evidence"
+    }
+  }
+
+  output: ArgumentSkeleton {
+    style.fill: "#4299E1"
+    style.font-color: "#FFFFFF"
+    style.stroke-width: 2
+
+    thesis: thesis
+    claims: "List[SkeletonClaim]"
+    transitions: transitions
+    voting: voting_issues
+  }
+
+  dspy -> grounding -> output
+}
+
+call2: CallRecord: SKELETON {
+  shape: document
+  style.fill: "#48BB78"
+  style.stroke: "#276749"
+  style.font-size: 10
+}
+
+stage2 -> call2: tracked {
+  style.stroke-dash: 3
+}
+
+# =============================================================================
+# STAGE 3: EVIDENCE SELECTION
+# =============================================================================
+
+stage3: Stage 3: Evidence Selection {
+  style.fill: "#FAF5FF"
+  style.stroke: "#6B46C1"
+  style.stroke-width: 3
+
+  phase1: Phase 1: Article Selection {
+    style.fill: "#E9D8FD"
+
+    dspy1: DSPy: SelectEvidence {
+      shape: hexagon
+      style.fill: "#D6BCFA"
+    }
+
+    filter: Filter articles by claim {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+    }
+
+    dspy1 -> filter
+  }
+
+  phase2: Phase 2: Sentence Selection {
+    style.fill: "#D6BCFA"
+
+    dspy2: DSPy: SelectSentences {
+      shape: hexagon
+      style.fill: "#B794F4"
+      style.font-color: "#FFFFFF"
+    }
+
+    extract: Extract key sentences {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+      label: "line_start, line_end"
+    }
+
+    dspy2 -> extract
+  }
+
+  output: EvidenceSelection {
+    style.fill: "#805AD5"
+    style.font-color: "#FFFFFF"
+    style.stroke-width: 2
+
+    cards: claim_evidence_map
+    strength: overall_strength
+    adaptation: adaptation_notes
+  }
+
+  phase1 -> phase2 -> output
+}
+
+call3: CallRecord: EVIDENCE_SELECT {
+  shape: document
+  style.fill: "#48BB78"
+  style.stroke: "#276749"
+  style.font-size: 10
+}
+
+stage3 -> call3: tracked {
+  style.stroke-dash: 3
+}
+
+# =============================================================================
+# STAGE 4: SPEECH GENERATION
+# =============================================================================
+
+stage4: Stage 4: Speech Generation {
+  style.fill: "#F0FFF4"
+  style.stroke: "#38A169"
+  style.stroke-width: 3
+
+  dspy: DSPy: GenerateSpeech {
+    shape: hexagon
+    style.fill: "#C6F6D5"
+    style.stroke: "#38A169"
+    style.stroke-width: 2
+  }
+
+  execution: Execute Skeleton {
+    style.fill: "#9AE6B4"
+
+    integrate: Integrate evidence {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+    }
+    signpost: Add signposting {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+    }
+    flow: Maintain flow {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+    }
+  }
+
+  output: SpeechOutput {
+    style.fill: "#48BB78"
+    style.font-color: "#FFFFFF"
+    style.stroke-width: 2
+
+    text: speech_text
+    count: word_count
+    moves: moves_executed
+    adherence: skeleton_adherence_score
+    deviations: deviations
+  }
+
+  dspy -> execution -> output
+}
+
+call4: CallRecord: SPEECH_GEN {
+  shape: document
+  style.fill: "#48BB78"
+  style.stroke: "#276749"
+  style.font-size: 10
+}
+
+stage4 -> call4: tracked {
+  style.stroke-dash: 3
+}
+
+# =============================================================================
+# CONNECTIONS
+# =============================================================================
+
+inputs.context -> stage1.dspy
+inputs.playbook -> stage1.dspy
+inputs.flow_state -> stage1.dspy
+inputs.perspective -> stage2.grounding
+
+stage1.output -> stage2.dspy: "tactic strategy" {
+  style.stroke: "#D97706"
+  style.stroke-width: 2
+}
+
+stage2.output -> stage3.phase1: "skeleton claims" {
+  style.stroke: "#3182CE"
+  style.stroke-width: 2
+}
+
+stage3.output -> stage4.dspy: "selected evidence" {
+  style.stroke: "#6B46C1"
+  style.stroke-width: 2
+}
+
+# =============================================================================
+# PARALLEL RESEARCH (OPTIONAL)
+# =============================================================================
+
+research: Parallel Research {
+  style.fill: "#FFFAF0"
+  style.stroke: "#DD6B20"
+  style.stroke-dash: 3
+
+  label: "V2 Research Pipeline\n(if evidence gaps)"
+
+  hop: Multi-hop Tavily {
+    shape: cloud
+    style.fill: "#FBD38D"
+  }
+}
+
+stage2.output -> research: "evidence_gap detected" {
+  style.stroke-dash: 3
+  style.stroke: "#DD6B20"
+}
+
+research -> stage3.phase1: "new cards" {
+  style.stroke-dash: 3
+  style.stroke: "#DD6B20"
+}
+
+# =============================================================================
+# CALL TRACKING AGGREGATION
+# =============================================================================
+
+tracker: DebateTracker {
+  style.fill: "#EDF2F7"
+  style.stroke: "#4A5568"
+  style.stroke-dash: 3
+
+  label: |md
+    **CallRecord Accumulator**
+    - Per-call metadata
+    - Flat columnar structure
+    - Export to HuggingFace parquet
+  |
+}
+
+call1 -> tracker
+call2 -> tracker
+call3 -> tracker
+call4 -> tracker
+
+output_data: Training Data {
+  shape: cylinder
+  style.fill: "#4299E1"
+  style.font-color: "#FFFFFF"
+  label: "HuggingFace Dataset\n(GRPO / DPO)"
+}
+
+tracker -> output_data

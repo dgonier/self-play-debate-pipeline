@@ -1,0 +1,24 @@
+{
+  "debate_id": "t5_fresh_neg_2",
+  "resolution": "Nuclear proliferation increases international stability",
+  "trained_side": "neg",
+  "winner_side": "neg",
+  "trained_won": true,
+  "trained_score": 74.4,
+  "base_score": 63.2,
+  "aff_score": 63.2,
+  "neg_score": 74.4,
+  "score_diff": 11.2,
+  "elapsed_s": 1888,
+  "null_speeches": [],
+  "short_speeches": [],
+  "has_template_leak": false,
+  "speech_word_counts": {
+    "AC": 526,
+    "NC": 421,
+    "1AR": 401,
+    "NR": 424,
+    "2AR": 371
+  },
+  "error": null
+}

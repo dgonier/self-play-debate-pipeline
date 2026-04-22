@@ -1,0 +1,84 @@
+\section{Extended Method Details}
+\label{app:method_details}
+
+This appendix documents the implementation details of the training pipeline
+referenced in Section~\ref{sec:method}: model configuration, the epsilon-greedy
+tactic exploration policy, the full research pipeline used for evidence curation,
+and the evidence verification rubric.
+
+\subsection{Model Configuration}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{ll}
+\toprule
+\textbf{Parameter} & \textbf{Value} \\
+\midrule
+Base model & Qwen3-30B-A3B-Thinking (MoE: 30B total, 3B active) \\
+LoRA rank & 32, $\alpha$=64, targets: q/k/v/o projections \\
+LoRA dropout & 0.05 \\
+ORPO $\beta$ & 0.1 \\
+Learning rate & $5 \times 10^{-7}$ \\
+Epochs per iteration & 2 \\
+DeepSpeed & ZeRO-3 across 8 GPUs \\
+Inference & vLLM with tensor parallelism \\
+\bottomrule
+\end{tabular}
+\caption{Training configuration for Phase~1 iterative ORPO.}
+\label{tab:model_config}
+\end{table}
+
+\subsection{Epsilon-Greedy Tactic Exploration}
+
+The tactical playbook uses a 3-tier hierarchy:
+\begin{itemize}
+    \item \textbf{AtomicActions} ($\sim$21K): Single debate moves (77 ActionTypes $\times$ 39 TargetTypes $\times$ 7 PrivateIntents)
+    \item \textbf{MicroTactics} ($\sim$10$^9$): 2--4 move sequences, the GRPO optimization unit
+    \item \textbf{MacroTactics} (25+): Named strategies with game-theoretic payoff matrices
+\end{itemize}
+
+Sampling uses epsilon-greedy: $\sim$70\% exploit (proven tactics), $\sim$25\% explore (novel combinations), $\sim$5\% innovate (random). Tactics are promoted to the permanent playbook when uses $\geq 5$ and avg\_reward $\geq 0.6$. Epsilon grows dynamically with playbook size: $\varepsilon = \min(0.9, \varepsilon_{\text{base}} + 0.003 \times \lfloor|\text{book}|/10\rfloor)$.
+
+Speech-type-specific epsilon values: AC/NC (constructive) $\varepsilon = 0.6$--$0.7$; 1AR/NR (rebuttal) $\varepsilon = 0.4$; 2AR (final) $\varepsilon = 0.3$.
+
+\subsection{Research Pipeline}
+
+Evidence retrieval uses a consolidated pipeline:
+\begin{enumerate}
+    \item \textbf{LLM}: Generate search queries from debate context
+    \item \textbf{Automated}: Search $\rightarrow$ clean (regex) $\rightarrow$ chunk (sentence-level) $\rightarrow$ score ($0.7 \times$ embedding $+ 0.3 \times$ BM25) $\rightarrow$ window expansion ($\pm$3 sentences)
+    \item \textbf{LLM}: Select sentences by ID and format evidence cards
+\end{enumerate}
+
+This reduces the original 9-LLM-call pipeline to 2--3 calls per research hop ($\sim$\$0.05/hop, 10--15s latency).
+
+\subsection{Evidence Verification Scoring}
+
+Evidence quality uses a 6-level scale with asymmetric GRPO penalties:
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Category} & \textbf{Score} & \textbf{GRPO Weight} \\
+\midrule
+EXACT\_MATCH & +1.0 & 1.0$\times$ \\
+PARAPHRASE & +0.7 & 1.0$\times$ \\
+WEAK\_SUPPORT & +0.3 & 1.0$\times$ \\
+MISQUOTE & $-$0.5 & 1.5$\times$ \\
+FABRICATION & $-$0.8 & 2.0$\times$ \\
+HALLUCINATION & $-$1.0 & 2.0$\times$ \\
+\bottomrule
+\end{tabular}
+\caption{Evidence verification categories with asymmetric penalties.}
+\end{table}
+
+\subsection{Design Rationale}
+
+\textbf{ORPO over DPO:} Iterative training requires no frozen reference model. DPO would require careful reference model scheduling across iterations.
+
+\textbf{Trajectory-level evaluation:} Debate quality emerges from cumulative choices across speeches. Scoring complete debates captures strategic dynamics that per-turn evaluation misses.
+
+\textbf{Sentence-ID selection over RAG:} Hard constraint prevents fabrication---invalid IDs fail at generation time, valid IDs guarantee verbatim text.

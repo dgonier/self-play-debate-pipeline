@@ -1,0 +1,1061 @@
+{
+  "timestamp": "2026-02-19T14:50:52.807229",
+  "panel_models": [
+    {
+      "name": "opus",
+      "id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0"
+    },
+    {
+      "name": "sonnet",
+      "id": "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0"
+    },
+    {
+      "name": "haiku",
+      "id": "bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0"
+    }
+  ],
+  "debates_judged": 23,
+  "debates_skipped": 1,
+  "skipped_ids": [
+    "v3_t3_trained_neg"
+  ],
+  "trained_wins": 10,
+  "base_wins": 13,
+  "results": [
+    {
+      "debate_id": "v3_t10_trained_aff",
+      "trained_side": "aff",
+      "models": [
+        {
+          "model": "opus",
+          "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+          "winner": "neg",
+          "aff_score": 42,
+          "neg_score": 58,
+          "reasoning": "The NEG successfully reframed the debate by arguing that AFF's own evidence proves inquiry-based learning is the active driver of critical thinking, with direct instruction serving merely as scaffolding. AFF's central claim that direct instruction is \"more effective\" was undermined by their own concession that direct instruction \"enables\" inquiry-based learning, which NEG effectively turned to argue that inquiry is the primary method while direct instruction is supportive. AFF failed to provide comparative evidence directly showing direct instruction produces better outcomes than inquiry-based learning, relying instead on definitional arguments about education that didn't prove the resolution.",
+          "key_voting_issue": "AFF never provided direct comparative evidence that direct instruction produces better learning outcomes than inquiry-based learning; their evidence only showed that foundational knowledge (which could come from multiple sources) is necessary for inquiry to work, which NEG successfully recharacterized as proving scaffolding supports inquiry rather than proving direct instruction is superior.",
+          "error": null
+        },
+        {
+          "model": "sonnet",
+          "model_id": "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0",
+          "winner": "neg",
+          "aff_score": 72,
+          "neg_score": 78,
+          "reasoning": "While AFF established that direct instruction provides necessary foundational knowledge, they failed to prove it is more effective than inquiry-based learning at developing critical thinking skills. NEG successfully reframed AFF's evidence to show that direct instruction serves as scaffolding for inquiry-based learning rather than being superior to it, and demonstrated that the actual development of critical thinking occurs through the inquiry process itself.",
+          "key_voting_issue": "AFF's concession that direct instruction \"enables\" inquiry-based learning undermined their comparative claim, as it positioned direct instruction as supportive infrastructure rather than the more effective primary method for developing critical thinking skills.",
+          "error": null
+        },
+        {
+          "model": "haiku",
+          "model_id": "bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "winner": "neg",
+          "aff_score": 35,
+          "neg_score": 65,
+          "reasoning": "The Affirmative's case fundamentally collapses on the resolution's core question. While the Aff effectively establishes that direct instruction provides necessary foundational knowledge, they never prove direct instruction is *more effective* than inquiry-based learning\u2014only that it's a prerequisite. The Negative successfully pivots this concession into a framework where direct instruction serves as scaffolding *for* inquiry-based learning, making inquiry the primary driver of critical thinking development. The Aff's repeated reliance on the same Keller evidence describing unguided inquiry's failure becomes circular reasoning rather than comparative effectiveness analysis.",
+          "key_voting_issue": "The Affirmative conceded throughout the debate that direct instruction \"enables\" inquiry-based learning to work, but never established that enabling something makes it \"more effective\" than that thing. The Negative reframed this as scaffolding supporting inquiry rather than replacing it, leaving the resolution unproven for the Affirmative. Direct instruction being necessary is not the same as direct instruction being more effective\u2014a distinction the Aff failed to bridge with actual comparative evidence.",
+          "error": null
+        }
+      ],
+      "consensus_winner": "neg",
+      "consensus_aff": 49.7,
+      "consensus_neg": 67.0,
+      "agreement": "unanimous",
+      "aff_votes": 0,
+      "neg_votes": 3,
+      "trained_won": false,
+      "trained_score": 49.7,
+      "base_score": 67.0
+    },
+    {
+      "debate_id": "v3_t10_trained_neg",
+      "trained_side": "neg",
+      "models": [
+        {
+          "model": "opus",
+          "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+          "winner": "aff",
+          "aff_score": 72,
+          "neg_score": 61,
+          "reasoning": "The AFF maintained a consistent framework centered on cognitive load theory and efficiency, supported by the concrete 40% remedial reduction example that went largely uncontested. While NEG raised valid concerns about long-term transfer and deeper learning, they failed to provide specific evidence for inquiry-based learning's superiority in these areas, relying instead on theoretical arguments. The AFF successfully framed the debate around NEG's concession that efficiency is \"necessary\" while arguing NEG never proved it was insufficient.",
+          "key_voting_issue": "NEG's failure to provide concrete evidence for inquiry-based learning's superior long-term transfer outcomes, while AFF's community college example (40% remedial reduction) stood as the only specific data point in the debate, allowing AFF to claim both efficiency and foundational transfer benefits.",
+          "error": null
+        },
+        {
+          "model": "sonnet",
+          "model_id": "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0",
+          "winner": "aff",
+          "aff_score": 78,
+          "neg_score": 65,
+          "reasoning": "The affirmative established a clear, consistent framework around cognitive efficiency with concrete evidence (40% reduction in remedial referrals) and maintained focus throughout the debate. While the negative raised valid concerns about deeper learning outcomes, they failed to provide compelling evidence for inquiry-based learning's superior long-term effectiveness and conceded that efficiency is necessary without proving it's insufficient.",
+          "key_voting_issue": "The negative's failure to provide concrete evidence supporting inquiry-based learning's claimed advantages in transfer and long-term retention, while the affirmative maintained consistent evidence for direct instruction's measurable benefits.",
+          "error": null
+        },
+        {
+          "model": "haiku",
+          "model_id": "bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "winner": "neg",
+          "aff_score": 62,
+          "neg_score": 72,
+          "reasoning": "While the affirmative constructed a coherent efficiency argument grounded in cognitive load theory, the negative successfully challenged the sufficiency of that framework by redefining educational effectiveness to include transfer and deeper learning outcomes. The affirmative's repeated citation of a single community college example (40% remedial reduction) as proof of transfer is insufficient\u2014remedial referral reduction measures short-term mastery, not long-term application to novel problems. The negative's strategic concession that efficiency is necessary (but not sufficient) forced the affirmative into a defensive posture where they had to prove efficiency alone guarantees transfer, which they never accomplished with rigorous evidence.",
+          "key_voting_issue": "The affirmative conflated short-term knowledge acquisition (reduced remedial referrals) with long-term transfer and application to novel problems, which are distinct educational outcomes. The negative correctly identified this gap and the affirmative failed to bridge it with evidence, leaving the resolution's core claim\u2014that direct instruction is \"more effective\"\u2014unproven across the full spectrum of educational effectiveness the negative legitimately expanded.",
+          "error": null
+        }
+      ],
+      "consensus_winner": "aff",
+      "consensus_aff": 70.7,
+      "consensus_neg": 66.0,
+      "agreement": "majority",
+      "aff_votes": 2,
+      "neg_votes": 1,
+      "trained_won": false,
+      "trained_score": 66.0,
+      "base_score": 70.7
+    },
+    {
+      "debate_id": "v3_t11_trained_aff",
+      "trained_side": "aff",
+      "models": [
+        {
+          "model": "opus",
+          "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+          "winner": "aff",
+          "aff_score": 72,
+          "neg_score": 68,
+          "reasoning": "The Affirmative successfully maintained focus on systemic harms to marginalized communities and the autonomous weapons accountability gap, which the Negative never adequately addressed. While the Negative presented compelling healthcare and climate benefits, their reliance on corporate self-reporting (which they admitted in CX) undermined their evidence credibility. The Affirmative's framework of evaluating AI by consequences for the most vulnerable proved more persuasive than the Negative's aggregate benefit calculus.",
+          "key_voting_issue": "The Negative's failure to substantively engage with the autonomous weapons accountability argument left a critical harm uncontested, allowing the Affirmative to claim an entire category of irreversible, systemic harm that the Negative's healthcare and climate benefits could not offset.",
+          "error": null
+        },
+        {
+          "model": "sonnet",
+          "model_id": "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0",
+          "winner": "neg",
+          "aff_score": 72,
+          "neg_score": 78,
+          "reasoning": "While AFF presented compelling arguments about algorithmic bias and autonomous weapons, NEG effectively demonstrated that AFF's own evidence showed bias mitigation was occurring while providing concrete examples of AI saving lives at scale. NEG's strategic use of AFF's cross-examination admissions about IBM's progress undermined AFF's claims that harms were irreversible, and NEG successfully reframed the debate around net impact rather than worst-case scenarios.",
+          "key_voting_issue": "NEG's demonstration that AFF's own evidence (IBM 2024 report) proved bias reduction was happening while AI delivered documented life-saving benefits, creating a more compelling net impact calculation than AFF's focus on accountability gaps in autonomous weapons.",
+          "error": null
+        },
+        {
+          "model": "haiku",
+          "model_id": "bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "winner": "aff",
+          "aff_score": 72,
+          "neg_score": 58,
+          "reasoning": "The Affirmative wins primarily on framework and clash engagement. While the Negative provided quantified benefits (healthcare, climate), they failed to adequately address the Affirmative's core argument about irreversible systemic harms and accountability gaps in autonomous weapons. The Affirmative's framework\u2014evaluating AI by consequences for vulnerable populations rather than aggregate benefits\u2014was never effectively contested. The Negative's evidence also suffered from credibility issues (corporate self-reporting) that the Affirmative effectively exploited, and the Negative's attempt to use the Affirmative's own IBM citation against them backfired by highlighting the self-assessment problem rather than resolving it.",
+          "key_voting_issue": "The Affirmative's unrebutted argument about autonomous weapons and accountability gaps in lethal decision-making, combined with their superior framework prioritizing systemic harms to vulnerable populations over speculative aggregate benefits, proved decisive when the Negative failed to meaningfully engage this contention in the final speeches.",
+          "error": null
+        }
+      ],
+      "consensus_winner": "aff",
+      "consensus_aff": 72.0,
+      "consensus_neg": 68.0,
+      "agreement": "majority",
+      "aff_votes": 2,
+      "neg_votes": 1,
+      "trained_won": true,
+      "trained_score": 72.0,
+      "base_score": 68.0
+    },
+    {
+      "debate_id": "v3_t11_trained_neg",
+      "trained_side": "neg",
+      "models": [
+        {
+          "model": "opus",
+          "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+          "winner": "neg",
+          "aff_score": 62,
+          "neg_score": 71,
+          "reasoning": "The NEG successfully exposed a critical flaw in AFF's case during cross-examination: the Brookings study measured manufacturing automation, not AI specifically, undermining AFF's primary evidence for job displacement harms. NEG also provided concrete examples of working regulations (NYC bias audit law, UK Age-Appropriate Design Code) that demonstrate harms are solvable rather than inherent to AI, while offering countervailing benefits like sepsis detection saving 10,000+ lives annually. AFF struggled to recover from the automation/AI conflation issue and failed to adequately address why localized, temporary harms outweigh global, life-saving benefits.",
+          "key_voting_issue": "The AFF's conflation of general manufacturing automation with AI-specific harms fatally undermined their primary evidence base, while NEG demonstrated that documented harms are addressable through targeted regulation rather than being inherent to AI technology.",
+          "error": null
+        },
+        {
+          "model": "sonnet",
+          "model_id": "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0",
+          "winner": "neg",
+          "aff_score": 72,
+          "neg_score": 78,
+          "reasoning": "While AFF presented compelling evidence of AI's harms, particularly regarding job displacement and algorithmic bias, their case suffered from a critical evidentiary flaw that NEG effectively exploited - conflating manufacturing automation with AI. NEG successfully demonstrated that regulation can address AI's problems while preserving life-saving benefits, and their evidence of working solutions (NYC bias audits, UK design codes) directly countered AFF's claims that harms are inevitable.",
+          "key_voting_issue": "AFF's inability to provide evidence specifically proving AI (rather than general automation) caused the job displacement harms in their Brookings study, which undermined their core economic argument.",
+          "error": null
+        },
+        {
+          "model": "haiku",
+          "model_id": "bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "winner": "neg",
+          "aff_score": 35,
+          "neg_score": 65,
+          "reasoning": "The Negative wins primarily because the Affirmative's foundational evidence collapses under scrutiny. The Affirmative cites the Brookings study on manufacturing automation as proof of AI-driven job displacement, but repeatedly concedes during cross-examination that the study measures traditional automation, not AI specifically. This undermines their primary quantitative claim (40% of workers in crisis). While the Affirmative pivots to COMPAS and Amazon as AI-specific harms, these examples are narrow and don't establish systemic prevalence. The Negative effectively demonstrates that regulation (NYC bias audits, UK Age-Appropriate Design Code, EU AI Act) is already functioning to mitigate harms, directly countering the Affirmative's claim that harms are inevitable and unaddressed. The Affirmative's 2AR argument that regulation is \"piecemeal\" concedes the Negative's core point: targeted governance solves problems rather than necessitating AI rejection.",
+          "key_voting_issue": "The Affirmative's failure to distinguish between automation and AI-specific harms, combined with the Negative's demonstrated evidence that existing regulation successfully prevents documented AI harms, makes the resolution's burden (proving AI does \"more harm than good\") unmet by the Affirmative.",
+          "error": null
+        }
+      ],
+      "consensus_winner": "neg",
+      "consensus_aff": 56.3,
+      "consensus_neg": 71.3,
+      "agreement": "unanimous",
+      "aff_votes": 0,
+      "neg_votes": 3,
+      "trained_won": true,
+      "trained_score": 71.3,
+      "base_score": 56.3
+    },
+    {
+      "debate_id": "v3_t12_trained_aff",
+      "trained_side": "aff",
+      "models": [
+        {
+          "model": "opus",
+          "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+          "winner": "neg",
+          "aff_score": 42,
+          "neg_score": 58,
+          "reasoning": "The NEG successfully centered the debate on the causation burden, forcing AFF to defend correlation-based claims throughout. While AFF provided compelling examples of social media's role in movements like BLM, NEG effectively argued that these examples conflated presence with causation, and that the systemic harms of algorithmic misinformation (citing Facebook's internal research showing false claims spread 6x faster) represent a more fundamental threat to democratic foundations. NEG's framework of \"informed civic discourse\" as democracy's lifeblood proved more analytically rigorous than AFF's participation-based framework.",
+          "key_voting_issue": "The causation burden - NEG consistently demonstrated that AFF's examples showed social media was present during democratic moments but failed to prove it was the necessary cause, while NEG provided mechanistic evidence (algorithmic amplification of misinformation) showing how social media systematically undermines informed discourse.",
+          "error": null
+        },
+        {
+          "model": "sonnet",
+          "model_id": "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0",
+          "winner": "neg",
+          "aff_score": 72,
+          "neg_score": 78,
+          "reasoning": "While AFF provided compelling examples of social media's role in movements like BLM and youth mobilization, they struggled to definitively prove causation over correlation throughout the debate. NEG effectively exploited this weakness while presenting a clearer framework about informed civic discourse being democracy's foundation, then systematically showing how social media's algorithmic design undermines this through misinformation amplification.",
+          "key_voting_issue": "The causation vs. correlation distinction - AFF never adequately separated social media's causal role from other concurrent factors like pandemic voting reforms and existing offline organizing, while NEG demonstrated clear causal mechanisms for democratic harm through platform design.",
+          "error": null
+        },
+        {
+          "model": "haiku",
+          "model_id": "bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "winner": "neg",
+          "aff_score": 62,
+          "neg_score": 75,
+          "reasoning": "While the affirmative provided compelling examples of social media's mobilizing power, the negative won on the fundamental burden of proof. The affirmative conflated correlation with causation throughout the debate\u2014admitting that pandemic reforms, offline organizing, and traditional media were co-factors but failing to isolate social media's independent causal contribution. The negative's framework demanding informed civic discourse as democracy's foundation proved more resilient, as the affirmative could not adequately reconcile their celebration of 2020 youth turnout with their own admission that the same platforms spread election misinformation 6x faster, directly enabling January 6th. The negative effectively weaponized the affirmative's own evidence against them.",
+          "key_voting_issue": "Causation vs. correlation\u2014the affirmative never proved social media was a necessary enabler rather than a coincidental amplifier of pre-existing movements and reforms, while the negative established a causal mechanism (algorithmic amplification of misinformation) that directly undermined informed democratic participation.",
+          "error": null
+        }
+      ],
+      "consensus_winner": "neg",
+      "consensus_aff": 58.7,
+      "consensus_neg": 70.3,
+      "agreement": "unanimous",
+      "aff_votes": 0,
+      "neg_votes": 3,
+      "trained_won": false,
+      "trained_score": 58.7,
+      "base_score": 70.3
+    },
+    {
+      "debate_id": "v3_t12_trained_neg",
+      "trained_side": "neg",
+      "models": [
+        {
+          "model": "opus",
+          "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+          "winner": "aff",
+          "aff_score": 72,
+          "neg_score": 68,
+          "reasoning": "The AFF successfully established concrete policy outcomes (15 state chokehold bans, George Floyd Justice in Policing Act, youth voter turnout increases) as tangible democratic gains, while the NEG's harms remained more abstract and systemic. The NEG made strong arguments about trust erosion and foreign interference, but failed to adequately weigh these against AFF's specific policy victories. AFF's framing that democracy requires both participation AND responsiveness to marginalized voices proved more compelling than NEG's narrower focus on trust metrics.",
+          "key_voting_issue": "Whether concrete policy changes resulting from social media movements (BLM reforms, youth mobilization) constitute sufficient evidence of democratic strengthening to outweigh systemic concerns about misinformation and trust erosion\u2014AFF provided more specific, measurable democratic gains while NEG's harms, though real, were less directly tied to democratic weakening.",
+          "error": null
+        },
+        {
+          "model": "sonnet",
+          "model_id": "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0",
+          "winner": "neg",
+          "aff_score": 72,
+          "neg_score": 78,
+          "reasoning": "While AFF provided compelling examples of social media's democratic benefits (BLM movement, youth mobilization), they failed to adequately address NEG's core argument about systemic design flaws that prioritize engagement over truth. NEG successfully established that the same algorithmic systems that enable positive mobilization also create vulnerabilities to manipulation, and AFF's responses often deflected rather than directly refuting this fundamental tension.",
+          "key_voting_issue": "Whether social media's structural design flaws (engagement-driven algorithms that amplify both truth and misinformation) create net harm to democratic integrity despite isolated positive outcomes.",
+          "error": null
+        },
+        {
+          "model": "haiku",
+          "model_id": "bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "winner": "neg",
+          "aff_score": 62,
+          "neg_score": 75,
+          "reasoning": "While the affirmative effectively marshaled compelling examples of social media's democratizing potential (youth mobilization, #BlackLivesMatter, George Floyd video), they failed to adequately address the negative's systemic critique about platform design prioritizing engagement over truth. The negative successfully established that democracy requires more than participation\u2014it requires institutional trust\u2014and demonstrated this trust has eroded despite increased turnout. The affirmative's repeated citation of the same Oxford study (18% faster spread of false claims) as evidence of \"progress\" actually undermines their case, as it proves misinformation remains structurally advantaged even with safeguards. The negative's framework\u2014evaluating net effects on democratic integrity rather than isolated policy wins\u2014proved more persuasive for weighing competing harms.",
+          "key_voting_issue": "Whether democracy is strengthened by increased participation and policy responsiveness (affirmative's metric) or whether systemic erosion of electoral trust and institutional integrity (negative's metric) outweighs isolated mobilization successes. The negative's argument that \"high turnout with low trust is not strengthened democracy\" directly challenged the affirmative's underlying assumption about what constitutes democratic strength, and the affirmative never adequately reframed or refuted this foundational claim.",
+          "error": null
+        }
+      ],
+      "consensus_winner": "neg",
+      "consensus_aff": 68.7,
+      "consensus_neg": 73.7,
+      "agreement": "majority",
+      "aff_votes": 1,
+      "neg_votes": 2,
+      "trained_won": true,
+      "trained_score": 73.7,
+      "base_score": 68.7
+    },
+    {
+      "debate_id": "v3_t1_trained_aff",
+      "trained_side": "aff",
+      "models": [
+        {
+          "model": "opus",
+          "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+          "winner": "aff",
+          "aff_score": 72,
+          "neg_score": 65,
+          "reasoning": "The Affirmative successfully defended a coherent compatibilist framework by distinguishing between practical and metaphysical senses of \"could have done otherwise,\" arguing that moral responsibility only requires the former. The Negative's strategy of using AFF's CX admissions against them was clever but ultimately failed because AFF explicitly rejected the premise that metaphysical alternative possibilities are necessary for moral responsibility. The self-refutation turn in 1AR was particularly effective - if NEG's view were correct, no one could be held responsible for anything, including making arguments in this debate.",
+          "key_voting_issue": "Whether moral responsibility requires metaphysical alternative possibilities (NEG's position) or merely practical responsiveness to moral reasons (AFF's position) - AFF successfully defended that our actual moral practices only require the latter, which determinism does not negate.",
+          "error": null
+        },
+        {
+          "model": "sonnet",
+          "model_id": "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0",
+          "winner": "aff",
+          "aff_score": 78,
+          "neg_score": 65,
+          "reasoning": "The Affirmative successfully established a coherent compatibilist framework distinguishing between practical and metaphysical senses of \"could have done otherwise,\" while the Negative's strategy of forcing contradictions through cross-examination ultimately backfired. The AFF's self-refutation argument was particularly strong - if the NEG's position that determinism destroys all moral responsibility were true, then we couldn't hold the NEG responsible for their own argument, yet we clearly do in practice.",
+          "key_voting_issue": "The distinction between practical capacity (understanding right from wrong and being able to act on that understanding) versus metaphysical alternatives (doing otherwise in identical circumstances) - the AFF convinced that only the former matters for moral responsibility, which determinism doesn't negate.",
+          "error": null
+        },
+        {
+          "model": "haiku",
+          "model_id": "bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "winner": "aff",
+          "aff_score": 72,
+          "neg_score": 28,
+          "reasoning": "The affirmative successfully redefines the debate around practical capacities rather than metaphysical alternatives, and the negative fails to adequately address the self-refutation argument that their position makes their own argumentation impossible to hold responsible for. While the negative identifies a genuine tension in compatibilist language, they cannot escape the logical trap that their incompatibilist framework undermines all moral discourse, including their own case.",
+          "key_voting_issue": "The self-refutation argument\u2014if determinism destroys moral responsibility as the negative claims, the negative cannot be held responsible for their arguments, yet we demonstrably do hold them responsible in this debate, proving the negative's framework is incoherent and incompatible with actual practice.",
+          "error": null
+        }
+      ],
+      "consensus_winner": "aff",
+      "consensus_aff": 74.0,
+      "consensus_neg": 52.7,
+      "agreement": "unanimous",
+      "aff_votes": 3,
+      "neg_votes": 0,
+      "trained_won": true,
+      "trained_score": 74.0,
+      "base_score": 52.7
+    },
+    {
+      "debate_id": "v3_t1_trained_neg",
+      "trained_side": "neg",
+      "models": [
+        {
+          "model": "opus",
+          "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+          "winner": "aff",
+          "aff_score": 72,
+          "neg_score": 65,
+          "reasoning": "The AFF successfully defended compatibilism by consistently reframing \"could have done otherwise\" as reason-responsiveness rather than metaphysical escape, and effectively argued that the NEG's standard would eliminate all moral responsibility entirely. The NEG's strongest argument about identical circumstances was turned against them when AFF showed this standard is unworkable for any practical system of accountability. The AFF also capitalized on the NEG's cross-examination concession that drivers \"could have responded differently to anger,\" creating internal tension in the NEG's position.",
+          "key_voting_issue": "The definition of free will - whether it requires metaphysical alternative possibilities (NEG) or reason-responsiveness within causal frameworks (AFF) - with AFF winning by showing their definition preserves moral responsibility while NEG's eliminates it entirely.",
+          "error": null
+        },
+        {
+          "model": "sonnet",
+          "model_id": "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0",
+          "winner": "aff",
+          "aff_score": 78,
+          "neg_score": 72,
+          "reasoning": "While both sides presented sophisticated philosophical arguments, the AFF successfully demonstrated that the NEG's framework leads to the elimination of all moral responsibility rather than preserving it. The AFF's compatibilist definition of free will as \"reason-responsiveness\" proved more practically sustainable than the NEG's requirement for metaphysical alternatives in identical circumstances, which would make accountability impossible in any causal universe.",
+          "key_voting_issue": "The NEG's standard for moral responsibility (ability to do otherwise in identical circumstances) was self-defeating, as it would eliminate all accountability rather than preserve meaningful free will, while the AFF's framework maintained both scientific understanding and practical moral responsibility.",
+          "error": null
+        },
+        {
+          "model": "haiku",
+          "model_id": "bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "winner": "aff",
+          "aff_score": 72,
+          "neg_score": 28,
+          "reasoning": "The affirmative successfully reframed the debate around a workable definition of free will (reason-responsiveness) that preserves moral responsibility within determinism, while the negative's standard\u2014requiring identical circumstances to produce different outcomes\u2014is logically incoherent and self-defeating. The affirmative effectively demonstrated that the negative's framework eliminates all moral responsibility entirely, making it an untenable position, while the affirmative's compatibilist approach aligns with how legal systems and human experience actually function.",
+          "key_voting_issue": "The negative's definition of moral responsibility (ability to have done otherwise in identical circumstances) is logically impossible under any metaphysical framework, not just determinism, making it an unsuitable standard for evaluating the resolution. The affirmative's reason-responsiveness standard is the only coherent framework that preserves accountability while remaining compatible with determinism.",
+          "error": null
+        }
+      ],
+      "consensus_winner": "aff",
+      "consensus_aff": 74.0,
+      "consensus_neg": 55.0,
+      "agreement": "unanimous",
+      "aff_votes": 3,
+      "neg_votes": 0,
+      "trained_won": false,
+      "trained_score": 55.0,
+      "base_score": 74.0
+    },
+    {
+      "debate_id": "v3_t2_trained_aff",
+      "trained_side": "aff",
+      "models": [
+        {
+          "model": "opus",
+          "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+          "winner": "aff",
+          "aff_score": 72,
+          "neg_score": 65,
+          "reasoning": "The AFF successfully defended the Davis meta-analysis as systemic evidence for rehabilitation, effectively reframing the NEG's narrow interpretation attack. While the NEG raised valid concerns about victim satisfaction and the 83% recidivism statistic, they failed to adequately explain why retribution would produce better outcomes than the 43% reduction AFF demonstrated. The AFF's consistent framing of \"primary purpose\" as system design rather than perfect outcomes was strategically effective.",
+          "key_voting_issue": "Whether the Davis meta-analysis proves rehabilitation as a systemic approach works (AFF) or merely proves one narrow program's effectiveness without addressing the broader resolution (NEG) - AFF's reframing that systematic reviews of rehabilitation programs ARE evidence for rehabilitation as primary purpose was more persuasive than NEG's attempt to dismiss it as scope-limited.",
+          "error": null
+        },
+        {
+          "model": "sonnet",
+          "model_id": "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0",
+          "winner": "neg",
+          "aff_score": 72,
+          "neg_score": 78,
+          "reasoning": "While AFF presented strong evidence with the Davis meta-analysis showing 43% recidivism reduction, NEG successfully exploited a critical weakness in AFF's case - that the Davis study only examined correctional education programs, not rehabilitation as a comprehensive primary purpose of punishment. NEG effectively used AFF's own evidence against them, particularly the 83% recidivism rate, to demonstrate that rehabilitation as a primary purpose fails systematically even when specific programs show some success.",
+          "key_voting_issue": "The scope and applicability of the Davis meta-analysis - whether it proves rehabilitation as a primary purpose works or merely that one specific rehabilitative program (correctional education) has some effectiveness within a broader retributive system.",
+          "error": null
+        },
+        {
+          "model": "haiku",
+          "model_id": "bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "winner": "neg",
+          "aff_score": 62,
+          "neg_score": 75,
+          "reasoning": "While the AFF presented stronger empirical evidence on recidivism reduction, the NEG won on the more fundamental clash about what \"primary purpose\" means and what justice systems must prioritize. The AFF's repeated insistence that Davis proves rehabilitation as primary purpose conflates program effectiveness with systemic purpose\u2014a distinction the NEG effectively exploited. The NEG's victim-centered framework directly challenged the resolution's premise in ways the AFF never adequately addressed, and the 83% recidivism baseline undermined claims of systemic success.",
+          "key_voting_issue": "Whether proving a rehabilitation program reduces recidivism by 43% constitutes proof that rehabilitation should be the PRIMARY PURPOSE of punishment systems, or whether victims' need for accountability and harm recognition must logically precede rehabilitation as a system's foundational purpose.",
+          "error": null
+        }
+      ],
+      "consensus_winner": "neg",
+      "consensus_aff": 68.7,
+      "consensus_neg": 72.7,
+      "agreement": "majority",
+      "aff_votes": 1,
+      "neg_votes": 2,
+      "trained_won": false,
+      "trained_score": 68.7,
+      "base_score": 72.7
+    },
+    {
+      "debate_id": "v3_t2_trained_neg",
+      "trained_side": "neg",
+      "models": [
+        {
+          "model": "opus",
+          "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+          "winner": "aff",
+          "aff_score": 72,
+          "neg_score": 65,
+          "reasoning": "The AFF successfully established that rehabilitation produces measurable outcomes (20% recidivism reduction) while the NEG conceded they had no evidence retribution reduces recidivism. The NEG's Hegel argument about the \"expressive function\" of punishment was philosophically interesting but failed to respond to the AFF's practical effectiveness framing. The AFF effectively reframed the debate around what \"primary purpose\" means, arguing it requires effectiveness for the majority rather than universality, which the NEG never adequately contested.",
+          "key_voting_issue": "The NEG's admission in cross-examination that they had no evidence retribution reduces recidivism undermined their ability to win on practical grounds, leaving only a theoretical Hegelian framework that didn't directly clash with the AFF's evidence-based approach to reducing crime.",
+          "error": null
+        },
+        {
+          "model": "sonnet",
+          "model_id": "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0",
+          "winner": "aff",
+          "aff_score": 72,
+          "neg_score": 58,
+          "reasoning": "The Affirmative successfully established that rehabilitation reduces recidivism by 20% through employment programs with clear causal mechanisms, while the Negative conceded they had no evidence that retribution reduces crime. The Negative's Hegel argument about the \"expressive function\" of punishment was philosophically interesting but failed to address the practical question of which approach better serves society's interests in reducing future crime.",
+          "key_voting_issue": "The Negative's admission in cross-examination that they had \"no evidence that retribution reduces recidivism\" while the Affirmative provided concrete evidence of rehabilitation's effectiveness through employment programs.",
+          "error": null
+        },
+        {
+          "model": "haiku",
+          "model_id": "bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "winner": "aff",
+          "aff_score": 72,
+          "neg_score": 58,
+          "reasoning": "The affirmative wins primarily because the negative conceded the most critical factual claim\u2014that they have no evidence retribution reduces recidivism\u2014while the affirmative provided concrete evidence (Curley 2017, Schnepel 2017) showing rehabilitation reduces recidivism by 20%. The negative's philosophical argument about Hegel's \"expressive function\" and \"annulment of crime\" fails to address the resolution's core demand: what purpose *ought* to be primary. The negative's attempt to reframe the debate around universal efficacy contradicts the resolution's requirement for \"primary purpose,\" which logically means effectiveness for the majority, not every offender. The affirmative's evidence-based framework directly answers the resolution while the negative relies on normative theory disconnected from practical outcomes.",
+          "key_voting_issue": "The negative's admission of having no evidence that retribution reduces recidivism, combined with the affirmative's documented 20% recidivism reduction from rehabilitation programs, creates an insurmountable credibility gap that determines the debate in the affirmative's favor.",
+          "error": null
+        }
+      ],
+      "consensus_winner": "aff",
+      "consensus_aff": 72.0,
+      "consensus_neg": 60.3,
+      "agreement": "unanimous",
+      "aff_votes": 3,
+      "neg_votes": 0,
+      "trained_won": false,
+      "trained_score": 60.3,
+      "base_score": 72.0
+    },
+    {
+      "debate_id": "v3_t3_trained_aff",
+      "trained_side": "aff",
+      "models": [
+        {
+          "model": "opus",
+          "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+          "winner": "neg",
+          "aff_score": 42,
+          "neg_score": 58,
+          "reasoning": "The Negative successfully identified and pressed the is-ought fallacy throughout the debate, and the Affirmative never adequately explained how descriptive facts about suffering logically generate prescriptive moral obligations. While the Affirmative repeatedly cited Harris, simply stating that \"moral concerns translate into facts about well-being\" does not bridge the gap between observing suffering and deriving an obligation to prevent it. The Negative's argument that the slavery example actually proves moral judgments change with beliefs rather than being discovered was compelling, especially when they noted that 19th-century Americans observed the same suffering but reached different moral conclusions.",
+          "key_voting_issue": "The Affirmative failed to resolve the is-ought problem - they never explained the logical mechanism by which descriptive facts about suffering generate prescriptive moral obligations, which was the central philosophical challenge to their case.",
+          "error": null
+        },
+        {
+          "model": "sonnet",
+          "model_id": "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0",
+          "winner": "neg",
+          "aff_score": 72,
+          "neg_score": 78,
+          "reasoning": "While AFF presented compelling examples about genocide consensus and made strong intuitive appeals, they never adequately resolved the fundamental is-ought problem that NEG consistently pressed. NEG effectively demonstrated that observing suffering (descriptive fact) doesn't automatically generate moral obligations (prescriptive claims) without an additional normative principle, which itself would be a human belief rather than an objective fact.",
+          "key_voting_issue": "The is-ought fallacy - AFF failed to bridge the gap between descriptive facts about suffering and prescriptive moral obligations without relying on human beliefs about what we \"should\" do.",
+          "error": null
+        },
+        {
+          "model": "haiku",
+          "model_id": "bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "winner": "neg",
+          "aff_score": 42,
+          "neg_score": 58,
+          "reasoning": "While the Affirmative effectively uses emotionally compelling examples (Bosnia, slavery) and Harris's well-being framework, they fundamentally fail to bridge the is-ought gap that the Negative identifies as central to their case. The Negative correctly isolates that the Affirmative conflates descriptive facts about suffering with prescriptive moral obligations, and the Affirmative never adequately explains how scientific observation of harm logically generates moral duty. The Negative's cross-examination strategy systematically exposes this weakness: even when the Affirmative concedes 19th-century Americans were \"wrong\" about slavery, they cannot coherently explain how they were wrong without an objective moral standard\u2014yet their framework makes moral truth dependent on beliefs, creating an internal contradiction that undermines their entire position.",
+          "key_voting_issue": "The is-ought fallacy and whether the Affirmative successfully bridges the logical gap between descriptive facts about well-being and prescriptive moral obligations. The Negative's argument that citing Harris does not resolve this gap\u2014merely asserting that \"harm implies obligation\" without explaining why\u2014proves more persuasive than the Affirmative's repeated citation of the same evidence without addressing the underlying logical problem.",
+          "error": null
+        }
+      ],
+      "consensus_winner": "neg",
+      "consensus_aff": 52.0,
+      "consensus_neg": 64.7,
+      "agreement": "unanimous",
+      "aff_votes": 0,
+      "neg_votes": 3,
+      "trained_won": false,
+      "trained_score": 52.0,
+      "base_score": 64.7
+    },
+    {
+      "debate_id": "v3_t4_trained_aff",
+      "trained_side": "aff",
+      "models": [
+        {
+          "model": "opus",
+          "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+          "winner": "aff",
+          "aff_score": 72,
+          "neg_score": 68,
+          "reasoning": "The Affirmative successfully defended a reasonable interpretation of the resolution by distinguishing \"can\" (possibility) from universal permission, and maintained consistency throughout by arguing consequentialist ethics inherently requires net-positive outcome evaluation. The Negative's strongest argument\u2014that the resolution's literal wording lacks safeguards\u2014was undermined when they conceded in cross-examination that outcome evaluation matters, essentially agreeing with the Affirmative's framework while claiming to oppose it. The Affirmative's practical rules argument remained largely uncontested and provided the built-in safeguard the Negative claimed was missing.",
+          "key_voting_issue": "The interpretive battle over whether \"can justify\" implies conditional possibility (requiring net-positive outcomes) or unconditional permission\u2014the Affirmative's reading was more linguistically and philosophically defensible, and the Negative's cross-examination concessions weakened their textual literalism argument.",
+          "error": null
+        },
+        {
+          "model": "sonnet",
+          "model_id": "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0",
+          "winner": "neg",
+          "aff_score": 72,
+          "neg_score": 78,
+          "reasoning": "While the Affirmative presented a sophisticated consequentialist framework, they fundamentally failed to defend the resolution as written. The Negative successfully demonstrated that AFF was defending a different resolution (\"ends can justify means when outcomes are net-positive\") rather than the actual text (\"the ends can justify the means\"). NEG's historical examples and textual analysis exposed this gap effectively.",
+          "key_voting_issue": "The Affirmative's admission in cross-examination that a failed Manhattan Project would not be justified directly contradicted the resolution as written, which contains no such limiting condition.",
+          "error": null
+        },
+        {
+          "model": "haiku",
+          "model_id": "bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "winner": "neg",
+          "aff_score": 35,
+          "neg_score": 65,
+          "reasoning": "The Negative wins on the critical distinction between the resolution's literal wording and the Affirmative's invented interpretation. While the Affirmative argues for consequentialism with net-positive safeguards, the resolution as written says \"the ends can justify the means\" without such conditions. The Affirmative's own cross-examination concessions\u2014that a failed Manhattan Project wouldn't be justified\u2014prove they are defending a different resolution than what was debated. The Negative effectively exposes this gap between text and interpretation throughout, while the Affirmative fails to adequately defend why their added conditions should be read into the resolution's plain language.",
+          "key_voting_issue": "Whether the resolution's literal wording (\"the ends can justify the means\") requires the net-positive outcome condition the Affirmative repeatedly invokes. The Negative successfully argues this condition is absent from the text, making the Affirmative's framework a misrepresentation of what the resolution actually claims.",
+          "error": null
+        }
+      ],
+      "consensus_winner": "neg",
+      "consensus_aff": 59.7,
+      "consensus_neg": 70.3,
+      "agreement": "majority",
+      "aff_votes": 1,
+      "neg_votes": 2,
+      "trained_won": false,
+      "trained_score": 59.7,
+      "base_score": 70.3
+    },
+    {
+      "debate_id": "v3_t4_trained_neg",
+      "trained_side": "neg",
+      "models": [
+        {
+          "model": "opus",
+          "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+          "winner": "aff",
+          "aff_score": 72,
+          "neg_score": 65,
+          "reasoning": "The AFF successfully defended their framework by distinguishing between \"ends justify any means\" and a consequentialist approach that weighs all consequences including long-term trust. The Kosovo example provided concrete empirical grounding that the NEG never adequately refuted, and the AFF's argument that sustainable outcomes would reject torture was more responsive than the NEG's reliance on Bevan and Hood's target gaming research, which didn't directly address the sustainability criterion. The NEG's repeated torture hypotheticals became less effective when the AFF consistently showed how their framework would reject torture through the sustainability standard.",
+          "key_voting_issue": "Whether consequentialism with a \"sustainable outcomes\" standard necessarily leads to accepting torture - the AFF successfully argued it doesn't by pointing to Kosovo as empirical proof, while the NEG's theoretical arguments about target gaming didn't sufficiently overcome this real-world example.",
+          "error": null
+        },
+        {
+          "model": "sonnet",
+          "model_id": "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0",
+          "winner": "neg",
+          "aff_score": 72,
+          "neg_score": 78,
+          "reasoning": "While AFF provided concrete examples like Kosovo and healthcare allocation, they failed to adequately address NEG's core challenge about consequentialism's logical endpoint in extreme scenarios. NEG successfully demonstrated that AFF's framework lacks principled constraints against torture when immediate outcomes favor it, and AFF's responses were evasive rather than substantive. NEG's Bevan and Hood evidence on target gaming effectively showed how outcome-focused systems incentivize unethical means in practice.",
+          "key_voting_issue": "AFF's inability to provide a coherent defense of how their consequentialist framework would reject torture in the bomb scenario without abandoning consequentialism itself.",
+          "error": null
+        },
+        {
+          "model": "haiku",
+          "model_id": "bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "winner": "neg",
+          "aff_score": 42,
+          "neg_score": 58,
+          "reasoning": "While the AFF effectively deployed Kosovo as a real-world consequentialist success, they fundamentally failed to resolve the torture scenario that became the debate's central clash. The NEG's Bevan and Hood evidence about target-gaming in accountability systems directly undermines the AFF's \"sustainable outcomes\" standard by showing that immediate results dominate decision-making in practice. The AFF's repeated assertions that torture would be rejected under their framework lack evidentiary support and rely on theoretical assumptions the NEG successfully challenged. The NEG's argument that consequentialism creates practical incentive structures favoring unethical means proved more resilient than the AFF's theoretical safeguards.",
+          "key_voting_issue": "Whether consequentialist frameworks can reliably prevent torture in extreme scenarios\u2014the NEG's evidence that accountability systems prioritize immediate achievable results over abstract long-term consequences proved more persuasive than the AFF's unsupported claims that \"sustainable outcomes\" would prevent torture.",
+          "error": null
+        }
+      ],
+      "consensus_winner": "neg",
+      "consensus_aff": 62.0,
+      "consensus_neg": 67.0,
+      "agreement": "majority",
+      "aff_votes": 1,
+      "neg_votes": 2,
+      "trained_won": true,
+      "trained_score": 67.0,
+      "base_score": 62.0
+    },
+    {
+      "debate_id": "v3_t5_trained_aff",
+      "trained_side": "aff",
+      "models": [
+        {
+          "model": "opus",
+          "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+          "winner": "neg",
+          "aff_score": 42,
+          "neg_score": 58,
+          "reasoning": "The NEG successfully exploited a critical weakness in the AFF's case: the admission that proliferation causes immediate instability (67% spike in conflict propensity). While AFF argued this was \"temporary,\" NEG effectively framed the resolution as asking whether proliferation itself increases stability, not whether stability eventually returns after adjustment periods. The AFF's evidence sourcing was also problematic, with the 60% statistic being admitted as a \"simplification\" rather than actual data.",
+          "key_voting_issue": "The temporal framing of the resolution - NEG won by arguing that proliferation's immediate destabilizing effects (which AFF conceded) mean the resolution is false, regardless of long-term adaptation, since the act of proliferation itself causes instability.",
+          "error": null
+        },
+        {
+          "model": "sonnet",
+          "model_id": "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0",
+          "winner": "neg",
+          "aff_score": 72,
+          "neg_score": 78,
+          "reasoning": "The NEG successfully exploited a critical weakness in AFF's case by demonstrating that AFF's own evidence supports the conclusion that proliferation causes immediate instability, even if long-term stability eventually emerges. While AFF presented reasonable arguments about long-term deterrence effects, they failed to adequately address the temporal framing issue that NEG consistently pressed throughout the debate.",
+          "key_voting_issue": "The definitional dispute over whether \"increases stability\" refers to immediate effects of proliferation versus long-term systemic outcomes, which NEG won by showing proliferation causes measurable instability spikes regardless of eventual adaptation.",
+          "error": null
+        },
+        {
+          "model": "haiku",
+          "model_id": "bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "winner": "neg",
+          "aff_score": 35,
+          "neg_score": 65,
+          "reasoning": "The NEG wins on definitional grounds and temporal framing. While the AFF provides evidence of long-term stability post-proliferation, the resolution asks whether proliferation itself \"increases\" stability\u2014a claim about the causal effect at the moment of proliferation. The NEG's 67% short-term conflict spike directly contradicts this, and the AFF's retreat to \"long-term trends\" concedes that proliferation initially destabilizes the system. The AFF's evidence quality suffers from sourcing issues (the 60% statistic was fabricated), and their attempt to reframe the resolution as asking about eventual stability rather than the proliferation event itself fails under scrutiny.\n\nNEG_SCORE: 65\nAFF_SCORE: 35",
+          "key_voting_issue": "Temporal framing of \"increases stability\"\u2014whether the resolution evaluates the immediate destabilizing effect of proliferation events or the eventual stabilization that follows. The NEG successfully argues that proliferation causes immediate instability (67% higher conflict propensity), making the resolution false on its face, while the AFF's evidence only proves stability emerges after long-term adaptation, not from proliferation itself.",
+          "error": null
+        }
+      ],
+      "consensus_winner": "neg",
+      "consensus_aff": 49.7,
+      "consensus_neg": 67.0,
+      "agreement": "unanimous",
+      "aff_votes": 0,
+      "neg_votes": 3,
+      "trained_won": false,
+      "trained_score": 49.7,
+      "base_score": 67.0
+    },
+    {
+      "debate_id": "v3_t5_trained_neg",
+      "trained_side": "neg",
+      "models": [
+        {
+          "model": "opus",
+          "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+          "winner": "aff",
+          "aff_score": 72,
+          "neg_score": 68,
+          "reasoning": "The AFF successfully defended their core evidence (Suzuki 2015) throughout the debate, which directly addressed the resolution by showing empirical correlation between more nuclear states and decreased interstate conflict. While the NEG raised valid concerns about accidents and terrorism, they struggled to prove these harms outweighed the stability benefits, and their Beardsley and Asal evidence was effectively neutralized when AFF distinguished between nuclear \"programs\" and nuclear \"states.\" The NEG's framework argument about two-power vs. multi-power dynamics was compelling but ultimately couldn't overcome the AFF's direct empirical evidence on proliferation.",
+          "key_voting_issue": "The interpretation and applicability of Suzuki 2015's empirical findings that \"a larger number of nuclear states on average decreases the systemic propensity for interstate conflict\" - this evidence directly addressed the resolution and the NEG failed to adequately refute or outweigh it.",
+          "error": null
+        },
+        {
+          "model": "sonnet",
+          "model_id": "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0",
+          "winner": "neg",
+          "aff_score": 72,
+          "neg_score": 78,
+          "reasoning": "While AFF presented a coherent deterrence argument with the Suzuki evidence, they failed to adequately distinguish between bilateral deterrence and true multi-state proliferation scenarios. NEG successfully exploited this weakness by highlighting that AFF's Cold War example involved allied powers rather than independent nuclear actors, and that their evidence conflated nuclear programs with nuclear states. NEG's framework distinction between two-power deterrence and multi-polar proliferation was compelling and largely unrefuted.",
+          "key_voting_issue": "AFF's inability to provide convincing empirical evidence of stability in true multi-polar nuclear scenarios, while relying primarily on bilateral Cold War deterrence that doesn't prove the resolution about proliferation to multiple independent actors.",
+          "error": null
+        },
+        {
+          "model": "haiku",
+          "model_id": "bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "winner": "neg",
+          "aff_score": 42,
+          "neg_score": 58,
+          "reasoning": "While the AFF effectively deployed Suzuki 2015 as empirical evidence for their core claim, they failed to adequately address the critical distinction between nuclear deterrence between two rational powers and the fundamentally different dynamics of multi-polar proliferation. The NEG successfully identified that the AFF's historical example (Cold War) involved only two primary nuclear actors with established communication channels, whereas true proliferation creates unstable, multi-polar systems with increased accident and miscalculation risks\u2014risks the AFF never meaningfully refuted. The AFF's repeated dismissal of NEG harms as \"hypothetical\" rings hollow when Suzuki 2015 itself lacks empirical examples of three or more independent nuclear powers coexisting peacefully, undermining their own evidence's applicability to the resolution.",
+          "key_voting_issue": "The AFF proved bilateral nuclear deterrence works but failed to prove proliferation to multiple independent nuclear powers increases stability, while the NEG successfully established that multi-polar proliferation creates distinct instability risks (accidents, miscalculation, terrorism) that the bilateral Cold War model does not address\u2014a framework distinction the AFF never adequately resolved.",
+          "error": null
+        }
+      ],
+      "consensus_winner": "neg",
+      "consensus_aff": 62.0,
+      "consensus_neg": 68.0,
+      "agreement": "majority",
+      "aff_votes": 1,
+      "neg_votes": 2,
+      "trained_won": true,
+      "trained_score": 68.0,
+      "base_score": 62.0
+    },
+    {
+      "debate_id": "v3_t6_trained_aff",
+      "trained_side": "aff",
+      "models": [
+        {
+          "model": "opus",
+          "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+          "winner": "neg",
+          "aff_score": 42,
+          "neg_score": 58,
+          "reasoning": "The NEG successfully identified a critical definitional issue: the resolution says \"standard workweek should be reduced to four days,\" and the standard workweek is 40 hours. The AFF's pivot to a 32-hour model in the 1AR was a significant shift that undermined their original evidence base (BMJ study on doctors working compressed schedules). The NEG effectively demonstrated that the AFF's evidence either didn't support their claims (LumApps never studied 4-day weeks) or actually supported the NEG position (Maciag on extended hours causing burnout).",
+          "key_voting_issue": "The definitional clash over whether \"reducing the standard workweek to four days\" means compressing 40 hours into 4 days (10-hour days) or reducing total hours to 32 (8-hour days) - the NEG's interpretation was more textually grounded, and the AFF's late pivot to a 32-hour model represented an unfair shift that abandoned their original evidence.",
+          "error": null
+        },
+        {
+          "model": "sonnet",
+          "model_id": "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0",
+          "winner": "neg",
+          "aff_score": 35,
+          "neg_score": 75,
+          "reasoning": "The NEG successfully exposed a fatal flaw in the AFF's case through effective cross-examination, revealing that the AFF's key evidence (BMJ study and LumApps report) either didn't support their claims or was mischaracterized. The AFF's pivot to a 32-hour workweek in rebuttals fundamentally changed their advocacy away from the resolution's plain text, while the NEG maintained consistent argumentation about the mathematical reality of compressing a standard 40-hour workweek into four days.",
+          "key_voting_issue": "The AFF's failure to defend the actual resolution (reducing the standard 40-hour workweek to four days) and instead advocating for a different policy (32-hour workweek) that wasn't supported by their original evidence.",
+          "error": null
+        },
+        {
+          "model": "haiku",
+          "model_id": "bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "winner": "neg",
+          "aff_score": 35,
+          "neg_score": 65,
+          "reasoning": "The NEG wins on a critical definitional clash that the AFF never adequately resolves. The resolution explicitly states \"reduce the standard workweek to four days\"\u2014the standard workweek is 40 hours, making the mathematical requirement 10-hour days. The AFF's pivot to a 32-hour week (4x8) is advocating for a different policy than the resolution requires. While the AFF's evidence about autonomy and burnout prevention is compelling for a 32-hour model, it is irrelevant to the actual resolution being debated. The NEG correctly identifies this fatal flaw and maintains it throughout, while the AFF's repeated attempts to redefine the resolution away from its plain meaning fail to address the core issue.",
+          "key_voting_issue": "Whether the resolution requires compressing 40 hours into 4 days (10-hour days) or allows reduction to 32 hours (8-hour days)\u2014the NEG's mathematical interpretation of \"reduce the standard workweek to four days\" is more faithful to the resolution's plain language, and the AFF's evidence actually supports the NEG's interpretation by citing studies of 10-hour day models.",
+          "error": null
+        }
+      ],
+      "consensus_winner": "neg",
+      "consensus_aff": 37.3,
+      "consensus_neg": 66.0,
+      "agreement": "unanimous",
+      "aff_votes": 0,
+      "neg_votes": 3,
+      "trained_won": false,
+      "trained_score": 37.3,
+      "base_score": 66.0
+    },
+    {
+      "debate_id": "v3_t6_trained_neg",
+      "trained_side": "neg",
+      "models": [
+        {
+          "model": "opus",
+          "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+          "winner": "aff",
+          "aff_score": 72,
+          "neg_score": 58,
+          "reasoning": "The AFF successfully exploited the NEG's critical concession in cross-examination that Mastini 2018 never discussed mandatory 10-hour schedules, undermining the NEG's flexibility argument. The AFF's medical error impact (250,000 deaths annually) remained largely uncontested throughout the debate, while the NEG's small business argument was effectively turned when AFF argued reduced turnover would actually help address the labor shortage problem NEG cited. The NEG's case suffered from evidence misrepresentation that damaged credibility.",
+          "key_voting_issue": "The uncontested medical error impact - NEG never provided evidence that the four-day workweek would increase medical errors or offered an alternative solution to fatigue-related deaths, allowing AFF to claim this as a decisive moral imperative.",
+          "error": null
+        },
+        {
+          "model": "sonnet",
+          "model_id": "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0",
+          "winner": "aff",
+          "aff_score": 72,
+          "neg_score": 58,
+          "reasoning": "The Negative's case was severely damaged when they admitted in cross-examination that their primary evidence (Mastini 2018) was misrepresented and never actually supported their claim about mandatory 10-hour schedules. While the Negative raised legitimate concerns about small business impacts, the Affirmative effectively turned their labor shortage evidence to support reduced turnover under a four-day workweek. The Affirmative's medical error impact (250,000 deaths annually from fatigue-related mistakes) remained largely uncontested and provided a compelling moral imperative.",
+          "key_voting_issue": "The Negative's admission that they misrepresented their key evidence about rigid scheduling requirements, which collapsed their primary argument about eliminating worker flexibility.",
+          "error": null
+        },
+        {
+          "model": "haiku",
+          "model_id": "bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "winner": "neg",
+          "aff_score": 35,
+          "neg_score": 65,
+          "reasoning": "While the Affirmative presents a compelling moral argument about medical errors, the Negative's economic critique exposes fundamental implementation problems that the Affirmative never adequately addresses. The Affirmative's attempt to turn the labor shortage argument backfires\u2014their claim that reduced turnover solves labor shortages ignores the immediate layoff problem created by wage inflation under reduced hours. The Negative's concessions about Mastini evidence hurt their credibility, but the core economic logic (that 32 hours of work at 40-hour pay creates unsustainable pressure on small businesses) remains unrefuted and logically sound.\n\nNEG_SCORE: 65\nAFF_SCORE: 35",
+          "key_voting_issue": "Whether the four-day workweek's immediate economic harm to small businesses (forced layoffs and increased workloads on remaining staff) outweighs the speculative long-term benefits of reduced burnout and medical errors. The Affirmative never proves small businesses can absorb 25% reduced hours without cutting staff, and their turnover argument doesn't address the immediate crisis the policy creates.",
+          "error": null
+        }
+      ],
+      "consensus_winner": "aff",
+      "consensus_aff": 59.7,
+      "consensus_neg": 60.3,
+      "agreement": "majority",
+      "aff_votes": 2,
+      "neg_votes": 1,
+      "trained_won": false,
+      "trained_score": 60.3,
+      "base_score": 59.7
+    },
+    {
+      "debate_id": "v3_t7_trained_aff",
+      "trained_side": "aff",
+      "models": [
+        {
+          "model": "opus",
+          "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+          "winner": "neg",
+          "aff_score": 42,
+          "neg_score": 58,
+          "reasoning": "The NEG successfully exploited a critical flaw in AFF's interpretation of the Gartner statistic - \"no productivity gains\" means stagnation, not reduction, which fails to prove the resolution that remote work \"reduces\" productivity. AFF's Sullivan report evidence was effectively limited to government research contexts, and AFF never adequately bridged this to typical business environments. While AFF attempted to reframe \"no gains\" as a \"reduction in productivity trajectory,\" this was a late pivot that lacked evidentiary support.",
+          "key_voting_issue": "The Gartner 73% statistic interpretation - AFF's own evidence showed \"no productivity gains\" (stagnation), not productivity reduction, which fails to meet the resolution's burden that remote work actively \"reduces\" productivity.",
+          "error": null
+        },
+        {
+          "model": "sonnet",
+          "model_id": "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0",
+          "winner": "neg",
+          "aff_score": 72,
+          "neg_score": 78,
+          "reasoning": "The NEG successfully exploited a critical flaw in AFF's interpretation of their own evidence - the Gartner statistic showing \"no productivity gains\" demonstrates stagnation, not the reduction required by the resolution. While AFF provided detailed evidence about collaboration inefficiencies from the Sullivan report, they failed to prove these inefficiencies actually reduce productivity below baseline levels rather than simply preventing improvements.",
+          "key_voting_issue": "AFF's failure to prove that \"no productivity gains\" constitutes a reduction in productivity, which is what the resolution specifically requires.",
+          "error": null
+        },
+        {
+          "model": "haiku",
+          "model_id": "bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "winner": "aff",
+          "aff_score": 72,
+          "neg_score": 58,
+          "reasoning": "The affirmative wins on the critical distinction between \"no productivity gains\" and \"productivity reduction.\" While the negative correctly identifies that \"no gains\" technically means stagnation rather than decline, the affirmative effectively reframes this as a *failure* of remote work to deliver promised improvements\u2014which constitutes a practical reduction in productivity trajectory for businesses. The affirmative also successfully isolates the GitLab example as an outlier requiring massive investment, whereas the Sullivan report's collaboration inefficiencies are presented as systemic. The negative's commute-time argument remains speculative without evidence that saved hours translate to productive work, while the affirmative's timeline extension evidence is concrete and documented.",
+          "key_voting_issue": "Whether \"no productivity gains\" across 73% of companies constitutes a \"reduction in productivity\" as required by the resolution\u2014the affirmative's framing of this as a systemic failure to improve (rather than literal decline) is more persuasive in a business context where remote work was implemented with expectations of improvement.",
+          "error": null
+        }
+      ],
+      "consensus_winner": "neg",
+      "consensus_aff": 62.0,
+      "consensus_neg": 64.7,
+      "agreement": "majority",
+      "aff_votes": 1,
+      "neg_votes": 2,
+      "trained_won": false,
+      "trained_score": 62.0,
+      "base_score": 64.7
+    },
+    {
+      "debate_id": "v3_t7_trained_neg",
+      "trained_side": "neg",
+      "models": [
+        {
+          "model": "opus",
+          "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+          "winner": "neg",
+          "aff_score": 42,
+          "neg_score": 58,
+          "reasoning": "The NEG successfully exposed a critical flaw in AFF's case: the Sullivan evidence only proves collaboration is generally inefficient, not that remote work specifically causes productivity loss. AFF admitted this in cross-examination and never adequately recovered. While AFF's $1.1 trillion figure was impactful, they failed to establish the causal link between remote work and this cost, whereas NEG offered a broader productivity framework including workforce expansion that went largely unrefuted.",
+          "key_voting_issue": "The causation gap - AFF could not prove remote work specifically causes productivity loss rather than collaboration being generally inefficient across all work settings, which NEG exploited throughout the debate and AFF conceded in cross-examination.",
+          "error": null
+        },
+        {
+          "model": "sonnet",
+          "model_id": "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0",
+          "winner": "neg",
+          "aff_score": 35,
+          "neg_score": 65,
+          "reasoning": "The AFF's case suffered from a critical evidence problem - their Sullivan citation only proved general collaboration inefficiencies, not that remote work specifically causes productivity loss, which NEG effectively exploited throughout cross-examination and rebuttals. While AFF presented impressive-sounding statistics like the $1.1 trillion figure, they failed to establish the causal link between remote work and these costs, relying instead on unsourced anecdotes and misapplied evidence. NEG successfully reframed productivity as total output rather than just collaboration speed, providing concrete examples of expanded workforce participation that AFF never adequately addressed.",
+          "key_voting_issue": "AFF's failure to prove causation between remote work and productivity loss, as their primary evidence (Sullivan) only demonstrated general collaboration inefficiencies that exist in any work environment.",
+          "error": null
+        },
+        {
+          "model": "haiku",
+          "model_id": "bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "winner": "neg",
+          "aff_score": 35,
+          "neg_score": 65,
+          "reasoning": "The affirmative failed to establish causation between remote work and productivity loss, repeatedly relying on evidence about general collaboration inefficiencies rather than remote-work-specific impacts. The negative effectively exposed this fundamental flaw in cross-examination, and the affirmative's attempted recovery\u2014citing an uncorroborated local startup anecdote and claiming the $1.1 trillion figure represents net remote work losses\u2014lacked evidentiary support. While the affirmative's quantitative claims were striking, they proved correlation at best; the negative's framework redefining productivity to include workforce expansion and deep work enablement was never adequately refuted.",
+          "key_voting_issue": "The affirmative's inability to prove remote work *causes* productivity reduction rather than merely correlating with general collaboration inefficiencies, compounded by reliance on an unsourced anecdote and misapplication of statistics that describe communication challenges in any work model, not remote work specifically.",
+          "error": null
+        }
+      ],
+      "consensus_winner": "neg",
+      "consensus_aff": 37.3,
+      "consensus_neg": 62.7,
+      "agreement": "unanimous",
+      "aff_votes": 0,
+      "neg_votes": 3,
+      "trained_won": true,
+      "trained_score": 62.7,
+      "base_score": 37.3
+    },
+    {
+      "debate_id": "v3_t8_trained_aff",
+      "trained_side": "aff",
+      "models": [
+        {
+          "model": "opus",
+          "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+          "winner": "aff",
+          "aff_score": 72,
+          "neg_score": 58,
+          "reasoning": "The AFF successfully maintained their core mechanism throughout the debate - that compulsory voting forces parties to address all demographic groups because they need every vote to win (Cordova and Rangel 2017). The NEG's primary attack on the 10% invalid ballot rate was effectively reframed by AFF as comparing 10% invalid ballots to 40-60% complete exclusion in voluntary systems. The NEG failed to adequately respond to the Cordova and Rangel mechanism and their consent argument was turned against them using their own Chong evidence showing non-voters are systematically disadvantaged.",
+          "key_voting_issue": "The unrefuted Cordova and Rangel mechanism proving that compulsory voting creates electoral incentives for parties to address marginalized communities' concerns, which the NEG never directly engaged with or disproved.",
+          "error": null
+        },
+        {
+          "model": "sonnet",
+          "model_id": "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0",
+          "winner": "aff",
+          "aff_score": 78,
+          "neg_score": 65,
+          "reasoning": "The AFF successfully established and maintained their core mechanism that compulsory voting forces parties to address all demographic groups because they need every vote to win, supported by Cordova and Rangel's evidence of increased turnout across socioeconomic groups. While the NEG raised legitimate concerns about invalid ballots and forced participation, they failed to adequately respond to the AFF's central argument about systematic exclusion in voluntary systems, and their own Chong evidence actually supported the AFF's claim that marginalized groups are excluded under voluntary voting.",
+          "key_voting_issue": "The mechanism of electoral incentives - whether compulsory voting creates incentives for parties to address marginalized communities' concerns versus whether voluntary voting systematically excludes these groups from political representation.",
+          "error": null
+        },
+        {
+          "model": "haiku",
+          "model_id": "bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "winner": "aff",
+          "aff_score": 72,
+          "neg_score": 58,
+          "reasoning": "The AFF successfully established that compulsory voting increases representation of marginalized groups through the Cordova and Rangel mechanism, which the NEG failed to directly refute. While the NEG raised legitimate concerns about invalid ballots and consent, they conflated the 10% invalid ballot rate with systemic failure without proving that forced participation of 90% of citizens (including previously excluded groups) is worse than voluntary systems that exclude 40-60% of the electorate. The AFF's framework\u2014that genuine democratic legitimacy requires representing the entire electorate, not just engaged minorities\u2014proved more persuasive than the NEG's consent-based argument, which the AFF effectively turned by showing that exclusion itself violates consent.",
+          "key_voting_issue": "Whether democratic legitimacy is better served by high turnout across all socioeconomic groups (AFF's Cordova and Rangel evidence) or by lower turnout with theoretically more \"informed\" voters (NEG's consent argument). The AFF won this by demonstrating that the NEG's voluntary system systematically excludes the poor, young, and disadvantaged\u2014making the NEG's own evidence (Chong) prove the AFF's case rather than refute it.",
+          "error": null
+        }
+      ],
+      "consensus_winner": "aff",
+      "consensus_aff": 74.0,
+      "consensus_neg": 60.3,
+      "agreement": "unanimous",
+      "aff_votes": 3,
+      "neg_votes": 0,
+      "trained_won": true,
+      "trained_score": 74.0,
+      "base_score": 60.3
+    },
+    {
+      "debate_id": "v3_t8_trained_neg",
+      "trained_side": "neg",
+      "models": [
+        {
+          "model": "opus",
+          "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+          "winner": "aff",
+          "aff_score": 72,
+          "neg_score": 68,
+          "reasoning": "The AFF successfully maintained their core argument that compulsory voting leads to better policy outcomes for marginalized groups, and the NEG's causation attack was effectively neutralized by the US comparison showing automatic registration alone doesn't solve turnout problems. While the NEG raised valid concerns about informed participation versus compliance, they failed to adequately respond to the AFF's Evidence 8 about policy outcomes in Australia, which the 2AR correctly identified as a significant drop. The AFF's burden-shifting argument (that CV forces governments to reduce barriers) was more compelling than the NEG's claim that CV punishes marginalized voters.",
+          "key_voting_issue": "The NEG's failure to adequately address the AFF's evidence about policy outcomes in Australia (Evidence 8 showing doubled support for leftist policies) left the AFF's central impact claim largely uncontested, allowing them to win that compulsory voting produces tangible democratic benefits beyond mere turnout increases.",
+          "error": null
+        },
+        {
+          "model": "sonnet",
+          "model_id": "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0",
+          "winner": "neg",
+          "aff_score": 72,
+          "neg_score": 78,
+          "reasoning": "While AFF presented compelling evidence about Australia's policy outcomes under compulsory voting, they failed to adequately address NEG's core causation challenge. NEG successfully demonstrated that AFF's evidence cannot isolate compulsory voting as the cause of Australia's democratic improvements since automatic voter registration was implemented simultaneously, and AFF's own cross-examination confirmed no clean comparison exists. NEG also effectively reframed the debate from mere turnout increases to the quality of democratic participation.",
+          "key_voting_issue": "The causation problem - AFF's inability to prove that compulsory voting specifically (rather than automatic voter registration or other factors) caused the democratic improvements they cited in Australia.",
+          "error": null
+        },
+        {
+          "model": "haiku",
+          "model_id": "bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "winner": "neg",
+          "aff_score": 35,
+          "neg_score": 65,
+          "reasoning": "The NEG won by exposing fatal evidentiary flaws in the AFF's case. The AFF's entire argument rests on Australia as proof, but the AFF admitted in cross-examination that no country has automatic voter registration without compulsory voting\u2014meaning Australia's turnout increase cannot be attributed to compulsory voting alone. The AFF never recovered from this concession and failed to provide alternative evidence of causation. While the AFF made intuitive arguments about representation, they could not overcome the NEG's framework that democracy requires informed participation, not merely forced compliance, and the NEG's evidence about burden on marginalized voters remained largely unrefuted.",
+          "key_voting_issue": "The AFF's inability to prove causation between compulsory voting and democratic strengthening, combined with the admission that Australia's confounding variables (automatic voter registration) make it impossible to isolate compulsory voting as the causal mechanism, undermined the entire affirmative case.",
+          "error": null
+        }
+      ],
+      "consensus_winner": "neg",
+      "consensus_aff": 59.7,
+      "consensus_neg": 70.3,
+      "agreement": "majority",
+      "aff_votes": 1,
+      "neg_votes": 2,
+      "trained_won": true,
+      "trained_score": 70.3,
+      "base_score": 59.7
+    },
+    {
+      "debate_id": "v3_t9_trained_aff",
+      "trained_side": "aff",
+      "models": [
+        {
+          "model": "opus",
+          "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+          "winner": "aff",
+          "aff_score": 72,
+          "neg_score": 65,
+          "reasoning": "The AFF successfully reframed the rare earth dispute as evidence supporting their thesis - China chose economic coercion over military action, which demonstrates the deterrent effect of trade interdependence. The NEG's argument that economic coercion constitutes \"conflict\" conflates economic pressure with war, which the resolution specifically addresses. The AFF's consistent framing that the resolution concerns \"war likelihood\" rather than all forms of conflict proved strategically effective, and the NEG failed to provide examples where trade interdependence actually led to military conflict.",
+          "key_voting_issue": "The definitional question of whether economic coercion constitutes \"war\" - the AFF successfully argued the resolution concerns military conflict, and the rare earth case demonstrates trade interdependence channeled disputes into non-military avenues, proving the resolution true.",
+          "error": null
+        },
+        {
+          "model": "sonnet",
+          "model_id": "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0",
+          "winner": "aff",
+          "aff_score": 78,
+          "neg_score": 65,
+          "reasoning": "The AFF successfully defended their core argument that the rare earth dispute actually proves their case - China chose economic coercion over military action, which demonstrates that trade interdependence makes war less likely by providing alternative conflict resolution mechanisms. While the NEG effectively identified a real tension in the AFF's argument about trade creating vulnerabilities, they failed to prove that these vulnerabilities actually increase the likelihood of war rather than simply changing the form of conflict to less destructive alternatives.",
+          "key_voting_issue": "The interpretation of China's 2010 rare earth export restrictions - whether this represents evidence that trade interdependence reduces war likelihood (by showing states choose economic tools over military action) or increases it (by creating new conflict vectors).",
+          "error": null
+        },
+        {
+          "model": "haiku",
+          "model_id": "bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "winner": "aff",
+          "aff_score": 72,
+          "neg_score": 58,
+          "reasoning": "The affirmative successfully reframed the rare earth dispute as evidence supporting their theory rather than refuting it\u2014China's choice of economic coercion over military invasion directly demonstrates that trade interdependence made war strategically irrational, which is precisely their mechanism. While the negative raised legitimate concerns about trade-based vulnerabilities and military alliance-building, they failed to prove these phenomena increase war likelihood; instead, they showed states responding defensively to protect valuable trade relationships, which actually supports the affirmative's claim that interdependence is valued enough to warrant protection rather than abandonment.",
+          "key_voting_issue": "Whether China's 2010 rare earth restrictions prove trade interdependence reduces war likelihood (AFF) or creates new conflict vectors (NEG)\u2014the affirmative's argument that China chose economic coercion *instead of* military action directly proves their economic rationality mechanism, while the negative conflated trade disputes with war likelihood without establishing that interdependence actually increases military conflict probability.",
+          "error": null
+        }
+      ],
+      "consensus_winner": "aff",
+      "consensus_aff": 74.0,
+      "consensus_neg": 62.7,
+      "agreement": "unanimous",
+      "aff_votes": 3,
+      "neg_votes": 0,
+      "trained_won": true,
+      "trained_score": 74.0,
+      "base_score": 62.7
+    },
+    {
+      "debate_id": "v3_t9_trained_neg",
+      "trained_side": "neg",
+      "models": [
+        {
+          "model": "opus",
+          "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+          "winner": "aff",
+          "aff_score": 72,
+          "neg_score": 68,
+          "reasoning": "The AFF successfully maintained their core thesis that trade interdependence raises the cost of war to irrational levels, using the US-China relationship as their primary example. While NEG raised valid concerns about the security dilemma and economic coercion, they struggled to prove that trade interdependence actually *increases* war likelihood rather than simply failing to eliminate all conflict. The AFF effectively turned NEG's semiconductor example by arguing it demonstrates conflict being channeled to less destructive economic forms rather than escalating to war.",
+          "key_voting_issue": "The distinction between \"war\" and \"economic coercion/conflict\" - AFF successfully argued the resolution is about reducing war likelihood specifically, and NEG's examples of economic coercion actually supported AFF's claim that interdependence channels disputes away from military conflict.",
+          "error": null
+        },
+        {
+          "model": "sonnet",
+          "model_id": "bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0",
+          "winner": "aff",
+          "aff_score": 72,
+          "neg_score": 65,
+          "reasoning": "The affirmative successfully established that modern trade interdependence creates economic barriers to war that didn't exist historically, using the US-China relationship as compelling evidence. While the negative's security dilemma framework was theoretically sound, they failed to adequately respond to the affirmative's threshold argument about the sheer scale of modern economic costs making war irrational, and their examples (semiconductor conflict, pre-WWI Europe) actually supported the affirmative's claim that interdependence channels conflict into less destructive forms.",
+          "key_voting_issue": "The affirmative's economic threshold argument - that modern trade relationships involve costs so high ($1 trillion in US-China trade) that war becomes economically irrational regardless of security concerns - was never adequately refuted by the negative.",
+          "error": null
+        },
+        {
+          "model": "haiku",
+          "model_id": "bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "winner": "neg",
+          "aff_score": 42,
+          "neg_score": 58,
+          "reasoning": "While the affirmative presents a coherent liberal peace theory argument with intuitive economic logic, the negative successfully exposes critical vulnerabilities in the affirmative's framework and evidence application. The negative's security dilemma argument, though not definitively proven, effectively challenges whether economic interdependence can override structural incentives for conflict in great power competition. More importantly, the affirmative repeatedly conflates \"reducing military conflict\" with \"reducing war likelihood\" and fails to adequately distinguish between their claims, while the negative maintains that economic coercion enabled by interdependence actually creates new pathways to escalation rather than preventing war.",
+          "key_voting_issue": "The affirmative's inability to prove that economic interdependence prevents war (rather than merely channeling conflict into non-military forms) combined with the negative's successful argument that the security dilemma remains the primary driver of great power conflict, making the affirmative's economic rationality framework insufficient to overcome structural realist concerns about conflict escalation.",
+          "error": null
+        }
+      ],
+      "consensus_winner": "aff",
+      "consensus_aff": 62.0,
+      "consensus_neg": 63.7,
+      "agreement": "majority",
+      "aff_votes": 2,
+      "neg_votes": 1,
+      "trained_won": false,
+      "trained_score": 63.7,
+      "base_score": 62.0
+    }
+  ]
+}

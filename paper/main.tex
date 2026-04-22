@@ -1,0 +1,85 @@
+% NeurIPS 2026 Submission
+\documentclass{article}
+\usepackage[preprint]{neurips_approx}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{graphicx}
+\graphicspath{{figures/}{diagrams/}}
+\usepackage{xcolor}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{subcaption}
+\usepackage{multirow}
+
+\title{Can LLMs Improve at Debate Through Self-Play?\\A Pipeline and RL System to Gamify Competitive Debate\\with Branching and Hierarchical Rewards}
+
+% Double-blind: anonymous submission
+\author{Anonymous Authors}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Competitive debate is a demanding testbed for language model training: it
+requires strategic planning, evidence integration, and adversarial reasoning
+across many interdependent decisions. We present a training pipeline for
+competitive AI debate in the International Public Debate Association (IPDA)
+format, where each debate decomposes into ${\sim}33$ LLM calls spanning
+planning, structuring, generation, and dialogue. Our system includes an
+automated debate preparation pipeline that transforms a resolution into a
+grounded debate via Bayesian belief-tree construction, a consolidated
+research loop, and sentence-level-traceable evidence cards. On top of this
+pipeline, we treat structured multi-turn debate generation as search: at each decision point we
+produce and score multiple candidates, branching into parallel trajectories
+when candidates diverge enough that opponent responses would differ. A
+hierarchical reward system scores individual calls, backpropagates debate
+outcomes to the specific decisions that caused them, and uses cross-branch
+comparison to identify winner-shifting pivot points, feeding a group-wise
+offline GRPO loop that trains heterogeneous call types as separate groups
+with importance sampling.
+
+In head-to-head tournament evaluation (68~debates on 17 held-out topics,
+5-judge panel), the trained model wins 58.2\% of judge votes ($p = 0.034$,
+GEE clustered on debate; Cohen's $d = 0.166$), with top tactics achieving
+100\% success rates and group-wise GRPO reaching 81--88\% validation accuracy
+across call types. We observe a structural side asymmetry (67.6\% negative
+vs.\ 41.2\% affirmative, $p = 0.002$) present in the base model and amplified
+by training, and document opposing LLM judge biases that partially cancel in
+panel consensus. We release model checkpoints, training code, and a corpus
+of 30+ judged debates with per-call scores.
+\end{abstract}
+
+\input{sections/01_introduction}
+\input{sections/02_related_work}
+\input{sections/03_method}
+\input{sections/04_experiments}
+\input{sections/05_analysis}
+\input{sections/06_conclusion}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\appendix
+\input{appendix/appendix_a_method_details}
+\input{appendix/appendix_b_experiment_details}
+\input{appendix/appendix_c_tournament_details}
+\input{appendix/appendix_d_failure_modes}
+\input{appendix/appendix_e_hyperparams}
+\input{appendix/appendix_f_costs}
+\input{appendix/appendix_g_debate_examples}
+\input{appendix/appendix_h_branching}
+\input{appendix/appendix_i_agentic_judge}
+\input{appendix/appendix_j_grpo_groups}
+\input{appendix/appendix_k_trajectory}
+\input{appendix/appendix_l_pipeline}
+
+\end{document}

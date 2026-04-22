@@ -1,0 +1,399 @@
+# BELIEF ↔ DEBATE INTEGRATION LOOP
+# Bidirectional flow between belief modeling and debate execution
+# Style: Presentation (bold colors, high contrast)
+
+direction: right
+
+title: {
+  label: "Belief ↔ Debate Integration Loop"
+  
+  style.font-size: 28
+  style.bold: true
+}
+
+subtitle: {
+  label: "packages/cognitive/beliefs/debate_integration.py | debate_loop.py"
+  
+  style.font-size: 12
+  style.italic: true
+}
+
+# =============================================================================
+# LEFT SIDE: BELIEF TREE SYSTEM
+# =============================================================================
+
+beliefs: Belief Tree System {
+  style.fill: "#E6FFFA"
+  style.stroke: "#319795"
+  style.stroke-width: 3
+
+  tree: BeliefTree {
+    style.fill: "#B2F5EA"
+
+    topic: Topic {
+      shape: document
+      style.fill: "#FFFFFF"
+      label: "Resolution"
+    }
+
+    values: Values {
+      style.fill: "#81E6D9"
+      v1: Value 1 {
+        shape: rectangle
+        style.fill: "#4FD1C5"
+      }
+      v2: Value 2 {
+        shape: rectangle
+        style.fill: "#4FD1C5"
+      }
+    }
+
+    belief_nodes: Beliefs (with credences) {
+      style.fill: "#38B2AC"
+
+      b1: "Belief A\nCr: 0.72" {
+        shape: rectangle
+        style.fill: "#2C7A7B"
+        style.font-color: "#FFFFFF"
+      }
+      b2: "Belief B\nCr: 0.58" {
+        shape: rectangle
+        style.fill: "#2C7A7B"
+        style.font-color: "#FFFFFF"
+      }
+      b3: "Belief C\nCr: 0.45" {
+        shape: rectangle
+        style.fill: "#2C7A7B"
+        style.font-color: "#FFFFFF"
+      }
+    }
+
+    arguments: Arguments (C-W-I) {
+      style.fill: "#285E61"
+      style.font-color: "#FFFFFF"
+
+      arg1: Argument 1 {
+        shape: hexagon
+        style.fill: "#234E52"
+        style.font-color: "#FFFFFF"
+      }
+      arg2: Argument 2 {
+        shape: hexagon
+        style.fill: "#234E52"
+        style.font-color: "#FFFFFF"
+      }
+    }
+
+    evidence: Evidence Cards {
+      style.fill: "#1D4044"
+      style.font-color: "#FFFFFF"
+
+      e1: Evidence 1 {
+        shape: document
+        style.fill: "#234E52"
+        style.font-color: "#FFFFFF"
+      }
+    }
+
+    topic -> values
+    values -> belief_nodes
+    belief_nodes -> arguments
+    arguments -> evidence
+  }
+
+  neo4j: Neo4j {
+    shape: cylinder
+    style.fill: "#319795"
+    style.font-color: "#FFFFFF"
+    label: "Persistent\nGraph Store"
+  }
+
+  tree -> neo4j
+}
+
+# =============================================================================
+# CENTER: PERSPECTIVE OBJECT (BELIEF → DEBATE)
+# =============================================================================
+
+perspective: Perspective Object {
+  style.fill: "#EBF8FF"
+  style.stroke: "#3182CE"
+  style.stroke-width: 3
+
+  label: "Belief → Debate\nInterface"
+
+  contents: {
+    style.fill: "#BEE3F8"
+
+    grounded_beliefs: Grounded beliefs {
+      shape: rectangle
+      style.fill: "#90CDF4"
+      label: "Pre-researched\nbeliefs + credences"
+    }
+
+    preloaded_args: Preloaded arguments {
+      shape: rectangle
+      style.fill: "#63B3ED"
+      label: "Ready-to-use\nC-W-I structures"
+    }
+
+    preloaded_evid: Preloaded evidence {
+      shape: rectangle
+      style.fill: "#4299E1"
+      style.font-color: "#FFFFFF"
+      label: "Tagged evidence\nwith stances"
+    }
+  }
+}
+
+beliefs.tree -> perspective: "Extract" {
+  style.stroke: "#319795"
+  style.stroke-width: 2
+}
+
+# =============================================================================
+# RIGHT SIDE: DEBATE EXECUTION
+# =============================================================================
+
+debate: Debate Execution {
+  style.fill: "#FFF5F5"
+  style.stroke: "#C53030"
+  style.stroke-width: 3
+
+  skeleton: Skeleton Builder {
+    style.fill: "#FED7D7"
+
+    grounding: Belief Grounding {
+      shape: rectangle
+      style.fill: "#FC8181"
+      label: |md
+        **Links claims to beliefs**
+        - grounded_belief_id
+        - grounded_argument_id
+        - evidence_gap type
+      |
+    }
+
+    claims: SkeletonClaims {
+      shape: rectangle
+      style.fill: "#F56565"
+      style.font-color: "#FFFFFF"
+      label: "Claims with\nbelief IDs"
+    }
+
+    grounding -> claims
+  }
+
+  pipeline: 4-Stage Pipeline {
+    style.fill: "#E53E3E"
+    style.font-color: "#FFFFFF"
+
+    gen: Speech Generation {
+      shape: rectangle
+      style.fill: "#C53030"
+      style.font-color: "#FFFFFF"
+    }
+  }
+
+  judge: Judge Evaluation {
+    style.fill: "#9B2C2C"
+    style.font-color: "#FFFFFF"
+
+    decision: "Winner + Margin" {
+      shape: document
+      style.fill: "#742A2A"
+      style.font-color: "#FFFFFF"
+    }
+  }
+
+  skeleton -> pipeline -> judge
+}
+
+perspective -> debate.skeleton: "Feeds" {
+  style.stroke: "#3182CE"
+  style.stroke-width: 2
+}
+
+# =============================================================================
+# BOTTOM: DEBATE OUTCOME → BELIEF UPDATE
+# =============================================================================
+
+update: Credence Update {
+  style.fill: "#FEF3C7"
+  style.stroke: "#D97706"
+  style.stroke-width: 3
+
+  outcome: DebateOutcome {
+    style.fill: "#FDE68A"
+
+    winner_box: Winner {
+      shape: rectangle
+      style.fill: "#FCD34D"
+      label: "AFF or NEG"
+    }
+
+    margin_box: Margin {
+      shape: rectangle
+      style.fill: "#FBBF24"
+      label: "0-10"
+    }
+
+    affected: Affected Beliefs {
+      shape: rectangle
+      style.fill: "#F59E0B"
+      style.font-color: "#FFFFFF"
+      label: "belief_ids\nby side"
+    }
+  }
+
+  integration: DebateIntegration {
+    style.fill: "#D97706"
+    style.font-color: "#FFFFFF"
+
+    process: process_debate_outcome() {
+      shape: hexagon
+      style.fill: "#B45309"
+      style.font-color: "#FFFFFF"
+    }
+  }
+
+  bayesian: Bayesian Update {
+    style.fill: "#92400E"
+    style.font-color: "#FFFFFF"
+
+    likelihood: Likelihood Ratio {
+      shape: rectangle
+      style.fill: "#78350F"
+      style.font-color: "#FFFFFF"
+      label: "winner: LR > 1\nloser: LR < 1"
+    }
+
+    damping: Damping (0.3) {
+      shape: rectangle
+      style.fill: "#78350F"
+      style.font-color: "#FFFFFF"
+      label: "Prevents wild\nswings"
+    }
+  }
+
+  outcome -> integration -> bayesian
+}
+
+debate.judge.decision -> update.outcome: "Result" {
+  style.stroke: "#C53030"
+  style.stroke-width: 2
+}
+
+# =============================================================================
+# FEEDBACK LOOP: UPDATE → BELIEFS
+# =============================================================================
+
+propagation: Propagation {
+  style.fill: "#FAF5FF"
+  style.stroke: "#6B46C1"
+  style.stroke-width: 3
+
+  jeffrey: Jeffrey Conditionalization {
+    shape: hexagon
+    style.fill: "#E9D8FD"
+    style.stroke: "#6B46C1"
+    label: "Propagate updates\nto dependent beliefs"
+  }
+
+  coherence: Coherence Check {
+    shape: diamond
+    style.fill: "#D6BCFA"
+    label: "Verify axioms"
+  }
+
+  persist: Persist Updates {
+    shape: cylinder
+    style.fill: "#9F7AEA"
+    style.font-color: "#FFFFFF"
+    label: "Neo4j"
+  }
+
+  jeffrey -> coherence -> persist
+}
+
+update.bayesian -> propagation: "New credences" {
+  style.stroke: "#D97706"
+  style.stroke-width: 2
+}
+
+propagation.persist -> beliefs.neo4j: "Updated\ncredences" {
+  style.stroke: "#6B46C1"
+  style.stroke-width: 2
+  style.stroke-dash: 5
+}
+
+# =============================================================================
+# CONVERGENCE CHECK (DEBATE LOOP)
+# =============================================================================
+
+loop: Debate Loop Orchestrator {
+  style.fill: "#EDF2F7"
+  style.stroke: "#4A5568"
+  style.stroke-width: 2
+
+  check: Converged? {
+    shape: diamond
+    style.fill: "#A0AEC0"
+    label: "max_change <\nthreshold (0.05)?"
+  }
+
+  iterate: "Iteration N+1" {
+    shape: rectangle
+    style.fill: "#718096"
+    style.font-color: "#FFFFFF"
+  }
+
+  final: Final Credences {
+    shape: document
+    style.fill: "#4A5568"
+    style.font-color: "#FFFFFF"
+  }
+
+  check -> iterate: "No" {
+    style.stroke-dash: 3
+  }
+  check -> final: "Yes"
+}
+
+propagation.persist -> loop.check: "Check" {
+  style.stroke: "#4A5568"
+  style.stroke-width: 2
+}
+
+loop.iterate -> beliefs: "Re-run debate" {
+  style.stroke: "#4A5568"
+  style.stroke-width: 2
+  style.stroke-dash: 5
+}
+
+# =============================================================================
+# DETAILED UPDATE FORMULAS
+# =============================================================================
+
+formulas: Update Formulas {
+  style.fill: "#FFFFFF"
+  style.stroke: "#E2E8F0"
+  style.stroke-dash: 3
+
+  text: {
+    shape: rectangle
+    style.fill: "#F7FAFC"
+    label: |md
+      **Likelihood Ratio:**
+      - Winner's beliefs: LR = 1 + (margin/10)
+      - Loser's beliefs: LR = 1 / (1 + margin/10)
+
+      **Damped Update:**
+      dampened_LR = 1 + (raw_LR - 1) × damping
+
+      **New Credence:**
+      log_odds' = log_odds + log(dampened_LR)
+      Cr' = 1 / (1 + exp(-log_odds'))
+    |
+  }
+}

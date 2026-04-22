@@ -1,0 +1,211 @@
+{
+  "trace_id": "t5_fresh_neg_1_panel",
+  "debate_id": "t5_fresh_neg_1",
+  "model_judgments": [
+    {
+      "model_name": "opus_4.5",
+      "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+      "winner": "aff",
+      "scores": {
+        "aff": 67.4,
+        "neg": 62.8
+      },
+      "confidence": 0.62,
+      "reasoning": "AFF wins this debate narrowly based on three factors: (1) The Suzuki 2015 evidence providing systemic empirical support for the resolution was never directly countered with evidence of equal scope. NEG's methodological critique was valid but insufficient to overturn peer-reviewed quantitative findings. (2) AFF's definitional framework (stability as absence of major war) is more defensible than NEG's (stability as absence of all crises), which would make almost any historical period 'unstable.' (3) AFF successfully reframed NEG's strongest example (Pulwama-Balakot) as supporting rather than undermining the resolution. NEG performed well on clash and rhetorical technique, and their definitional challenge was sophisticated, but they lacked the evidentiary foundation to overturn AFF's case. The arms control argument was underdeveloped and the Johnson citation appeared tangential.",
+      "key_moments": [
+        {
+          "speech_type": "NC",
+          "moment_type": "evidence_failure",
+          "description": "Preservation of Suzuki systemic evidence - NEG critiqued but never countered with equal empirical scope",
+          "impact": -0.5,
+          "affected_side": "neg",
+          "stage": null
+        },
+        {
+          "speech_type": "NC",
+          "moment_type": "turning_point",
+          "description": "Definitional framework - AFF's stability = absence of major war is more defensible than NEG's stability = absence of crises",
+          "impact": -0.5,
+          "affected_side": "neg",
+          "stage": null
+        },
+        {
+          "speech_type": "NC",
+          "moment_type": "turning_point",
+          "description": "Pulwama-Balakot reframing - AFF successfully turned NEG's key example to support deterrence thesis",
+          "impact": -0.5,
+          "affected_side": "neg",
+          "stage": null
+        },
+        {
+          "speech_type": "NC",
+          "moment_type": "evidence_failure",
+          "description": "Evidence quality differential - AFF's Suzuki citation was stronger than NEG's truncated Johnson evidence",
+          "impact": -0.5,
+          "affected_side": "neg",
+          "stage": null
+        }
+      ],
+      "voting_issues": [
+        "Preservation of Suzuki systemic evidence - NEG critiqued but never countered with equal empirical scope",
+        "Definitional framework - AFF's stability = absence of major war is more defensible than NEG's stability = absence of crises",
+        "Pulwama-Balakot reframing - AFF successfully turned NEG's key example to support deterrence thesis",
+        "Evidence quality differential - AFF's Suzuki citation was stronger than NEG's truncated Johnson evidence"
+      ],
+      "judge_quality": 0.7300000000000001,
+      "retry_triggered": false,
+      "rubric_scores": {
+        "evidentiary_fidelity": 7.0,
+        "symmetric_treatment": 7.0,
+        "clash_resolution": 7.0,
+        "decision_clarity": 8.0,
+        "technical_accuracy": 8.0
+      }
+    },
+    {
+      "model_name": "gemini_3.1_pro",
+      "model_id": "gemini/gemini-3.1-pro-preview",
+      "winner": "neg",
+      "scores": {
+        "aff": 78.0,
+        "neg": 85.0
+      },
+      "confidence": 0.95,
+      "reasoning": "The decision heavily rests on the Aff's technical drop in the 2AR and the Neg's successful framing of 'stability'. First, the Neg effectively argued that a system requiring a 'nuclear safety net' to de-escalate conventional brinkmanship (e.g., India-Pakistan) is inherently fragile, winning the conceptual clash over what constitutes true stability. Second, and more decisively, the Aff 2AR falsely claimed the Neg presented no evidence or theory for instability, thereby completely dropping the Neg's arms control complexity argument (Johnson 2022) extended in the NR. Dropping an independent disadvantage leaves a conceded path to the ballot for the Neg, dictating a Neg victory on technical grounds.",
+      "key_moments": [
+        {
+          "speech_type": "NC",
+          "moment_type": "turning_point",
+          "description": "Definition of Stability: Neg successfully framed stability as the absence of crises, turning Aff's de-escalation examples into proof of fragility.",
+          "impact": -0.5,
+          "affected_side": "neg",
+          "stage": null
+        },
+        {
+          "speech_type": "NC",
+          "moment_type": "critical_drop",
+          "description": "Conceded Disadvantage: The Aff's 2AR completely dropped the Neg's systemic disadvantage regarding arms control complexity, conceding an independent path to the ballot.",
+          "impact": -0.5,
+          "affected_side": "neg",
+          "stage": null
+        }
+      ],
+      "voting_issues": [
+        "Definition of Stability: Neg successfully framed stability as the absence of crises, turning Aff's de-escalation examples into proof of fragility.",
+        "Conceded Disadvantage: The Aff's 2AR completely dropped the Neg's systemic disadvantage regarding arms control complexity, conceding an independent path to the ballot."
+      ],
+      "judge_quality": 0.7,
+      "retry_triggered": false,
+      "rubric_scores": {
+        "evidentiary_fidelity": 8.0,
+        "symmetric_treatment": 8.0,
+        "clash_resolution": 7.0,
+        "decision_clarity": 9.0,
+        "technical_accuracy": 2.0
+      }
+    },
+    {
+      "model_name": "gpt_5.2",
+      "model_id": "openai/gpt-5.2",
+      "winner": "aff",
+      "scores": {
+        "aff": 77.0,
+        "neg": 72.0
+      },
+      "confidence": 0.62,
+      "reasoning": "AFF wins primarily on flow control and framing. AFF establishes and consistently extends a workable standard for the resolution\u2014international stability as restraint and prevention of escalation to major war\u2014and NEG does not win a competing interpretation with sufficient warrant. Under that metric, NEG's marquee India\u2013Pakistan crisis example is turned: AFF argues the episode demonstrates deterrence-induced restraint (crisis stays conventional), which is stability on AFF's definition. NEG characterizes this as fragility but does not fully answer why capped escalation is worse than the counterfactual under the controlling lens. Additionally, AFF claims Suzuki 2015 provides system-level support that more nuclear states correlate with fewer disputes and that NEG never directly refutes it; NEG's methodological indicts remain largely analytic and do not clearly neutralize the evidence on-flow. NEG's arms-control/complexity mechanism is plausible, but it is not crystallized with comparative impact calculus against deterrence or tied decisively to the controlling stability metric. Therefore AFF is the better debater and wins the round.",
+      "key_moments": [
+        {
+          "speech_type": "2AR",
+          "moment_type": "turning_point",
+          "description": "Framework: AFF stabilty metric (non-escalation/major war prevention) controls; NEG's 'no crises' standard not sufficiently warranted",
+          "impact": -0.5,
+          "affected_side": "neg",
+          "stage": null
+        },
+        {
+          "speech_type": "NC",
+          "moment_type": "turning_point",
+          "description": "Pulwama/Balakot gets turned by AFF as deterrence success under AFF's stability metric",
+          "impact": 0.5,
+          "affected_side": "aff",
+          "stage": null
+        },
+        {
+          "speech_type": "NC",
+          "moment_type": "critical_drop",
+          "description": "AFF's Suzuki 2015 systemic evidence is treated as insufficiently refuted/dropped on the flow",
+          "impact": 0.5,
+          "affected_side": "aff",
+          "stage": null
+        },
+        {
+          "speech_type": "NC",
+          "moment_type": "turning_point",
+          "description": "NEG arms-control/complexity offense not weighed to outweigh AFF deterrence offense under the controlling metric",
+          "impact": -0.5,
+          "affected_side": "neg",
+          "stage": null
+        }
+      ],
+      "voting_issues": [
+        "Framework: AFF stabilty metric (non-escalation/major war prevention) controls; NEG's 'no crises' standard not sufficiently warranted",
+        "Pulwama/Balakot gets turned by AFF as deterrence success under AFF's stability metric",
+        "AFF's Suzuki 2015 systemic evidence is treated as insufficiently refuted/dropped on the flow",
+        "NEG arms-control/complexity offense not weighed to outweigh AFF deterrence offense under the controlling metric"
+      ],
+      "judge_quality": 0.7175,
+      "retry_triggered": false,
+      "rubric_scores": {
+        "evidentiary_fidelity": 7.0,
+        "symmetric_treatment": 6.5,
+        "clash_resolution": 7.5,
+        "decision_clarity": 8.0,
+        "technical_accuracy": 7.0
+      }
+    }
+  ],
+  "consensus": {
+    "agreement_level": "majority",
+    "consensus_winner": "aff",
+    "vote_count": {
+      "aff": 2,
+      "neg": 1
+    },
+    "score_variance": 52.888888888888886,
+    "disagreement_analysis": "Models disagreeing: ['gemini_3.1_pro']. Reasons: The decision heavily rests on the Aff's technical drop in the 2AR and the Neg's successful framing o"
+  },
+  "final_winner": "aff",
+  "final_scores": {
+    "aff": 74.06263096623982,
+    "neg": 73.11012805587893
+  },
+  "final_confidence": 0.4001083333333333,
+  "agreed_key_moments": [
+    {
+      "speech_type": "NC",
+      "moment_type": "evidence_failure",
+      "description": "Preservation of Suzuki systemic evidence - NEG critiqued but never countered with equal empirical scope",
+      "impact": -0.5,
+      "affected_side": "neg",
+      "stage": null
+    },
+    {
+      "speech_type": "NC",
+      "moment_type": "turning_point",
+      "description": "Definitional framework - AFF's stability = absence of major war is more defensible than NEG's stability = absence of crises",
+      "impact": -0.5,
+      "affected_side": "neg",
+      "stage": null
+    },
+    {
+      "speech_type": "NC",
+      "moment_type": "critical_drop",
+      "description": "Conceded Disadvantage: The Aff's 2AR completely dropped the Neg's systemic disadvantage regarding arms control complexity, conceding an independent path to the ballot.",
+      "impact": -0.5,
+      "affected_side": "neg",
+      "stage": null
+    }
+  ],
+  "judged_at": "2026-02-19T23:50:39.792294"
+}

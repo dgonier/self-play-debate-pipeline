@@ -1,0 +1,828 @@
+{
+  "topics_evaluated": 54,
+  "models": [
+    "opus_4.5",
+    "gemini_3.1_pro",
+    "gpt_5.2"
+  ],
+  "per_model_scores": {
+    "opus_4.5": {
+      "used_010": 7.5,
+      "phil_001": 6.0,
+      "phil_002": 6.5,
+      "phil_003": 4.5,
+      "phil_004": 4.0,
+      "phil_005": 3.5,
+      "polsci_001": 5.5,
+      "polsci_002": 6.0,
+      "polsci_003": 4.0,
+      "polsci_004": 5.0,
+      "polsci_005": 4.5,
+      "ir_001": 7.0,
+      "ir_002": 2.5,
+      "ir_003": 5.0,
+      "ir_004": 2.0,
+      "ir_005": 6.5,
+      "sci_001": 4.5,
+      "sci_002": 5.5,
+      "sci_003": 7.5,
+      "sci_004": 6.0,
+      "sci_005": 4.5,
+      "sci_006": 4.0,
+      "sci_007": 6.5,
+      "sci_008": 4.0,
+      "sci_009": 5.0,
+      "sci_010": 3.5,
+      "polsci_ir_001": 6.0,
+      "polsci_ir_002": 5.0,
+      "polsci_ir_003": 5.5,
+      "polsci_ir_004": 5.5,
+      "polsci_ir_005": 6.5,
+      "hist_001": 5.0,
+      "hist_002": 6.0,
+      "soc_001": 5.5,
+      "soc_002": 4.0,
+      "anth_001": 3.5,
+      "psych_001": 7.0,
+      "psych_002": 4.0,
+      "crim_001": 3.5,
+      "crim_002": 3.5,
+      "media_001": 6.0,
+      "bus_001": 3.5,
+      "bus_002": 3.5,
+      "epi_001": 6.5,
+      "nutr_001": 5.0,
+      "edu_001": 5.5,
+      "neg_win_001": 6.0,
+      "neg_win_002": 5.5,
+      "neg_win_003": 6.5,
+      "neg_win_004": 6.0,
+      "neg_win_005": 4.0,
+      "neg_win_006": 3.5,
+      "neg_win_007": 6.0,
+      "neg_win_008": 5.5
+    },
+    "gemini_3.1_pro": {
+      "used_010": 7.0,
+      "phil_001": 8.0,
+      "phil_002": 9.0,
+      "phil_003": 4.0,
+      "phil_004": 6.0,
+      "phil_005": 6.0,
+      "polsci_001": 5.0,
+      "polsci_002": 7.0,
+      "polsci_003": 4.0,
+      "polsci_004": 6.0,
+      "polsci_005": 7.0,
+      "ir_001": 8.0,
+      "ir_002": 2.0,
+      "ir_003": 7.0,
+      "ir_004": 2.0,
+      "ir_005": 7.0,
+      "sci_001": 6.0,
+      "sci_002": 8.0,
+      "sci_003": 9.0,
+      "sci_004": 8.0,
+      "sci_005": 5.0,
+      "sci_006": 3.0,
+      "sci_007": 8.0,
+      "sci_008": 6.0,
+      "sci_009": 4.0,
+      "sci_010": 3.0,
+      "polsci_ir_001": 8.0,
+      "polsci_ir_002": 6.0,
+      "polsci_ir_003": 6.0,
+      "polsci_ir_004": 5.0,
+      "polsci_ir_005": 8.0,
+      "hist_001": 7.0,
+      "hist_002": 8.0,
+      "soc_001": 7.0,
+      "soc_002": 4.0,
+      "anth_001": 5.0,
+      "psych_001": 9.0,
+      "psych_002": 3.0,
+      "crim_001": 4.0,
+      "crim_002": 4.0,
+      "media_001": 8.0,
+      "bus_001": 3.0,
+      "bus_002": 3.0,
+      "epi_001": 7.0,
+      "nutr_001": 5.0,
+      "edu_001": 7.0,
+      "neg_win_001": 8.0,
+      "neg_win_002": 7.0,
+      "neg_win_003": 8.0,
+      "neg_win_004": 7.0,
+      "neg_win_005": 6.0,
+      "neg_win_006": 3.0,
+      "neg_win_007": 7.0,
+      "neg_win_008": 6.0
+    },
+    "gpt_5.2": {
+      "used_010": 8.5,
+      "phil_001": 6.0,
+      "phil_002": 7.5,
+      "phil_003": 5.5,
+      "phil_004": 4.5,
+      "phil_005": 4.0,
+      "polsci_001": 5.5,
+      "polsci_002": 6.5,
+      "polsci_003": 6.0,
+      "polsci_004": 5.0,
+      "polsci_005": 6.0,
+      "ir_001": 7.0,
+      "ir_002": 2.5,
+      "ir_003": 5.5,
+      "ir_004": 3.0,
+      "ir_005": 6.5,
+      "sci_001": 5.0,
+      "sci_002": 6.5,
+      "sci_003": 7.5,
+      "sci_004": 6.0,
+      "sci_005": 5.0,
+      "sci_006": 3.0,
+      "sci_007": 6.5,
+      "sci_008": 5.5,
+      "sci_009": 4.5,
+      "sci_010": 4.5,
+      "polsci_ir_001": 6.0,
+      "polsci_ir_002": 5.5,
+      "polsci_ir_003": 5.5,
+      "polsci_ir_004": 5.0,
+      "polsci_ir_005": 6.0,
+      "hist_001": 6.0,
+      "hist_002": 6.0,
+      "soc_001": 6.5,
+      "soc_002": 4.5,
+      "anth_001": 4.5,
+      "psych_001": 7.5,
+      "psych_002": 4.5,
+      "crim_001": 3.5,
+      "crim_002": 4.5,
+      "media_001": 6.0,
+      "bus_001": 4.0,
+      "bus_002": 4.5,
+      "epi_001": 7.5,
+      "nutr_001": 6.0,
+      "edu_001": 6.5,
+      "neg_win_001": 7.0,
+      "neg_win_002": 6.0,
+      "neg_win_003": 7.0,
+      "neg_win_004": 6.5,
+      "neg_win_005": 4.0,
+      "neg_win_006": 2.5,
+      "neg_win_007": 6.5,
+      "neg_win_008": 6.0
+    }
+  },
+  "ranked": [
+    {
+      "id": "phil_004",
+      "resolution": "The ends can justify the means",
+      "avg_score": 4.833333333333333,
+      "distance_from_5": 0.16666666666666696,
+      "variance": 0.7222222222222222,
+      "per_model": {
+        "opus_4.5": 4.0,
+        "gemini_3.1_pro": 6.0,
+        "gpt_5.2": 4.5
+      }
+    },
+    {
+      "id": "sci_001",
+      "resolution": "The Many-Worlds interpretation better explains quantum phenomena than Copenhagen",
+      "avg_score": 5.166666666666667,
+      "distance_from_5": 0.16666666666666696,
+      "variance": 0.3888888888888889,
+      "per_model": {
+        "opus_4.5": 4.5,
+        "gemini_3.1_pro": 6.0,
+        "gpt_5.2": 5.0
+      }
+    },
+    {
+      "id": "sci_005",
+      "resolution": "Mathematical objects exist independently of human minds",
+      "avg_score": 4.833333333333333,
+      "distance_from_5": 0.16666666666666696,
+      "variance": 0.05555555555555555,
+      "per_model": {
+        "opus_4.5": 4.5,
+        "gemini_3.1_pro": 5.0,
+        "gpt_5.2": 5.0
+      }
+    },
+    {
+      "id": "sci_008",
+      "resolution": "Deep learning will lead to artificial general intelligence",
+      "avg_score": 5.166666666666667,
+      "distance_from_5": 0.16666666666666696,
+      "variance": 0.7222222222222222,
+      "per_model": {
+        "opus_4.5": 4.0,
+        "gemini_3.1_pro": 6.0,
+        "gpt_5.2": 5.5
+      }
+    },
+    {
+      "id": "polsci_ir_004",
+      "resolution": "Voters are capable of meaningful democratic accountability",
+      "avg_score": 5.166666666666667,
+      "distance_from_5": 0.16666666666666696,
+      "variance": 0.05555555555555555,
+      "per_model": {
+        "opus_4.5": 5.5,
+        "gemini_3.1_pro": 5.0,
+        "gpt_5.2": 5.0
+      }
+    },
+    {
+      "id": "phil_003",
+      "resolution": "Moral truths are objective facts independent of human beliefs",
+      "avg_score": 4.666666666666667,
+      "distance_from_5": 0.33333333333333304,
+      "variance": 0.3888888888888889,
+      "per_model": {
+        "opus_4.5": 4.5,
+        "gemini_3.1_pro": 4.0,
+        "gpt_5.2": 5.5
+      }
+    },
+    {
+      "id": "polsci_001",
+      "resolution": "A federal system of government is superior to a unitary system",
+      "avg_score": 5.333333333333333,
+      "distance_from_5": 0.33333333333333304,
+      "variance": 0.05555555555555555,
+      "per_model": {
+        "opus_4.5": 5.5,
+        "gemini_3.1_pro": 5.0,
+        "gpt_5.2": 5.5
+      }
+    },
+    {
+      "id": "polsci_003",
+      "resolution": "Economic sanctions are an immoral tool of foreign policy",
+      "avg_score": 4.666666666666667,
+      "distance_from_5": 0.33333333333333304,
+      "variance": 0.888888888888889,
+      "per_model": {
+        "opus_4.5": 4.0,
+        "gemini_3.1_pro": 4.0,
+        "gpt_5.2": 6.0
+      }
+    },
+    {
+      "id": "polsci_004",
+      "resolution": "Universal basic income should replace means-tested welfare programs",
+      "avg_score": 5.333333333333333,
+      "distance_from_5": 0.33333333333333304,
+      "variance": 0.22222222222222224,
+      "per_model": {
+        "opus_4.5": 5.0,
+        "gemini_3.1_pro": 6.0,
+        "gpt_5.2": 5.0
+      }
+    },
+    {
+      "id": "nutr_001",
+      "resolution": "Saturated fat consumption increases cardiovascular disease risk",
+      "avg_score": 5.333333333333333,
+      "distance_from_5": 0.33333333333333304,
+      "variance": 0.22222222222222224,
+      "per_model": {
+        "opus_4.5": 5.0,
+        "gemini_3.1_pro": 5.0,
+        "gpt_5.2": 6.0
+      }
+    },
+    {
+      "id": "neg_win_005",
+      "resolution": "Teacher tenure protections should be eliminated",
+      "avg_score": 4.666666666666667,
+      "distance_from_5": 0.33333333333333304,
+      "variance": 0.888888888888889,
+      "per_model": {
+        "opus_4.5": 4.0,
+        "gemini_3.1_pro": 6.0,
+        "gpt_5.2": 4.0
+      }
+    },
+    {
+      "id": "phil_005",
+      "resolution": "Violent revolution is a just response to political oppression",
+      "avg_score": 4.5,
+      "distance_from_5": 0.5,
+      "variance": 1.1666666666666667,
+      "per_model": {
+        "opus_4.5": 3.5,
+        "gemini_3.1_pro": 6.0,
+        "gpt_5.2": 4.0
+      }
+    },
+    {
+      "id": "sci_009",
+      "resolution": "Language acquisition is primarily driven by innate structures rather than learning",
+      "avg_score": 4.5,
+      "distance_from_5": 0.5,
+      "variance": 0.16666666666666666,
+      "per_model": {
+        "opus_4.5": 5.0,
+        "gemini_3.1_pro": 4.0,
+        "gpt_5.2": 4.5
+      }
+    },
+    {
+      "id": "polsci_ir_002",
+      "resolution": "Economic development causes democratization",
+      "avg_score": 5.5,
+      "distance_from_5": 0.5,
+      "variance": 0.16666666666666666,
+      "per_model": {
+        "opus_4.5": 5.0,
+        "gemini_3.1_pro": 6.0,
+        "gpt_5.2": 5.5
+      }
+    },
+    {
+      "id": "polsci_ir_003",
+      "resolution": "International institutions significantly constrain state behavior",
+      "avg_score": 5.666666666666667,
+      "distance_from_5": 0.666666666666667,
+      "variance": 0.05555555555555555,
+      "per_model": {
+        "opus_4.5": 5.5,
+        "gemini_3.1_pro": 6.0,
+        "gpt_5.2": 5.5
+      }
+    },
+    {
+      "id": "anth_001",
+      "resolution": "Cultural practices should be understood only within their own context",
+      "avg_score": 4.333333333333333,
+      "distance_from_5": 0.666666666666667,
+      "variance": 0.3888888888888889,
+      "per_model": {
+        "opus_4.5": 3.5,
+        "gemini_3.1_pro": 5.0,
+        "gpt_5.2": 4.5
+      }
+    },
+    {
+      "id": "polsci_005",
+      "resolution": "Compulsory voting strengthens democracy",
+      "avg_score": 5.833333333333333,
+      "distance_from_5": 0.833333333333333,
+      "variance": 1.0555555555555556,
+      "per_model": {
+        "opus_4.5": 4.5,
+        "gemini_3.1_pro": 7.0,
+        "gpt_5.2": 6.0
+      }
+    },
+    {
+      "id": "ir_003",
+      "resolution": "Humanitarian intervention is justified even without UN Security Council authorization",
+      "avg_score": 5.833333333333333,
+      "distance_from_5": 0.833333333333333,
+      "variance": 0.7222222222222222,
+      "per_model": {
+        "opus_4.5": 5.0,
+        "gemini_3.1_pro": 7.0,
+        "gpt_5.2": 5.5
+      }
+    },
+    {
+      "id": "soc_002",
+      "resolution": "Secularization is an inevitable consequence of modernization",
+      "avg_score": 4.166666666666667,
+      "distance_from_5": 0.833333333333333,
+      "variance": 0.05555555555555555,
+      "per_model": {
+        "opus_4.5": 4.0,
+        "gemini_3.1_pro": 4.0,
+        "gpt_5.2": 4.5
+      }
+    },
+    {
+      "id": "neg_win_008",
+      "resolution": "Animal research should be phased out in favor of alternative methods",
+      "avg_score": 5.833333333333333,
+      "distance_from_5": 0.833333333333333,
+      "variance": 0.05555555555555555,
+      "per_model": {
+        "opus_4.5": 5.5,
+        "gemini_3.1_pro": 6.0,
+        "gpt_5.2": 6.0
+      }
+    },
+    {
+      "id": "hist_001",
+      "resolution": "Historical change is primarily driven by structural forces rather than individual agency",
+      "avg_score": 6.0,
+      "distance_from_5": 1.0,
+      "variance": 0.6666666666666666,
+      "per_model": {
+        "opus_4.5": 5.0,
+        "gemini_3.1_pro": 7.0,
+        "gpt_5.2": 6.0
+      }
+    },
+    {
+      "id": "crim_002",
+      "resolution": "Deterrence is the primary mechanism by which punishment reduces crime",
+      "avg_score": 4.0,
+      "distance_from_5": 1.0,
+      "variance": 0.16666666666666666,
+      "per_model": {
+        "opus_4.5": 3.5,
+        "gemini_3.1_pro": 4.0,
+        "gpt_5.2": 4.5
+      }
+    },
+    {
+      "id": "psych_002",
+      "resolution": "Implicit bias measures predict discriminatory behavior",
+      "avg_score": 3.8333333333333335,
+      "distance_from_5": 1.1666666666666665,
+      "variance": 0.38888888888888884,
+      "per_model": {
+        "opus_4.5": 4.0,
+        "gemini_3.1_pro": 3.0,
+        "gpt_5.2": 4.5
+      }
+    },
+    {
+      "id": "neg_win_002",
+      "resolution": "Healthcare rationing based on cost-effectiveness is ethically acceptable",
+      "avg_score": 6.166666666666667,
+      "distance_from_5": 1.166666666666667,
+      "variance": 0.3888888888888889,
+      "per_model": {
+        "opus_4.5": 5.5,
+        "gemini_3.1_pro": 7.0,
+        "gpt_5.2": 6.0
+      }
+    },
+    {
+      "id": "soc_001",
+      "resolution": "Social structure constrains individual action more than individual agency shapes structure",
+      "avg_score": 6.333333333333333,
+      "distance_from_5": 1.333333333333333,
+      "variance": 0.3888888888888889,
+      "per_model": {
+        "opus_4.5": 5.5,
+        "gemini_3.1_pro": 7.0,
+        "gpt_5.2": 6.5
+      }
+    },
+    {
+      "id": "edu_001",
+      "resolution": "Direct instruction is more effective than inquiry-based learning",
+      "avg_score": 6.333333333333333,
+      "distance_from_5": 1.333333333333333,
+      "variance": 0.3888888888888889,
+      "per_model": {
+        "opus_4.5": 5.5,
+        "gemini_3.1_pro": 7.0,
+        "gpt_5.2": 6.5
+      }
+    },
+    {
+      "id": "sci_010",
+      "resolution": "Group selection is a significant evolutionary force",
+      "avg_score": 3.6666666666666665,
+      "distance_from_5": 1.3333333333333335,
+      "variance": 0.38888888888888884,
+      "per_model": {
+        "opus_4.5": 3.5,
+        "gemini_3.1_pro": 3.0,
+        "gpt_5.2": 4.5
+      }
+    },
+    {
+      "id": "crim_001",
+      "resolution": "Broken windows policing reduces crime",
+      "avg_score": 3.6666666666666665,
+      "distance_from_5": 1.3333333333333335,
+      "variance": 0.05555555555555556,
+      "per_model": {
+        "opus_4.5": 3.5,
+        "gemini_3.1_pro": 4.0,
+        "gpt_5.2": 3.5
+      }
+    },
+    {
+      "id": "bus_002",
+      "resolution": "Remote work reduces productivity",
+      "avg_score": 3.6666666666666665,
+      "distance_from_5": 1.3333333333333335,
+      "variance": 0.38888888888888884,
+      "per_model": {
+        "opus_4.5": 3.5,
+        "gemini_3.1_pro": 3.0,
+        "gpt_5.2": 4.5
+      }
+    },
+    {
+      "id": "polsci_002",
+      "resolution": "The United States ought to adopt a wealth tax",
+      "avg_score": 6.5,
+      "distance_from_5": 1.5,
+      "variance": 0.16666666666666666,
+      "per_model": {
+        "opus_4.5": 6.0,
+        "gemini_3.1_pro": 7.0,
+        "gpt_5.2": 6.5
+      }
+    },
+    {
+      "id": "bus_001",
+      "resolution": "First-mover advantage is a reliable predictor of market success",
+      "avg_score": 3.5,
+      "distance_from_5": 1.5,
+      "variance": 0.16666666666666666,
+      "per_model": {
+        "opus_4.5": 3.5,
+        "gemini_3.1_pro": 3.0,
+        "gpt_5.2": 4.0
+      }
+    },
+    {
+      "id": "neg_win_004",
+      "resolution": "Restorative justice programs should replace traditional prosecution for nonviolent offenses",
+      "avg_score": 6.5,
+      "distance_from_5": 1.5,
+      "variance": 0.16666666666666666,
+      "per_model": {
+        "opus_4.5": 6.0,
+        "gemini_3.1_pro": 7.0,
+        "gpt_5.2": 6.5
+      }
+    },
+    {
+      "id": "neg_win_007",
+      "resolution": "The United States should implement a wealth tax on assets above 50 million dollars",
+      "avg_score": 6.5,
+      "distance_from_5": 1.5,
+      "variance": 0.16666666666666666,
+      "per_model": {
+        "opus_4.5": 6.0,
+        "gemini_3.1_pro": 7.0,
+        "gpt_5.2": 6.5
+      }
+    },
+    {
+      "id": "sci_006",
+      "resolution": "The development of Artificial General Intelligence is immoral",
+      "avg_score": 3.3333333333333335,
+      "distance_from_5": 1.6666666666666665,
+      "variance": 0.22222222222222224,
+      "per_model": {
+        "opus_4.5": 4.0,
+        "gemini_3.1_pro": 3.0,
+        "gpt_5.2": 3.0
+      }
+    },
+    {
+      "id": "phil_001",
+      "resolution": "Free will is compatible with determinism",
+      "avg_score": 6.666666666666667,
+      "distance_from_5": 1.666666666666667,
+      "variance": 0.888888888888889,
+      "per_model": {
+        "opus_4.5": 6.0,
+        "gemini_3.1_pro": 8.0,
+        "gpt_5.2": 6.0
+      }
+    },
+    {
+      "id": "ir_005",
+      "resolution": "Trade interdependence reduces the likelihood of war",
+      "avg_score": 6.666666666666667,
+      "distance_from_5": 1.666666666666667,
+      "variance": 0.05555555555555555,
+      "per_model": {
+        "opus_4.5": 6.5,
+        "gemini_3.1_pro": 7.0,
+        "gpt_5.2": 6.5
+      }
+    },
+    {
+      "id": "sci_002",
+      "resolution": "Consciousness is reducible to physical processes",
+      "avg_score": 6.666666666666667,
+      "distance_from_5": 1.666666666666667,
+      "variance": 1.0555555555555556,
+      "per_model": {
+        "opus_4.5": 5.5,
+        "gemini_3.1_pro": 8.0,
+        "gpt_5.2": 6.5
+      }
+    },
+    {
+      "id": "sci_004",
+      "resolution": "Scientific theories describe mind-independent reality",
+      "avg_score": 6.666666666666667,
+      "distance_from_5": 1.666666666666667,
+      "variance": 0.888888888888889,
+      "per_model": {
+        "opus_4.5": 6.0,
+        "gemini_3.1_pro": 8.0,
+        "gpt_5.2": 6.0
+      }
+    },
+    {
+      "id": "polsci_ir_001",
+      "resolution": "Democracies do not go to war with each other",
+      "avg_score": 6.666666666666667,
+      "distance_from_5": 1.666666666666667,
+      "variance": 0.888888888888889,
+      "per_model": {
+        "opus_4.5": 6.0,
+        "gemini_3.1_pro": 8.0,
+        "gpt_5.2": 6.0
+      }
+    },
+    {
+      "id": "hist_002",
+      "resolution": "The Scientific Revolution represents a genuine epistemic rupture",
+      "avg_score": 6.666666666666667,
+      "distance_from_5": 1.666666666666667,
+      "variance": 0.888888888888889,
+      "per_model": {
+        "opus_4.5": 6.0,
+        "gemini_3.1_pro": 8.0,
+        "gpt_5.2": 6.0
+      }
+    },
+    {
+      "id": "media_001",
+      "resolution": "Social media filter bubbles increase political polarization",
+      "avg_score": 6.666666666666667,
+      "distance_from_5": 1.666666666666667,
+      "variance": 0.888888888888889,
+      "per_model": {
+        "opus_4.5": 6.0,
+        "gemini_3.1_pro": 8.0,
+        "gpt_5.2": 6.0
+      }
+    },
+    {
+      "id": "polsci_ir_005",
+      "resolution": "Institutions are more important than geography in explaining economic development",
+      "avg_score": 6.833333333333333,
+      "distance_from_5": 1.833333333333333,
+      "variance": 0.7222222222222222,
+      "per_model": {
+        "opus_4.5": 6.5,
+        "gemini_3.1_pro": 8.0,
+        "gpt_5.2": 6.0
+      }
+    },
+    {
+      "id": "sci_007",
+      "resolution": "Heritable human genome editing should be permitted for therapeutic purposes",
+      "avg_score": 7.0,
+      "distance_from_5": 2.0,
+      "variance": 0.5,
+      "per_model": {
+        "opus_4.5": 6.5,
+        "gemini_3.1_pro": 8.0,
+        "gpt_5.2": 6.5
+      }
+    },
+    {
+      "id": "epi_001",
+      "resolution": "Social determinants of health matter more than individual behavioral factors",
+      "avg_score": 7.0,
+      "distance_from_5": 2.0,
+      "variance": 0.16666666666666666,
+      "per_model": {
+        "opus_4.5": 6.5,
+        "gemini_3.1_pro": 7.0,
+        "gpt_5.2": 7.5
+      }
+    },
+    {
+      "id": "neg_win_001",
+      "resolution": "The standard workweek should be reduced to four days",
+      "avg_score": 7.0,
+      "distance_from_5": 2.0,
+      "variance": 0.6666666666666666,
+      "per_model": {
+        "opus_4.5": 6.0,
+        "gemini_3.1_pro": 8.0,
+        "gpt_5.2": 7.0
+      }
+    },
+    {
+      "id": "neg_win_006",
+      "resolution": "Hate speech should be legally prohibited",
+      "avg_score": 3.0,
+      "distance_from_5": 2.0,
+      "variance": 0.16666666666666666,
+      "per_model": {
+        "opus_4.5": 3.5,
+        "gemini_3.1_pro": 3.0,
+        "gpt_5.2": 2.5
+      }
+    },
+    {
+      "id": "neg_win_003",
+      "resolution": "Juveniles should never be tried as adults in criminal court",
+      "avg_score": 7.166666666666667,
+      "distance_from_5": 2.166666666666667,
+      "variance": 0.3888888888888889,
+      "per_model": {
+        "opus_4.5": 6.5,
+        "gemini_3.1_pro": 8.0,
+        "gpt_5.2": 7.0
+      }
+    },
+    {
+      "id": "ir_001",
+      "resolution": "In foreign policy, diplomacy is more effective than military intervention",
+      "avg_score": 7.333333333333333,
+      "distance_from_5": 2.333333333333333,
+      "variance": 0.22222222222222224,
+      "per_model": {
+        "opus_4.5": 7.0,
+        "gemini_3.1_pro": 8.0,
+        "gpt_5.2": 7.0
+      }
+    },
+    {
+      "id": "ir_002",
+      "resolution": "The United States should substantially reduce its military support of Taiwan",
+      "avg_score": 2.3333333333333335,
+      "distance_from_5": 2.6666666666666665,
+      "variance": 0.05555555555555556,
+      "per_model": {
+        "opus_4.5": 2.5,
+        "gemini_3.1_pro": 2.0,
+        "gpt_5.2": 2.5
+      }
+    },
+    {
+      "id": "ir_004",
+      "resolution": "Nuclear proliferation increases international stability",
+      "avg_score": 2.3333333333333335,
+      "distance_from_5": 2.6666666666666665,
+      "variance": 0.22222222222222224,
+      "per_model": {
+        "opus_4.5": 2.0,
+        "gemini_3.1_pro": 2.0,
+        "gpt_5.2": 3.0
+      }
+    },
+    {
+      "id": "used_010",
+      "resolution": "Companies should be required to disclose how their algorithms make decisions",
+      "avg_score": 7.666666666666667,
+      "distance_from_5": 2.666666666666667,
+      "variance": 0.3888888888888889,
+      "per_model": {
+        "opus_4.5": 7.5,
+        "gemini_3.1_pro": 7.0,
+        "gpt_5.2": 8.5
+      }
+    },
+    {
+      "id": "phil_002",
+      "resolution": "The primary purpose of criminal punishment ought to be rehabilitation rather than retribution",
+      "avg_score": 7.666666666666667,
+      "distance_from_5": 2.666666666666667,
+      "variance": 1.0555555555555556,
+      "per_model": {
+        "opus_4.5": 6.5,
+        "gemini_3.1_pro": 9.0,
+        "gpt_5.2": 7.5
+      }
+    },
+    {
+      "id": "psych_001",
+      "resolution": "The replication crisis indicates fundamental methodological problems in psychology",
+      "avg_score": 7.833333333333333,
+      "distance_from_5": 2.833333333333333,
+      "variance": 0.7222222222222222,
+      "per_model": {
+        "opus_4.5": 7.0,
+        "gemini_3.1_pro": 9.0,
+        "gpt_5.2": 7.5
+      }
+    },
+    {
+      "id": "sci_003",
+      "resolution": "Natural selection is the primary driver of evolutionary change",
+      "avg_score": 8.0,
+      "distance_from_5": 3.0,
+      "variance": 0.5,
+      "per_model": {
+        "opus_4.5": 7.5,
+        "gemini_3.1_pro": 9.0,
+        "gpt_5.2": 7.5
+      }
+    }
+  ]
+}

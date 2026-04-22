@@ -1,0 +1,189 @@
+\section{Method}
+\label{sec:method}
+
+\subsection{IPDA Debate Format}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{fig2_debate_sequence.pdf}
+\caption{IPDA debate sequence: seven speeches alternating between
+affirmative and negative with two cross-examination periods, each demanding
+different capabilities (case generation, strategic response, dialogue).}
+\label{fig:debate_sequence}
+\end{figure*}
+
+IPDA consists of 7 speeches alternating between affirmative and negative
+(two constructives, two cross-examinations, three rebuttals;
+Figure~\ref{fig:debate_sequence}). This structure is a natural curriculum:
+constructives require case generation, rebuttals require strategic
+response, and CX requires real-time dialogue, motivating our group-wise
+training. Arguments follow typed syllogistic structures drawn from standard
+debate theory~\cite{snider2008code}.
+
+\subsection{Debate Generation Pipeline}
+\label{sec:pipeline}
+
+Before any training innovation can operate, the system must first produce
+a complete, grounded debate from only a resolution. Our preparation
+pipeline is the substrate on which branching, hierarchical reward, and
+group-wise GRPO all operate, and it is shared identically between baseline
+and experimental models, so downstream quality differences come from the
+speech generation model, not from prep asymmetries.
+
+\textbf{Belief tree.} A DSPy \textsc{ValueExtractor} produces 4
+topic-specific values (2 per side); a \textsc{BeliefGenerator} expands
+each to a depth-2 tree ($\sim$32 beliefs, $\sim$16 arguments per side).
+Each belief carries a Bayesian credence in $[0,1]$, and arguments are
+typed (uniqueness, link, impact, solvency, turn) for structured downstream
+slots. \textbf{Research loop.} Per argument claim: LLM query generation
+$\rightarrow$ parallel Weaviate$+$Tavily retrieval $\rightarrow$ sentence
+chunking $\rightarrow$ hybrid scoring ($0.7\cdot\cos + 0.3\cdot$BM25)
+$\rightarrow$ window expansion $\rightarrow$ structured LLM selection.
+This consolidated loop uses \textbf{2 LLM calls per hop} vs.\ 9 in prior
+systems, with most claims resolving in one hop. \textbf{Evidence cards}
+store \texttt{full\_text}, \texttt{card} (with \textbf{bolded} selections),
+\texttt{selected\_sentence\_ids}, and window ranges; speech generation
+cites by sentence~ID only, so quotations are assembled verbatim and
+fabrication is eliminated by construction. \textbf{Perspective building.}
+A \textsc{PerspectiveBuilder} compiles side-specific prompts:
+constructives get pruned depth-1 beliefs (2 of 4); rebuttals get the full
+sub-belief tree in SEAM form (Setup, Evidence, Analysis, Move).
+\textbf{Four-stage speech generation.} Each of the 7 speeches runs
+(1)~\textsc{SelectTactic}, (2)~\textsc{BuildSkeleton},
+(3)~\textsc{SelectEvidence} (constructives only; binds claims to
+sentence~IDs), and (4)~\textsc{GenerateSpeech}. The training innovations
+described next operate on calls produced by this pipeline. Full schemas
+are in Appendix~\ref{app:pipeline}.
+
+\subsection{Branching Debate Generation}
+\label{sec:branching}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_branching_tree.pdf}
+\caption{Branching debate tree. At each speech point, $N$ trials are
+generated and scored; the debate forks when trials exceed quality
+threshold and diverge enough that the opponent would respond differently.
+Winner-shifts between branches yield counterfactual training pairs.}
+\label{fig:branching_tree}
+\end{figure*}
+
+Standard debate generation is linear: produce one speech, continue to the
+next. We instead treat debate generation as \textbf{search over debate
+trajectories} (Figure~\ref{fig:branching_tree}). At each speech point, the model
+generates $N = 3$ candidate trials scored by dimensional judges. When two
+or more trials exceed a quality threshold \emph{and} diverge sufficiently
+that the opponent would respond differently, the debate forks into parallel
+paths (capped at 4 branches). The critical signal arises from
+\textbf{winner-shift detection}: when branches from the same decision point
+produce different debate outcomes, we obtain counterfactual training pairs
+that receive $2\times$ weight in GRPO (Section~\ref{sec:grpo}), isolating
+the specific decision that changed the result. Before each speech, the model
+selects a named tactic via an epsilon-greedy policy, serving as a commitment
+device that improves coherence. Full branching thresholds and the state
+tracking algorithm are detailed in Appendix~\ref{app:branching}.
+
+\subsection{Hierarchical Reward System}
+\label{sec:reward_hierarchy}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_reward_hierarchy.pdf}
+\caption{Three-layer hierarchical reward. Layer~1: dimensional speech
+scoring. Layer~2: outcome backpropagation to calls. Layer~3: multi-model
+retrospective analysis for bias and turning points.}
+\label{fig:reward_hierarchy}
+\end{figure*}
+
+Scoring isolated speeches is insufficient: a sound rebuttal can still lose
+if it addresses the wrong arguments. We employ a three-layer reward
+hierarchy (Figure~\ref{fig:reward_hierarchy}).
+
+\paragraph{Layer 1: Dimensional scoring.}
+Four sub-judges (ArgumentJudge, EvidenceJudge, ClashJudge, LanguageJudge)
+score each speech with specialized rubrics, plus a speech-specific
+dimension reflecting strategic role (e.g., 1AR \emph{triage efficiency},
+2AR \emph{crystallization}; Appendix~\ref{app:agentic_judge}).
+
+\paragraph{Layer 2: Outcome backpropagation.}
+A BackpropScorer propagates debate outcomes to individual calls with
+causal attribution, assigning each speech a contribution in $[-1.0, +1.0]$.
+Winner-shift events from branching produce direct adjustments at the
+divergence point, so a strong speech in a losing debate is not punished
+if the loss originated earlier.
+
+\paragraph{Layer 3: Meta-debate comparison.}
+A 3-model retrospective panel evaluates complete traces, detecting bias
+and identifying turning points that become highest-signal training data.
+
+\paragraph{Evidence verification.}
+Models cite by sentence ID, assembling verbatim text from research
+documents---eliminating fabrication by construction. Evidence quality
+uses a 6-level scale with $2\times$ asymmetric GRPO penalty on
+fabrications.
+
+\subsection{Group-Wise Offline GRPO}
+\label{sec:grpo}
+
+\begin{algorithm}[t]
+\caption{Group-Wise Offline GRPO for Debate}
+\label{alg:training}
+\begin{algorithmic}[1]
+\FOR{$i = 1$ to $N$ iterations}
+    \STATE Generate debates with branching; capture log-probs
+    \STATE Score with 3-layer reward hierarchy
+    \FOR{group $\in \{A, B, C, D\}$}
+        \STATE Generate Opus golden samples for group
+        \STATE SFT on golden $\rightarrow$ merge to SFT$^+$
+        \STATE Generate new trials with SFT$^+$; capture log-probs
+        \STATE Offline GRPO with importance sampling
+        \STATE Merge LoRA $\rightarrow$ canonical model
+    \ENDFOR
+\ENDFOR
+\end{algorithmic}
+\end{algorithm}
+
+A debate produces $\sim$33 LLM calls spanning radically different output
+modalities: $\sim$200-token tactic selections, $\sim$2{,}000-token
+speeches, and multi-turn CX. Training jointly creates noisy gradients as
+the optimizer tries to satisfy contradictory length and format
+distributions. We \textbf{decompose calls into four groups} processed
+sequentially each iteration (Algorithm~\ref{alg:training}):
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llcc}
+\toprule
+\textbf{Group} & \textbf{Call Types} & \textbf{Samples} & \textbf{Output Length} \\
+\midrule
+A & \textsc{tactic\_select} & $\sim$3K & Short \\
+B & \textsc{skeleton\_build}, \textsc{evidence\_select} & $\sim$4K & Medium \\
+C & \textsc{speech\_generate} & $\sim$4.5K & Long \\
+D & \textsc{cx\_dialogue} & $\sim$5K & Dialogue \\
+\bottomrule
+\end{tabular}
+\caption{Call-type groups for sequential GRPO training. Each group contains
+calls with similar output modality and length distribution, preventing
+cross-modality gradient interference.}
+\label{tab:call_types}
+\end{table}
+
+For each group, we: (1)~generate Opus golden samples as quality upper
+bounds, (2)~SFT on golden samples via LoRA ($r = 32$) to produce an SFT$^+$
+checkpoint, (3)~generate new trials with SFT$^+$ while capturing
+log-probabilities for the behavior policy, (4)~run offline
+GRPO~\cite{shao2024deepseekmath} with importance sampling, and (5)~merge
+the LoRA into the canonical model as baseline for the next group.
+Advantages are normalized within \emph{(our\_tactic, opponent\_tactic,
+opponent\_intent)} triplets rather than globally, yielding cleaner gradient
+signal. Full details are in Appendix~\ref{app:grpo_groups}.
+
+\paragraph{Judge design.}
+Beyond the four Layer~1 sub-judges, a \textbf{Chronicler} tracks each
+argument's status (standing, attacked, dropped, extended, conceded, turned)
+across the debate, and a \textbf{Forensics module} attributes failures to
+specific pipeline stages (tactic, skeleton, evidence, execution). For each
+call, $N = 3$ trials at varied temperatures produce chosen/rejected
+preference pairs, yielding $\sim$60+ pairs per debate
+(Appendix~\ref{app:agentic_judge}).

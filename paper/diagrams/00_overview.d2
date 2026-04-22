@@ -1,0 +1,116 @@
+# DEBATE SYSTEM OVERVIEW
+# High-level architecture with clickable links to subdiagrams
+# Style: Presentation (clean, minimal)
+
+direction: right
+
+title: Debate System Architecture {
+  shape: text
+  style.font-size: 32
+  style.bold: true
+}
+
+# =============================================================================
+# MAIN COMPONENTS (with links to subdiagrams)
+# =============================================================================
+
+prep: Belief Prep {
+  shape: rectangle
+  style.fill: "#E6FFFA"
+  style.stroke: "#319795"
+  style.stroke-width: 3
+  style.font-size: 20
+  style.bold: true
+  link: 01_belief_prep_pipeline.svg
+}
+
+# =============================================================================
+# DEBATE EXECUTION CYCLE (shows multi-turn nature)
+# =============================================================================
+
+debate_cycle: Debate Execution (7 turns) {
+  style.fill: "#FFF5F5"
+  style.stroke: "#C53030"
+  style.stroke-width: 2
+
+  speech: Speech\nGeneration {
+    shape: rectangle
+    style.fill: "#FED7D7"
+    style.stroke: "#C53030"
+    style.stroke-width: 2
+    style.font-size: 16
+    style.bold: true
+    link: 02_speech_generation_stages.svg
+  }
+
+  cx: Cross-Exam {
+    shape: rectangle
+    style.fill: "#FEEBC8"
+    style.stroke: "#DD6B20"
+    style.stroke-width: 2
+    style.font-size: 16
+    style.bold: true
+  }
+
+  # Show the alternating cycle
+  speech -> cx: "AC-CX, NC-CX" {
+    style.stroke: "#DD6B20"
+  }
+  cx -> speech: "informs next" {
+    style.stroke: "#C53030"
+  }
+
+  # Speech order annotation
+  order: "AC → NC → 1AR → NR → 2AR" {
+    shape: text
+    style.font-size: 12
+    style.italic: true
+  }
+
+  link: 04_full_debate_orchestration.svg
+}
+
+judge: Agentic Judge {
+  shape: rectangle
+  style.fill: "#E9D8FD"
+  style.stroke: "#6B46C1"
+  style.stroke-width: 3
+  style.font-size: 20
+  style.bold: true
+  link: 05_judge_system.svg
+}
+
+update: Credence Update {
+  shape: rectangle
+  style.fill: "#FEF3C7"
+  style.stroke: "#D97706"
+  style.stroke-width: 3
+  style.font-size: 20
+  style.bold: true
+  link: 06_belief_debate_loop.svg
+}
+
+# =============================================================================
+# MAIN FLOW
+# =============================================================================
+
+prep -> debate_cycle: Perspective {
+  style.stroke-width: 2
+  style.stroke: "#319795"
+}
+
+debate_cycle -> judge: All Speeches + CX {
+  style.stroke-width: 2
+  style.stroke: "#6B46C1"
+}
+
+judge -> update: Winner + Margin {
+  style.stroke-width: 2
+  style.stroke: "#6B46C1"
+}
+
+update -> prep: Updated Credences {
+  style.stroke-width: 2
+  style.stroke: "#D97706"
+  style.stroke-dash: 5
+}

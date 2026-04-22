@@ -1,0 +1,227 @@
+\section{Trajectory and Reward Computation}
+\label{app:trajectory}
+
+This appendix details the full trajectory capture and reward computation
+pipeline that connects debate execution to GRPO training signal.
+
+\subsection{DebateTrajectory Structure}
+
+Each debate produces a \texttt{DebateTrajectory} that records every
+decision and its outcome:
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lp{8cm}}
+\toprule
+\textbf{Field} & \textbf{Description} \\
+\midrule
+\texttt{speeches} & Ordered list of all speeches (AC, AC-CX, NC, NC-CX, 1AR, NR, 2AR) with full text and metadata \\
+\texttt{aff\_turns} & List of \texttt{TurnRecord}s for the affirmative side \\
+\texttt{neg\_turns} & List of \texttt{TurnRecord}s for the negative side \\
+\texttt{judge\_scores} & Per-speech scores from all sub-judges (Appendix~\ref{app:agentic_judge}) \\
+\texttt{branches} & List of \texttt{BranchState} records (Appendix~\ref{app:branching}) \\
+\texttt{outcome} & Final debate result: winner, score differential, and judge reasoning \\
+\texttt{debate\_id} & Unique identifier linking to the resolution and side assignments \\
+\bottomrule
+\end{tabular}
+\caption{DebateTrajectory top-level fields.}
+\label{tab:trajectory}
+\end{table}
+
+\subsection{TurnRecord}
+
+Each turn within the trajectory captures the full decision context:
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lp{8cm}}
+\toprule
+\textbf{Field} & \textbf{Description} \\
+\midrule
+\texttt{tactic\_selection} & The macro-tactic and micro-tactic sequence chosen for this turn \\
+\texttt{opponent\_prediction} & The model's predicted opponent response (used for strategic planning) \\
+\texttt{opponent\_ground\_truth} & The actual opponent response observed after the turn \\
+\texttt{novelty\_bonus} & Reward bonus for using a novel tactic combination ($+0.05$ to $+0.15$) \\
+\texttt{surprise\_bonus} & Reward bonus when the opponent's response differs significantly from prediction ($+0.05$ to $+0.10$), indicating the model explored territory not covered by the opponent model \\
+\texttt{call\_records} & Per-call records for tactic, skeleton, evidence, and speech generation, each with logprobs \\
+\bottomrule
+\end{tabular}
+\caption{TurnRecord fields capturing per-turn decision context.}
+\label{tab:turn_record}
+\end{table}
+
+The \texttt{opponent\_prediction} and \texttt{opponent\_ground\_truth}
+fields enable the surprise bonus: when the model's prediction diverges
+substantially from reality, it indicates unexplored strategic territory
+that may yield high-signal training examples.
+
+\subsection{Reward Formula}
+
+The per-turn reward combines four components reflecting different aspects
+of debate quality:
+
+\begin{equation}
+r_{\text{combined}} = 0.25 \cdot r_{\text{selection}} + 0.35 \cdot r_{\text{execution}} + 0.25 \cdot r_{\text{quality}} + 0.15 \cdot r_{\text{novelty}}
+\label{eq:combined_reward}
+\end{equation}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lcp{6.5cm}}
+\toprule
+\textbf{Component} & \textbf{Weight} & \textbf{Source} \\
+\midrule
+$r_{\text{selection}}$ & 0.25 & Tactic appropriateness for the debate state; from Forensics module (Appendix~\ref{app:agentic_judge}) \\
+$r_{\text{execution}}$ & 0.35 & Speech quality conditional on the tactic; composite of sub-judge scores \\
+$r_{\text{quality}}$ & 0.25 & Speech-specific primary dimension score (Table~\ref{tab:speech_dimensions}) \\
+$r_{\text{novelty}}$ & 0.15 & Novelty bonus $+$ surprise bonus from \texttt{TurnRecord} \\
+\bottomrule
+\end{tabular}
+\caption{Per-turn reward components. Execution receives the highest weight
+because it reflects the most direct measure of output quality.}
+\label{tab:reward_components}
+\end{table}
+
+The final reward incorporates the debate outcome:
+\begin{equation}
+r_{\text{final}} = 0.7 \cdot r_{\text{combined}} + 0.3 \cdot r_{\text{win}}
+\label{eq:final_reward}
+\end{equation}
+
+\noindent where $r_{\text{win}} \in \{0, 1\}$ is 1 if the model's side
+won the debate and 0 otherwise. The 0.3 weight on the win bonus ensures
+that outcome signal influences training without overwhelming the
+fine-grained per-turn signal. Without the win bonus, the model could
+learn to produce individually high-scoring speeches that collectively
+lose the debate (e.g., strong individual arguments that fail to
+cohere into a winning narrative).
+
+\subsection{BackpropScorer Algorithm}
+
+The BackpropScorer propagates debate-level outcomes back to individual
+calls, producing causal attribution of which decisions most influenced
+the result. This operates in four stages:
+
+\paragraph{Stage 1: Outcome analysis.}
+For each speech in the debate, compute its \emph{outcome contribution}
+$c_s \in [-1.0, +1.0]$, estimating how much that speech contributed to
+the final result. This is assessed by the scoring LLM, which receives
+the full debate transcript and is asked: ``How much did [speech] contribute
+to [side] winning/losing? Consider what would have changed if this speech
+had been average rather than as-delivered.''
+
+\paragraph{Stage 2: Branch counterfactual.}
+For debates with branches (Appendix~\ref{app:branching}), identify the
+divergence point and determine whether a winner shift occurred. If so,
+the speeches at the divergence point receive amplified attribution:
+their contribution scores are adjusted by the score differential between
+the winning and losing branches.
+
+\paragraph{Stage 3: Score adjustment.}
+The final backpropagated score for each call is:
+\begin{equation}
+r_{\text{backprop}} = r_{\text{inline}} + c_s \cdot 0.2 + b_{\text{critical}} \cdot 0.15 + p_{\text{adj}}
+\label{eq:backprop}
+\end{equation}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lp{8cm}}
+\toprule
+\textbf{Term} & \textbf{Description} \\
+\midrule
+$r_{\text{inline}}$ & Original inline score from the sub-judges \\
+$c_s \cdot 0.2$ & Outcome contribution scaled by 0.2 to prevent outcome signal from dominating \\
+$b_{\text{critical}} \cdot 0.15$ & Critical call boost: $b_{\text{critical}} \in \{0, 1\}$ is 1 if Forensics identifies this call as a pivotal decision point \\
+$p_{\text{adj}}$ & Pivotal adjustment from branch counterfactuals: ranges from $-0.5$ to $+0.5$ for winner-shifted decisions, 0 otherwise \\
+\bottomrule
+\end{tabular}
+\caption{BackpropScorer adjustment terms.}
+\label{tab:backprop_terms}
+\end{table}
+
+The multiplicative constants (0.2, 0.15) were tuned to keep
+$r_{\text{backprop}}$ within approximately $\pm 0.3$ of
+$r_{\text{inline}}$ for most calls, with larger adjustments reserved
+for the small number of genuinely pivotal decisions (typically 2--3
+per debate).
+
+\paragraph{Stage 4: Reasoning preservation.}
+The BackpropScorer generates a natural-language explanation for each
+score adjustment, recording the causal chain from the call to the
+debate outcome. These explanations are stored alongside the training
+data for potential use in reasoning distillation---training the model
+to internalize the judge's causal reasoning rather than just the
+scalar reward.
+
+\subsection{Group Baselines and Context Triplets}
+
+As described in Appendix~\ref{app:grpo_groups}, GRPO advantages are
+normalized within context triplets
+$(\text{our\_tactic}, \text{opponent\_tactic}, \text{opponent\_intent})$.
+The trajectory captures these triplets at each turn, enabling the
+training pipeline to compute context-appropriate baselines.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lp{5cm}r}
+\toprule
+\textbf{Triplet Component} & \textbf{Source} & \textbf{Cardinality} \\
+\midrule
+Our tactic & \texttt{tactic\_selection} from TurnRecord & $\sim$25 macro-tactics \\
+Opponent tactic & Inferred from opponent speech by the judge & $\sim$25 macro-tactics \\
+Opponent intent & Classified as \textsc{Attack}, \textsc{Defend}, \textsc{Extend}, or \textsc{Probe} & 4 \\
+\bottomrule
+\end{tabular}
+\caption{Context triplet components for advantage normalization. The
+product space is large ($\sim$2,500 triplets) but most debates activate
+only 15--30 distinct triplets, providing sufficient samples for
+meaningful normalization.}
+\label{tab:context_triplets}
+\end{table}
+
+\subsection{End-to-End Reward Flow}
+
+Figure~\ref{fig:reward_flow} summarizes the complete reward computation
+pipeline from debate execution to GRPO training signal.
+
+\begin{figure}[h]
+\centering
+\small
+\begin{tabular}{c}
+\hline
+\\[-0.5em]
+\textbf{Debate Execution} \\
+$\downarrow$ \\
+\texttt{DebateTrajectory} (speeches, turns, branches) \\
+$\downarrow$ \\
+\textbf{Layer 1: Inline Scoring} \\
+4 sub-judges $\times$ speech-specific dimensions $\rightarrow$ $r_{\text{inline}}$ \\
+$\downarrow$ \\
+\textbf{Layer 2: Outcome Backpropagation} \\
+$r_{\text{inline}} + \text{outcome contribution} + \text{critical boost} + \text{branch adjustment}$ $\rightarrow$ $r_{\text{backprop}}$ \\
+$\downarrow$ \\
+\textbf{Layer 3: Meta-Debate Calibration} \\
+3-model panel $+$ bias detection $+$ judge-the-judge filtering \\
+$\downarrow$ \\
+\textbf{Reward Assembly} \\
+$r_{\text{final}} = 0.7 \cdot r_{\text{combined}} + 0.3 \cdot r_{\text{win}}$ \\
+$\downarrow$ \\
+\textbf{Triplet Normalization} \\
+$A_i = r_i - \bar{r}_{(\text{our\_tactic}, \text{opp\_tactic}, \text{opp\_intent})}$ \\
+$\downarrow$ \\
+\textbf{GRPO Training} (Group A $\rightarrow$ B $\rightarrow$ C $\rightarrow$ D) \\
+\\[-0.5em]
+\hline
+\end{tabular}
+\caption{End-to-end reward flow from debate execution to GRPO training.
+Each layer adds finer-grained signal: inline scoring evaluates individual
+speeches, backpropagation attributes outcomes to decisions, and
+meta-debate calibration removes judge bias.}
+\label{fig:reward_flow}
+\end{figure}

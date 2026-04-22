@@ -1,0 +1,480 @@
+# FULL DEBATE ORCHESTRATION (LANGGRAPH)
+# End-to-end debate execution: 7 speeches + CX periods
+# Style: Presentation (bold colors, high contrast)
+
+direction: down
+
+title: {
+  label: "Full Debate Orchestration (LangGraph)"
+  
+  style.font-size: 28
+  style.bold: true
+}
+
+subtitle: {
+  label: "packages/debate/langgraph_orchestrator/debate_orchestrator.py"
+  
+  style.font-size: 12
+  style.italic: true
+}
+
+# =============================================================================
+# IPDA DEBATE FORMAT
+# =============================================================================
+
+format: IPDA Debate Format {
+  style.fill: "#EDF2F7"
+  style.stroke: "#4A5568"
+
+  note: {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+    label: |md
+      **International Public Debate Association**
+      - 5 speeches + 2 CX periods
+      - AC (5 min) → CX → NC (5 min) → CX
+      - 1AR (3 min) → NR (3 min) → 2AR (2 min)
+    |
+  }
+}
+
+# =============================================================================
+# SPEECH 1: AFFIRMATIVE CONSTRUCTIVE (AC)
+# =============================================================================
+
+ac: 1. Affirmative Constructive (AC) {
+  style.fill: "#C6F6D5"
+  style.stroke: "#276749"
+  style.stroke-width: 3
+
+  research: Research (parallel) {
+    shape: cloud
+    style.fill: "#9AE6B4"
+  }
+
+  pipeline: 4-Stage Pipeline {
+    style.fill: "#68D391"
+
+    s1: Tactic {
+      shape: diamond
+      style.fill: "#48BB78"
+    }
+    s2: Skeleton {
+      shape: rectangle
+      style.fill: "#38A169"
+      style.font-color: "#FFFFFF"
+    }
+    s3: Evidence {
+      shape: cylinder
+      style.fill: "#2F855A"
+      style.font-color: "#FFFFFF"
+    }
+    s4: Speech {
+      shape: document
+      style.fill: "#276749"
+      style.font-color: "#FFFFFF"
+    }
+
+    s1 -> s2 -> s3 -> s4
+  }
+
+  research -> pipeline.s3
+
+  label_note: "AFF establishes case\nNo FlowStudy (first speech)" {
+    style.font-size: 10
+    style.italic: true
+  }
+}
+
+# =============================================================================
+# CX PERIOD 1: AC-CX
+# =============================================================================
+
+cx1: 2. AC Cross-Examination {
+  style.fill: "#FEEBC8"
+  style.stroke: "#DD6B20"
+  style.stroke-width: 3
+
+  strategy: CX Strategies {
+    style.fill: "#FBD38D"
+
+    neg_q: NEG Questioner\nStrategy {
+      shape: diamond
+      style.fill: "#FC8181"
+    }
+
+    aff_a: AFF Answerer\nStrategy {
+      shape: diamond
+      style.fill: "#9AE6B4"
+    }
+  }
+
+  exchanges: 3 Q&A Exchanges {
+    style.fill: "#F6AD55"
+
+    e1: Q1 → A1 {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+    }
+    e2: Q2 → A2 {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+    }
+    e3: Q3 → A3 {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+    }
+  }
+
+  strategy.neg_q -> exchanges
+  strategy.aff_a -> exchanges
+}
+
+# =============================================================================
+# SPEECH 2: NEGATIVE CONSTRUCTIVE (NC)
+# =============================================================================
+
+nc: 3. Negative Constructive (NC) {
+  style.fill: "#FED7D7"
+  style.stroke: "#C53030"
+  style.stroke-width: 3
+
+  flow: FlowStudy (AC) {
+    shape: hexagon
+    style.fill: "#FC8181"
+    style.stroke: "#C53030"
+    label: "Analyze AC\narguments"
+  }
+
+  pipeline: 4-Stage Pipeline {
+    style.fill: "#F56565"
+
+    s1: Tactic {
+      shape: diamond
+      style.fill: "#E53E3E"
+    }
+    s2: Skeleton {
+      shape: rectangle
+      style.fill: "#C53030"
+      style.font-color: "#FFFFFF"
+    }
+    s3: Evidence {
+      shape: cylinder
+      style.fill: "#9B2C2C"
+      style.font-color: "#FFFFFF"
+    }
+    s4: Speech {
+      shape: document
+      style.fill: "#742A2A"
+      style.font-color: "#FFFFFF"
+    }
+
+    s1 -> s2 -> s3 -> s4
+  }
+
+  flow -> pipeline.s1
+
+  label_note: "NEG responds to AC\n+ builds own case" {
+    style.font-size: 10
+    style.italic: true
+  }
+}
+
+# =============================================================================
+# CX PERIOD 2: NC-CX
+# =============================================================================
+
+cx2: 4. NC Cross-Examination {
+  style.fill: "#FEEBC8"
+  style.stroke: "#DD6B20"
+  style.stroke-width: 3
+
+  strategy: CX Strategies {
+    style.fill: "#FBD38D"
+
+    aff_q: AFF Questioner\nStrategy {
+      shape: diamond
+      style.fill: "#9AE6B4"
+    }
+
+    neg_a: NEG Answerer\nStrategy {
+      shape: diamond
+      style.fill: "#FC8181"
+    }
+  }
+
+  exchanges: 3 Q&A Exchanges {
+    style.fill: "#F6AD55"
+
+    e1: Q1 → A1 {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+    }
+    e2: Q2 → A2 {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+    }
+    e3: Q3 → A3 {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+    }
+  }
+
+  strategy.aff_q -> exchanges
+  strategy.neg_a -> exchanges
+}
+
+# =============================================================================
+# SPEECH 3: FIRST AFFIRMATIVE REBUTTAL (1AR)
+# =============================================================================
+
+ar1: 5. First Affirmative Rebuttal (1AR) {
+  style.fill: "#C6F6D5"
+  style.stroke: "#276749"
+  style.stroke-width: 3
+
+  flow: FlowStudy (AC+NC) {
+    shape: hexagon
+    style.fill: "#68D391"
+    style.stroke: "#276749"
+    label: "All speeches\nso far"
+  }
+
+  pipeline: 4-Stage Pipeline {
+    style.fill: "#48BB78"
+
+    s1: Tactic {
+      shape: diamond
+      style.fill: "#38A169"
+    }
+    s2: Skeleton {
+      shape: rectangle
+      style.fill: "#2F855A"
+      style.font-color: "#FFFFFF"
+    }
+    s3: Evidence {
+      shape: cylinder
+      style.fill: "#276749"
+      style.font-color: "#FFFFFF"
+    }
+    s4: Speech {
+      shape: document
+      style.fill: "#1C4532"
+      style.font-color: "#FFFFFF"
+    }
+
+    s1 -> s2 -> s3 -> s4
+  }
+
+  flow -> pipeline.s1
+
+  label_note: "AFF defends case\n+ attacks NC" {
+    style.font-size: 10
+    style.italic: true
+  }
+}
+
+# =============================================================================
+# SPEECH 4: NEGATIVE REBUTTAL (NR)
+# =============================================================================
+
+nr: 6. Negative Rebuttal (NR) {
+  style.fill: "#FED7D7"
+  style.stroke: "#C53030"
+  style.stroke-width: 3
+
+  flow: FlowStudy (All) {
+    shape: hexagon
+    style.fill: "#FC8181"
+    style.stroke: "#C53030"
+    label: "AC+NC+1AR"
+  }
+
+  pipeline: 4-Stage Pipeline {
+    style.fill: "#F56565"
+
+    s1: Tactic {
+      shape: diamond
+      style.fill: "#E53E3E"
+    }
+    s2: Skeleton {
+      shape: rectangle
+      style.fill: "#C53030"
+      style.font-color: "#FFFFFF"
+    }
+    s3: Evidence {
+      shape: cylinder
+      style.fill: "#9B2C2C"
+      style.font-color: "#FFFFFF"
+    }
+    s4: Speech {
+      shape: document
+      style.fill: "#742A2A"
+      style.font-color: "#FFFFFF"
+    }
+
+    s1 -> s2 -> s3 -> s4
+  }
+
+  flow -> pipeline.s1
+
+  label_note: "NEG final\nrefutation" {
+    style.font-size: 10
+    style.italic: true
+  }
+}
+
+# =============================================================================
+# SPEECH 5: SECOND AFFIRMATIVE REBUTTAL (2AR)
+# =============================================================================
+
+ar2: 7. Second Affirmative Rebuttal (2AR) {
+  style.fill: "#C6F6D5"
+  style.stroke: "#276749"
+  style.stroke-width: 3
+
+  flow: FlowStudy (All) {
+    shape: hexagon
+    style.fill: "#68D391"
+    style.stroke: "#276749"
+    label: "Full debate\nstate"
+  }
+
+  pipeline: 4-Stage Pipeline {
+    style.fill: "#48BB78"
+
+    s1: Tactic {
+      shape: diamond
+      style.fill: "#38A169"
+    }
+    s2: Skeleton {
+      shape: rectangle
+      style.fill: "#2F855A"
+      style.font-color: "#FFFFFF"
+    }
+    s3: Evidence {
+      shape: cylinder
+      style.fill: "#276749"
+      style.font-color: "#FFFFFF"
+    }
+    s4: Speech {
+      shape: document
+      style.fill: "#1C4532"
+      style.font-color: "#FFFFFF"
+    }
+
+    s1 -> s2 -> s3 -> s4
+  }
+
+  flow -> pipeline.s1
+
+  label_note: "AFF final\ncrystallization" {
+    style.font-size: 10
+    style.italic: true
+  }
+}
+
+# =============================================================================
+# JUDGE EVALUATION
+# =============================================================================
+
+judge: Judge Evaluation {
+  style.fill: "#FAF5FF"
+  style.stroke: "#6B46C1"
+  style.stroke-width: 3
+
+  collect: Collect All {
+    style.fill: "#E9D8FD"
+
+    speeches: 5 Speeches {
+      shape: document
+      style.fill: "#D6BCFA"
+    }
+    cx: 2 CX Periods {
+      shape: document
+      style.fill: "#B794F4"
+    }
+  }
+
+  agentic: Agentic Judge {
+    style.fill: "#9F7AEA"
+    style.font-color: "#FFFFFF"
+    label: "Multi-dimensional\nevaluation"
+  }
+
+  decision: Decision {
+    shape: document
+    style.fill: "#805AD5"
+    style.font-color: "#FFFFFF"
+    label: "Winner + Margin\n+ GRPO Signals"
+  }
+
+  collect -> agentic -> decision
+}
+
+
+# =============================================================================
+# CONNECTIONS (SPEECH SEQUENCE)
+# =============================================================================
+
+ac.pipeline.s4 -> cx1.strategy: "AC speech" {
+  style.stroke: "#276749"
+  style.stroke-width: 2
+}
+
+cx1.exchanges -> nc.flow: "CX transcript" {
+  style.stroke: "#DD6B20"
+  style.stroke-width: 2
+}
+
+nc.pipeline.s4 -> cx2.strategy: "NC speech" {
+  style.stroke: "#C53030"
+  style.stroke-width: 2
+}
+
+cx2.exchanges -> ar1.flow: "CX transcript" {
+  style.stroke: "#DD6B20"
+  style.stroke-width: 2
+}
+
+ar1.pipeline.s4 -> nr.flow: "1AR speech" {
+  style.stroke: "#276749"
+  style.stroke-width: 2
+}
+
+nr.pipeline.s4 -> ar2.flow: "NR speech" {
+  style.stroke: "#C53030"
+  style.stroke-width: 2
+}
+
+ar2.pipeline.s4 -> judge.collect: "2AR speech" {
+  style.stroke: "#276749"
+  style.stroke-width: 2
+}
+
+# All speeches also go to judge
+ac.pipeline.s4 -> judge.collect.speeches {
+  style.stroke: "#276749"
+  style.stroke-dash: 3
+}
+nc.pipeline.s4 -> judge.collect.speeches {
+  style.stroke: "#C53030"
+  style.stroke-dash: 3
+}
+ar1.pipeline.s4 -> judge.collect.speeches {
+  style.stroke: "#276749"
+  style.stroke-dash: 3
+}
+nr.pipeline.s4 -> judge.collect.speeches {
+  style.stroke: "#C53030"
+  style.stroke-dash: 3
+}
+
+cx1.exchanges -> judge.collect.cx {
+  style.stroke: "#DD6B20"
+  style.stroke-dash: 3
+}
+cx2.exchanges -> judge.collect.cx {
+  style.stroke: "#DD6B20"
+  style.stroke-dash: 3
+}

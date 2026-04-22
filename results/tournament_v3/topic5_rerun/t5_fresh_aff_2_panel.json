@@ -1,0 +1,212 @@
+{
+  "trace_id": "t5_fresh_aff_2_panel",
+  "debate_id": "t5_fresh_aff_2",
+  "model_judgments": [
+    {
+      "model_name": "opus_4.5",
+      "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+      "winner": "aff",
+      "scores": {
+        "aff": 67.5,
+        "neg": 63.8
+      },
+      "confidence": 0.62,
+      "reasoning": "This was a close technical debate. NEG made sophisticated moves, particularly reframing the India-Pakistan case to argue that 'deterrence preventing escalation' proves underlying instability rather than stability. However, this argument relies on NEG winning the definitional dispute about what 'stability' means - a dispute that was never conclusively resolved. AFF's framework (stability = war prevention) is at least equally defensible as NEG's (stability = crisis prevention). AFF's core evidence (Suzuki 2015) showing fewer disputes with more nuclear states was attacked on methodology but never defeated with counter-evidence. NEG failed to maintain all their arguments through the final speeches and dropped several of AFF's original claims. AFF demonstrated better crystallization in the 2AR and more consistent case management throughout. While NEG had stronger individual technical moments, particularly in NC and NR, AFF's overall debate performance was slightly more complete.",
+      "key_moments": [
+        {
+          "speech_type": "AC",
+          "moment_type": "turning_point",
+          "description": "Definition of stability remained contested but AFF's framing (wars prevented = stability) was more intuitive and accessible",
+          "impact": 0.5,
+          "affected_side": "aff",
+          "stage": null
+        },
+        {
+          "speech_type": "AC",
+          "moment_type": "strong_attack",
+          "description": "AFF's Suzuki evidence was attacked but never defeated - NEG critiqued methodology without providing counter-data",
+          "impact": -0.5,
+          "affected_side": "neg",
+          "stage": null
+        },
+        {
+          "speech_type": "NR",
+          "moment_type": "turning_point",
+          "description": "NEG's India-Pakistan reframing was sophisticated but relied on winning an unresolved definitional dispute",
+          "impact": -0.5,
+          "affected_side": "neg",
+          "stage": null
+        },
+        {
+          "speech_type": "2AR",
+          "moment_type": "critical_drop",
+          "description": "NEG dropped AFF's preventive war argument and decreasing aggression claims",
+          "impact": -0.5,
+          "affected_side": "neg",
+          "stage": null
+        },
+        {
+          "speech_type": "NC",
+          "moment_type": "turning_point",
+          "description": "AFF showed superior crystallization and maintained case consistency throughout",
+          "impact": 0.5,
+          "affected_side": "aff",
+          "stage": null
+        }
+      ],
+      "voting_issues": [
+        "Definition of stability remained contested but AFF's framing (wars prevented = stability) was more intuitive and accessible",
+        "AFF's Suzuki evidence was attacked but never defeated - NEG critiqued methodology without providing counter-data",
+        "NEG's India-Pakistan reframing was sophisticated but relied on winning an unresolved definitional dispute",
+        "NEG dropped AFF's preventive war argument and decreasing aggression claims",
+        "AFF showed superior crystallization and maintained case consistency throughout"
+      ],
+      "judge_quality": 0.7300000000000001,
+      "retry_triggered": false,
+      "rubric_scores": {
+        "evidentiary_fidelity": 7.0,
+        "symmetric_treatment": 7.0,
+        "clash_resolution": 7.0,
+        "decision_clarity": 8.0,
+        "technical_accuracy": 8.0
+      }
+    },
+    {
+      "model_name": "gemini_3.1_pro",
+      "model_id": "gemini/gemini-3.1-pro-preview",
+      "winner": "aff",
+      "scores": {
+        "aff": 87.0,
+        "neg": 81.0
+      },
+      "confidence": 0.95,
+      "reasoning": "The Affirmative won the debate by securing the core conceptual clash over the definition of 'stability' and leveraging the Negative's strategic errors. When the Negative introduced the India-Pakistan dyad to prove instability, the Affirmative effectively turned the argument by pointing out that the de-escalation of those crises proved deterrence prevents major wars. The Negative's case was further undermined by citing evidence that contradicted their own claims (the Pakistan government quote) and misapplying evidence (the Johnson 2022 AI card). Finally, the Negative's decision to drop their NPT and arms control arguments in the NR left them with no independent offense to outweigh the Affirmative's empirical claims.",
+      "key_moments": [
+        {
+          "speech_type": "2AR",
+          "moment_type": "turning_point",
+          "description": "Definition of Stability & The India-Pakistan Dyad",
+          "impact": 0.5,
+          "affected_side": "aff",
+          "stage": null
+        },
+        {
+          "speech_type": "2AR",
+          "moment_type": "turning_point",
+          "description": "Evidentiary Flaws and Misapplied Warrants (Johnson 2022)",
+          "impact": 0.5,
+          "affected_side": "aff",
+          "stage": null
+        },
+        {
+          "speech_type": "NR",
+          "moment_type": "critical_drop",
+          "description": "Dropped Arms Control Offense in the NR",
+          "impact": 0.5,
+          "affected_side": "aff",
+          "stage": null
+        }
+      ],
+      "voting_issues": [
+        "Definition of Stability & The India-Pakistan Dyad",
+        "Evidentiary Flaws and Misapplied Warrants (Johnson 2022)",
+        "Dropped Arms Control Offense in the NR"
+      ],
+      "judge_quality": 0.32999999999999996,
+      "retry_triggered": false,
+      "rubric_scores": {
+        "evidentiary_fidelity": 1.0,
+        "symmetric_treatment": 4.0,
+        "clash_resolution": 3.0,
+        "decision_clarity": 5.0,
+        "technical_accuracy": 5.0
+      }
+    },
+    {
+      "model_name": "gpt_5.2",
+      "model_id": "openai/gpt-5.2",
+      "winner": "neg",
+      "scores": {
+        "aff": 73.0,
+        "neg": 78.0
+      },
+      "confidence": 0.62,
+      "reasoning": "I vote NEG because the debate is ultimately about how to evaluate \u201cinternational stability.\u201d NEG successfully reframes stability as low crisis frequency/low brinkmanship and argues proliferation shifts conflict into repeated high-risk crises that deterrence only contains. AFF responds that avoiding major war is the right metric and uses de-escalation episodes as proof deterrence stabilizes, but AFF does not sufficiently win the standard comparison\u2014why crisis containment should outweigh crisis prevention as the controlling interpretation of stability. That framing loss matters because AFF\u2019s main empirical claim (Suzuki 2015: more nuclear states correlate with fewer disputes) is then vulnerable to NEG\u2019s operationalization critique (counting major wars/disputes while missing frequent crises). AFF never clearly resolves that methodological dispute with in-round specificity, so I discount the force of \u201cfewer disputes = more stability.\u201d On the India\u2013Pakistan evidence, both sides can spin de-escalation, but under NEG\u2019s metric the repeated crises are affirmative proof of instability. AFF\u2019s late Cohen-based takeout is not developed enough in the shared record to outweigh the framing and application advantages NEG maintains. Therefore NEG wins on the most important evaluative question and its consistent offense under that standard.",
+      "key_moments": [
+        {
+          "speech_type": "NC",
+          "moment_type": "turning_point",
+          "description": "NEG wins the more decisive stability metric (crisis prevention vs mere war avoidance), and AFF does not adequately justify why its metric should control",
+          "impact": -0.5,
+          "affected_side": "neg",
+          "stage": null
+        },
+        {
+          "speech_type": "2AR",
+          "moment_type": "turning_point",
+          "description": "NEG\u2019s operationalization critique of AFF\u2019s key empirical claim (Suzuki: disputes/major war vs crises) is not cleanly answered with specific in-round defense, mitigating AFF\u2019s primary advantage",
+          "impact": -0.5,
+          "affected_side": "neg",
+          "stage": null
+        },
+        {
+          "speech_type": "2AR",
+          "moment_type": "turning_point",
+          "description": "India\u2013Pakistan examples are at least equally consistent with NEG\u2019s \u201cinstability narrowly averted\u201d interpretation under NEG\u2019s metric",
+          "impact": -0.5,
+          "affected_side": "neg",
+          "stage": null
+        }
+      ],
+      "voting_issues": [
+        "NEG wins the more decisive stability metric (crisis prevention vs mere war avoidance), and AFF does not adequately justify why its metric should control",
+        "NEG\u2019s operationalization critique of AFF\u2019s key empirical claim (Suzuki: disputes/major war vs crises) is not cleanly answered with specific in-round defense, mitigating AFF\u2019s primary advantage",
+        "India\u2013Pakistan examples are at least equally consistent with NEG\u2019s \u201cinstability narrowly averted\u201d interpretation under NEG\u2019s metric"
+      ],
+      "judge_quality": 0.705,
+      "retry_triggered": false,
+      "rubric_scores": {
+        "evidentiary_fidelity": 6.5,
+        "symmetric_treatment": 7.5,
+        "clash_resolution": 7.0,
+        "decision_clarity": 8.0,
+        "technical_accuracy": 6.5
+      }
+    }
+  ],
+  "consensus": {
+    "agreement_level": "majority",
+    "consensus_winner": "aff",
+    "vote_count": {
+      "aff": 2,
+      "neg": 1
+    },
+    "score_variance": 61.83222222222224,
+    "disagreement_analysis": "Models disagreeing: ['gpt_5.2']. Reasons: I vote NEG because the debate is ultimately about how to evaluate \u201cinternational stability.\u201d NEG suc"
+  },
+  "final_winner": "aff",
+  "final_scores": {
+    "aff": 73.342776203966,
+    "neg": 72.68781869688385
+  },
+  "final_confidence": 0.39118333333333327,
+  "agreed_key_moments": [
+    {
+      "speech_type": "NC",
+      "moment_type": "turning_point",
+      "description": "AFF showed superior crystallization and maintained case consistency throughout",
+      "impact": 0.5,
+      "affected_side": "aff",
+      "stage": null
+    },
+    {
+      "speech_type": "2AR",
+      "moment_type": "turning_point",
+      "description": "Definition of Stability & The India-Pakistan Dyad",
+      "impact": 0.5,
+      "affected_side": "aff",
+      "stage": null
+    }
+  ],
+  "judged_at": "2026-02-19T23:17:42.869651"
+}

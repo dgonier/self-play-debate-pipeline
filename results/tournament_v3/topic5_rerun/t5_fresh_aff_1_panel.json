@@ -1,0 +1,203 @@
+{
+  "trace_id": "t5_fresh_aff_1_panel",
+  "debate_id": "t5_fresh_aff_1",
+  "model_judgments": [
+    {
+      "model_name": "opus_4.5",
+      "model_id": "bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+      "winner": "aff",
+      "scores": {
+        "aff": 68.0,
+        "neg": 63.0
+      },
+      "confidence": 0.62,
+      "reasoning": "This debate centers on a definitional clash about stability. AFF successfully argues that stability should be measured by absence of escalation to war rather than absence of crises. The key technical move is AFF's turning of NEG's Pakistan Times evidence - the evidence explicitly states deterrence led to de-escalation, which supports AFF's framework. NEG's response that de-escalation being necessary proves instability is reasonable but less compelling than AFF's interpretation. NEG's timeline argument (proliferation creates immediate instability before eventual moderation) is partially addressed by AFF's framework but remains a valid concern. AFF wins on definitional warranting (Cold War example), evidence interpretation, and rhetorical crystallization. NEG has slightly stronger citation practices and maintains consistent framing throughout. The margin is narrow because both sides make legitimate arguments and neither fully defeats the other's core claims. AFF's structural advantage (speaking last) is noted but the 2AR legitimately extends earlier arguments rather than introducing new material.",
+      "key_moments": [
+        {
+          "speech_type": "NC",
+          "moment_type": "turning_point",
+          "description": "Definitional framing of stability - AFF's 'absence of war' definition was better warranted with Cold War example",
+          "impact": 0.5,
+          "affected_side": "aff",
+          "stage": null
+        },
+        {
+          "speech_type": "NC",
+          "moment_type": "evidence_failure",
+          "description": "Evidence turning - AFF successfully reframed Pakistan Times evidence to support deterrence mechanism",
+          "impact": 0.5,
+          "affected_side": "aff",
+          "stage": null
+        },
+        {
+          "speech_type": "NC",
+          "moment_type": "turning_point",
+          "description": "Crystallization quality - AFF's fire alarm analogy effectively captured the core distinction",
+          "impact": 0.5,
+          "affected_side": "aff",
+          "stage": null
+        },
+        {
+          "speech_type": "2AR",
+          "moment_type": "turning_point",
+          "description": "Timeline argument - NEG's strongest point but insufficiently decisive",
+          "impact": -0.5,
+          "affected_side": "neg",
+          "stage": null
+        }
+      ],
+      "voting_issues": [
+        "Definitional framing of stability - AFF's 'absence of war' definition was better warranted with Cold War example",
+        "Evidence turning - AFF successfully reframed Pakistan Times evidence to support deterrence mechanism",
+        "Crystallization quality - AFF's fire alarm analogy effectively captured the core distinction",
+        "Timeline argument - NEG's strongest point but insufficiently decisive"
+      ],
+      "judge_quality": 0.7300000000000001,
+      "retry_triggered": false,
+      "rubric_scores": {
+        "evidentiary_fidelity": 7.0,
+        "symmetric_treatment": 7.0,
+        "clash_resolution": 7.0,
+        "decision_clarity": 8.0,
+        "technical_accuracy": 8.0
+      }
+    },
+    {
+      "model_name": "gemini_3.1_pro",
+      "model_id": "gemini/gemini-3.1-pro-preview",
+      "winner": "aff",
+      "scores": {
+        "aff": 89.0,
+        "neg": 73.0
+      },
+      "confidence": 0.95,
+      "reasoning": "The Affirmative wins this debate primarily on technical execution and evidence utilization. The Negative introduced a strong framework challenge (stability as the absence of crises) and empirical counter-examples (India-Pakistan). However, the turning point occurred in the 1AR, where the AFF successfully turned the NEG's own Pakistan Times evidence by pointing out it explicitly credited 'nuclear deterrence' for de-escalating the crisis. The NEG committed a fatal flow error in the NR by falsely claiming the AFF dropped the India-Pakistan argument, thereby failing to engage with the AFF's most devastating turn. The 2AR cleanly capitalized on this concession, utilizing a highly effective 'fire alarm' analogy to cement the AFF's definition of stability as the prevention of escalation to catastrophic war.",
+      "key_moments": [
+        {
+          "speech_type": "NC",
+          "moment_type": "turning_point",
+          "description": "The definition of stability (absence of catastrophic war vs. absence of crises)",
+          "impact": 0.5,
+          "affected_side": "aff",
+          "stage": null
+        },
+        {
+          "speech_type": "NC",
+          "moment_type": "evidence_failure",
+          "description": "The India-Pakistan empirical example and the 1AR turn of the Pakistan Times evidence",
+          "impact": 0.5,
+          "affected_side": "aff",
+          "stage": null
+        },
+        {
+          "speech_type": "NR",
+          "moment_type": "critical_drop",
+          "description": "The NR's technical flow error regarding the dropped argument",
+          "impact": 0.5,
+          "affected_side": "aff",
+          "stage": null
+        }
+      ],
+      "voting_issues": [
+        "The definition of stability (absence of catastrophic war vs. absence of crises)",
+        "The India-Pakistan empirical example and the 1AR turn of the Pakistan Times evidence",
+        "The NR's technical flow error regarding the dropped argument"
+      ],
+      "judge_quality": 1.0,
+      "retry_triggered": false,
+      "rubric_scores": {
+        "evidentiary_fidelity": 10.0,
+        "symmetric_treatment": 10.0,
+        "clash_resolution": 10.0,
+        "decision_clarity": 10.0,
+        "technical_accuracy": 10.0
+      }
+    },
+    {
+      "model_name": "gpt_5.2",
+      "model_id": "openai/gpt-5.2",
+      "winner": "aff",
+      "scores": {
+        "aff": 76.5,
+        "neg": 72.0
+      },
+      "confidence": 0.61,
+      "reasoning": "The deciding issue is the definition of \u201cinternational stability\u201d and the weighing between (a) crisis frequency and (b) escalation prevention. NEG offers a clear crisis-frequency framework and a concrete India\u2013Pakistan narrative, but does not close the key weighing debate after AFF argues that stability is best understood as avoiding catastrophic war escalation. The most cited/quoted evidence in-round (Pakistan Times 2019) is double-edged: it supports that nuclear deterrence produced de-escalation after Pulwama. AFF consistently leverages this as direct affirmative proof of the deterrence mechanism and argues that contained crises can still constitute stability. NEG continues to assert that repeated crises are instability, but provides limited mechanism showing proliferation causes those crises (versus shaping their endings) and does not justify why crisis frequency should override escalation prevention in evaluating \u201cstability.\u201d Additionally, NEG\u2019s NR leans on claims that AFF dropped key arguments, but the record indicates AFF engaged the framework and the South Asia example, reducing the force of NEG\u2019s technical win claims. Given better late-round crystallization, clearer link-to-impact under a stability standard tied to deterrence, and successful turning of NEG\u2019s best evidence, AFF wins on the most important voting issues despite NEG having somewhat stronger concrete evidence presence overall.",
+      "key_moments": [
+        {
+          "speech_type": "NC",
+          "moment_type": "turning_point",
+          "description": "Competing stability metrics: AFF (escalation/war prevention) outweighs NEG (crisis frequency) due to better weighing and linkage to deterrence",
+          "impact": -0.5,
+          "affected_side": "neg",
+          "stage": null
+        },
+        {
+          "speech_type": "NC",
+          "moment_type": "evidence_failure",
+          "description": "Interpretation of NEG\u2019s Pakistan Times 2019 evidence: AFF converts de-escalation warrant into affirmative offense; NEG doesn\u2019t neutralize the turn",
+          "impact": -0.5,
+          "affected_side": "neg",
+          "stage": null
+        },
+        {
+          "speech_type": "AC",
+          "moment_type": "critical_drop",
+          "description": "NEG does not sufficiently warrant why more crises should outweigh reduced escalation risk; some NR drop-claims overreach given 1AR engagement",
+          "impact": -0.5,
+          "affected_side": "neg",
+          "stage": null
+        }
+      ],
+      "voting_issues": [
+        "Competing stability metrics: AFF (escalation/war prevention) outweighs NEG (crisis frequency) due to better weighing and linkage to deterrence",
+        "Interpretation of NEG\u2019s Pakistan Times 2019 evidence: AFF converts de-escalation warrant into affirmative offense; NEG doesn\u2019t neutralize the turn",
+        "NEG does not sufficiently warrant why more crises should outweigh reduced escalation risk; some NR drop-claims overreach given 1AR engagement"
+      ],
+      "judge_quality": 0.715,
+      "retry_triggered": false,
+      "rubric_scores": {
+        "evidentiary_fidelity": 6.5,
+        "symmetric_treatment": 8.0,
+        "clash_resolution": 7.0,
+        "decision_clarity": 7.5,
+        "technical_accuracy": 7.0
+      }
+    }
+  ],
+  "consensus": {
+    "agreement_level": "unanimous",
+    "consensus_winner": "aff",
+    "vote_count": {
+      "aff": 3,
+      "neg": 0
+    },
+    "score_variance": 47.30555555555556,
+    "disagreement_analysis": ""
+  },
+  "final_winner": "aff",
+  "final_scores": {
+    "aff": 79.07464212678936,
+    "neg": 69.72188139059304
+  },
+  "final_confidence": 0.52335,
+  "agreed_key_moments": [
+    {
+      "speech_type": "NC",
+      "moment_type": "turning_point",
+      "description": "Definitional framing of stability - AFF's 'absence of war' definition was better warranted with Cold War example",
+      "impact": 0.5,
+      "affected_side": "aff",
+      "stage": null
+    },
+    {
+      "speech_type": "NC",
+      "moment_type": "evidence_failure",
+      "description": "Evidence turning - AFF successfully reframed Pakistan Times evidence to support deterrence mechanism",
+      "impact": 0.5,
+      "affected_side": "aff",
+      "stage": null
+    }
+  ],
+  "judged_at": "2026-02-19T22:47:00.655961"
+}

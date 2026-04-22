@@ -1,0 +1,415 @@
+# AGENTIC JUDGE SYSTEM
+# Multi-dimensional evaluation with forensics and calibration
+# Style: Presentation (bold colors, high contrast)
+
+direction: down
+
+title: {
+  label: "Agentic Judge System"
+  
+  style.font-size: 28
+  style.bold: true
+}
+
+subtitle: {
+  label: "packages/debate/judge/"
+  
+  style.font-size: 12
+  style.italic: true
+}
+
+# =============================================================================
+# INPUT: COMPLETE DEBATE
+# =============================================================================
+
+input: Input: Complete Debate {
+  style.fill: "#EDF2F7"
+  style.stroke: "#4A5568"
+  style.stroke-width: 2
+
+  speeches: All 5 Speeches {
+    style.fill: "#E2E8F0"
+
+    ac: AC {
+      shape: document
+      style.fill: "#9AE6B4"
+    }
+    nc: NC {
+      shape: document
+      style.fill: "#FC8181"
+    }
+    ar1: 1AR {
+      shape: document
+      style.fill: "#9AE6B4"
+    }
+    nr: NR {
+      shape: document
+      style.fill: "#FC8181"
+    }
+    ar2: 2AR {
+      shape: document
+      style.fill: "#9AE6B4"
+    }
+  }
+
+  cx: CX Transcripts {
+    style.fill: "#E2E8F0"
+
+    ac_cx: AC-CX {
+      shape: document
+      style.fill: "#FEEBC8"
+    }
+    nc_cx: NC-CX {
+      shape: document
+      style.fill: "#FEEBC8"
+    }
+  }
+
+  metadata: Debate Metadata {
+    style.fill: "#E2E8F0"
+
+    topic: Topic {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+    }
+    skeletons: Skeleton artifacts {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+    }
+    evidence: Evidence selections {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+    }
+  }
+}
+
+# =============================================================================
+# LAYER 1: DIMENSIONAL JUDGES (PARALLEL)
+# =============================================================================
+
+dimensional: Layer 1: Dimensional Judges (Parallel) {
+  style.fill: "#EBF8FF"
+  style.stroke: "#3182CE"
+  style.stroke-width: 3
+
+  arg: Argument Judge {
+    shape: hexagon
+    style.fill: "#BEE3F8"
+    style.stroke: "#3182CE"
+    style.stroke-width: 2
+    label: "Argument\nStrength"
+  }
+
+  evid: Evidence Judge {
+    shape: hexagon
+    style.fill: "#90CDF4"
+    style.stroke: "#3182CE"
+    style.stroke-width: 2
+    label: "Evidence\nQuality"
+  }
+
+  clash: Clash Judge {
+    shape: hexagon
+    style.fill: "#63B3ED"
+    style.stroke: "#3182CE"
+    style.stroke-width: 2
+    label: "Clash\nAnalysis"
+  }
+
+  lang: Language Judge {
+    shape: hexagon
+    style.fill: "#4299E1"
+    style.font-color: "#FFFFFF"
+    style.stroke: "#2B6CB0"
+    style.stroke-width: 2
+    label: "Language\nClarity"
+  }
+
+  cx_q: CX Questioner Judge {
+    shape: hexagon
+    style.fill: "#2B6CB0"
+    style.font-color: "#FFFFFF"
+    style.stroke: "#2C5282"
+    style.stroke-width: 2
+    label: "Question\nQuality"
+  }
+
+  cx_a: CX Answerer Judge {
+    shape: hexagon
+    style.fill: "#2C5282"
+    style.font-color: "#FFFFFF"
+    style.stroke: "#1A365D"
+    style.stroke-width: 2
+    label: "Answer\nDefense"
+  }
+}
+
+output1: Per-Speech Scores {
+  style.fill: "#BEE3F8"
+
+  scores: |md
+    **Per-Dimension Scores**
+    - argument_score: 1-10
+    - evidence_score: 1-10
+    - clash_score: 1-10
+    - language_score: 1-10
+    - cx_questioner_score: 1-10
+    - cx_answerer_score: 1-10
+  |
+}
+
+dimensional -> output1
+
+# =============================================================================
+# LAYER 2: CHRONICLER (MEMORY)
+# =============================================================================
+
+chronicler: Layer 2: Chronicler {
+  style.fill: "#FEF3C7"
+  style.stroke: "#D97706"
+  style.stroke-width: 3
+
+  memory: Memory System {
+    shape: cylinder
+    style.fill: "#FDE68A"
+    style.stroke: "#D97706"
+    label: "Maintains per-speech\nanalysis history"
+  }
+
+  tracking: Argument Tracking {
+    style.fill: "#FCD34D"
+
+    standing: Standing {
+      shape: rectangle
+      style.fill: "#48BB78"
+      style.font-color: "#FFFFFF"
+    }
+    attacked: Attacked {
+      shape: rectangle
+      style.fill: "#F56565"
+      style.font-color: "#FFFFFF"
+    }
+    dropped: Dropped {
+      shape: rectangle
+      style.fill: "#718096"
+      style.font-color: "#FFFFFF"
+    }
+    extended: Extended {
+      shape: rectangle
+      style.fill: "#4299E1"
+      style.font-color: "#FFFFFF"
+    }
+  }
+
+  memory -> tracking
+}
+
+output1 -> chronicler: "per-speech scores" {
+  style.stroke-width: 2
+}
+
+# =============================================================================
+# LAYER 3: PIPELINE FORENSICS
+# =============================================================================
+
+forensics: Layer 3: Pipeline Forensics {
+  style.fill: "#FFF5F5"
+  style.stroke: "#C53030"
+  style.stroke-width: 3
+
+  attribution: Failure Attribution {
+    style.fill: "#FED7D7"
+
+    tactic: Tactic Failure {
+      shape: rectangle
+      style.fill: "#FEB2B2"
+      label: "Wrong strategy\nselected"
+    }
+
+    skeleton: Skeleton Failure {
+      shape: rectangle
+      style.fill: "#FC8181"
+      label: "Poor argument\nstructure"
+    }
+
+    evidence: Evidence Failure {
+      shape: rectangle
+      style.fill: "#F56565"
+      style.font-color: "#FFFFFF"
+      label: "Weak/irrelevant\nevidence"
+    }
+
+    execution: Execution Failure {
+      shape: rectangle
+      style.fill: "#E53E3E"
+      style.font-color: "#FFFFFF"
+      label: "Poor speech\ndelivery"
+    }
+  }
+
+  analysis: Failure Analysis {
+    shape: rectangle
+    style.fill: "#C53030"
+    style.font-color: "#FFFFFF"
+    label: "Where did generation\nquality break down?"
+  }
+
+  attribution -> analysis
+}
+
+chronicler -> forensics: "argument flow" {
+  style.stroke-width: 2
+}
+
+# =============================================================================
+# LAYER 4: META-JUDGE
+# =============================================================================
+
+meta: Layer 4: Meta-Judge {
+  style.fill: "#FAF5FF"
+  style.stroke: "#6B46C1"
+  style.stroke-width: 3
+
+  bias: Bias Detection {
+    shape: hexagon
+    style.fill: "#E9D8FD"
+    style.stroke: "#6B46C1"
+    label: "Detect judge\nbias patterns"
+  }
+
+  calibration: Calibration {
+    shape: hexagon
+    style.fill: "#D6BCFA"
+    style.stroke: "#6B46C1"
+    label: "Adjust for\nbias + noise"
+  }
+
+  combine: Combine Dimensions {
+    shape: hexagon
+    style.fill: "#B794F4"
+    style.stroke: "#805AD5"
+    label: "Weighted\naggregation"
+  }
+
+  decision: Final Decision {
+    shape: rectangle
+    style.fill: "#9F7AEA"
+    style.font-color: "#FFFFFF"
+    style.stroke-width: 2
+    label: "Winner + Margin\n+ Reasoning"
+  }
+
+  bias -> calibration -> combine -> decision
+}
+
+forensics -> meta: "failure attribution" {
+  style.stroke-width: 2
+}
+
+# =============================================================================
+# OUTPUT: JUDGE EVALUATION
+# =============================================================================
+
+output: Output: JudgeEvaluation {
+  style.fill: "#F0FFF4"
+  style.stroke: "#38A169"
+  style.stroke-width: 3
+
+  decision: Decision {
+    style.fill: "#C6F6D5"
+
+    winner: Winner {
+      shape: rectangle
+      style.fill: "#48BB78"
+      style.font-color: "#FFFFFF"
+      label: "AFF or NEG"
+    }
+
+    margin: Margin {
+      shape: rectangle
+      style.fill: "#38A169"
+      style.font-color: "#FFFFFF"
+      label: "0-10 (decisiveness)"
+    }
+
+    reasoning: Reasoning {
+      shape: document
+      style.fill: "#2F855A"
+      style.font-color: "#FFFFFF"
+      label: "Explained\ndecision"
+    }
+  }
+
+  grpo: GRPO Signals {
+    style.fill: "#9AE6B4"
+
+    per_stage: Per-Stage Rewards {
+      shape: document
+      style.fill: "#68D391"
+      label: "tactic: +0.3\nskeleton: +0.5\nevidence: -0.2\nexecution: +0.4"
+    }
+
+    per_dim: Per-Dimension {
+      shape: document
+      style.fill: "#48BB78"
+      style.font-color: "#FFFFFF"
+      label: "argument: 8/10\nevidence: 6/10\nclash: 7/10"
+    }
+  }
+
+  belief: Belief Updates {
+    style.fill: "#B2F5EA"
+
+    adjustments: Credence Adjustments {
+      shape: document
+      style.fill: "#4FD1C5"
+      label: "belief_id → new_credence"
+    }
+  }
+}
+
+meta.decision -> output.decision: "final" {
+  style.stroke: "#6B46C1"
+  style.stroke-width: 2
+}
+
+forensics.analysis -> output.grpo: "stage attribution" {
+  style.stroke: "#C53030"
+  style.stroke-width: 2
+}
+
+meta.decision -> output.belief: "winner + margin" {
+  style.stroke: "#319795"
+  style.stroke-width: 2
+}
+
+# =============================================================================
+# DOWNSTREAM CONNECTIONS
+# =============================================================================
+
+downstream: Downstream {
+  style.fill: "#EDF2F7"
+  style.stroke-dash: 3
+
+  training: Training Pipeline {
+    shape: cylinder
+    style.fill: "#4299E1"
+    style.font-color: "#FFFFFF"
+    label: "GRPO / DPO"
+  }
+
+  belief: Belief Update {
+    shape: cylinder
+    style.fill: "#F59E0B"
+    style.font-color: "#FFFFFF"
+    label: "Bayesian\nConditionalization"
+  }
+}
+
+output.grpo -> downstream.training {
+  style.stroke-dash: 3
+}
+
+output.belief -> downstream.belief {
+  style.stroke-dash: 3
+}

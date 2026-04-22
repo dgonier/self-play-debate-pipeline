@@ -1,0 +1,90 @@
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Computational Argumentation.}
+Project Debater~\cite{slonim2021debater} demonstrated AI debate in a
+simplified format designed for lay audiences, but explicitly acknowledged
+its inability to engage in expert competitive debate. Prior work in
+computational argumentation has focused on argument mining, stance detection,
+and persuasion prediction rather than end-to-end debate generation, and
+large-scale resources such as OpenDebateEvidence~\cite{roush2024opendebateevidence}
+have primarily supported evidence retrieval and summarization rather than
+trained debaters. We target the International Public Debate Association
+(IPDA) format as an instance of competitive debate more broadly. Competitive
+debate formats share typed argument structures
+(Advantage = Uniqueness + Link + Impact~\cite{snider2008code}), explicit
+rules, and specialist judges; we argue that these structured competitive
+formats provide the discrete rewards needed for optimization.
+
+\paragraph{Self-Play and Search in Games.}
+Our branching mechanism draws on the tradition of self-play and tree search
+in game-playing AI. AlphaGo Zero~\cite{silver2017mastering} and
+AlphaZero~\cite{silver2018general} achieve superhuman performance via
+Monte Carlo tree search (MCTS) guided by learned value and policy networks,
+while OpenAI Five~\cite{berner2019dota} scaled self-play to the imperfect-information
+setting of Dota~2. Unlike MCTS, which exhaustively explores game trees,
+our branching is triggered only when candidate speeches would elicit
+different opponent responses, focusing computation on informationally
+rich divergence points. This threshold-based branching is closer to
+selective search in that it expands only the nodes where counterfactual
+outcomes are most likely to differ.
+
+\paragraph{Tree Search with LLMs.}
+Similar branching ideas appear in other RL-for-generation domains. Tree of
+Thoughts~\cite{yao2023tree} expands reasoning trees at inference time using
+self-evaluation heuristics, and RAP~\cite{hao2023reasoning} treats an LLM as
+a world model and uses MCTS to search over reasoning steps guided by value
+estimates. Our branching is related but operates on a different signal: we
+branch based on \emph{opponent-response divergence} during adversarial
+multi-agent rollouts rather than on self-consistency or value estimates, and
+the resulting winner-shift events become training targets for offline GRPO
+rather than an inference-time search procedure.
+
+\paragraph{RL with Verifiable Rewards.}
+Recent work on reasoning-oriented RL trains with programmatically verifiable
+reward signals. DeepSeek-R1~\cite{guo2025deepseekr1} demonstrates that
+large-scale RL with rule-based rewards elicits strong chain-of-thought
+behaviors without supervised warm-start. Our three-layer reward hierarchy
+occupies a middle ground: speech-level rubrics and branch-based winner-shift
+detection provide near-verifiable local signals, while retrospective
+multi-model panels handle the non-verifiable strategic quality of full
+debates.
+
+\paragraph{Debate as AI Alignment.}
+Irving et al.~\cite{irving2018debate} proposed debate as a scalable oversight
+mechanism, where competing agents help judges identify truthful answers.
+Michael et al.~\cite{michael2023debate} showed that debate achieves 84\%
+judge accuracy versus 74\% for consultancy, with debate errors decreasing
+with debater skill. Du et al.~\cite{du2024multiagent} demonstrated that
+multi-agent debate improves factuality through convergence dynamics. Our
+work complements this line by studying the \emph{training dynamics} of
+debate models rather than debate as an oversight protocol.
+
+\paragraph{Constitutional AI and RLAIF.}
+RLAIF~\cite{lee2024rlaif} replaces human annotators with LLM judges at
+25--125$\times$ lower cost. Constitutional AI~\cite{bai2022constitutional}
+showed that models can self-critique and revise outputs against a set of
+principles, enabling alignment without human preference labels. Our
+hierarchical reward system extends this idea: rather than a single
+constitution, we employ speech-specific rubrics at Layer~1, causal outcome
+attribution at Layer~2, and multi-model retrospective judging at Layer~3,
+each providing a different form of AI-generated feedback.
+
+\paragraph{Preference Optimization.}
+We build on ORPO~\cite{hong2024orpo}, which eliminates
+the reference model requirement of DPO~\cite{rafailov2023dpo}, and
+offline GRPO~\cite{shao2024deepseekmath}, which uses importance sampling
+ratios $\pi_\theta / \pi_{\text{ref}}$ to normalize for response
+length---critical for tasks where quality does not correlate with verbosity.
+Our contribution is the \emph{group-wise} application: decomposing
+heterogeneous calls into four modality groups and training sequentially
+with SFT-on-golden interleaving prevents the cross-modality interference
+we observe when training all call types jointly.
+
+\paragraph{LLM-as-Judge.}
+LLM judges achieve 80\%+ human agreement but exhibit systematic
+biases~\cite{zheng2023mtbench}: position bias, verbosity preference, and
+self-enhancement. We document a novel bias pattern specific to adversarial
+evaluation: different judge models exhibit \emph{opposing side biases}
+(Section~\ref{sec:judge_bias}), motivating multi-model panels for debate
+evaluation.

@@ -1,0 +1,68 @@
+{
+  "endpoint_switches": [
+    {
+      "timestamp": "2026-02-19T08:28:38.180978",
+      "endpoint": "https://debaterhub--ipda-iter3-grpo-ipdamodel-serve.modal.run/v1",
+      "model": "dgonier/ipda-iter3-grpo-final",
+      "label": "TRAINED"
+    },
+    {
+      "timestamp": "2026-02-19T08:29:37.473554",
+      "endpoint": "https://debaterhub--qwen3-base-qwen3basemodel-serve.modal.run/v1",
+      "model": "Qwen/Qwen3-30B-A3B-Thinking-2507",
+      "label": "BASE"
+    },
+    {
+      "timestamp": "2026-02-19T08:29:37.473621",
+      "endpoint": "https://debaterhub--qwen3-base-qwen3basemodel-serve.modal.run/v1",
+      "model": "Qwen/Qwen3-30B-A3B-Thinking-2507",
+      "label": "BASE"
+    },
+    {
+      "timestamp": "2026-02-19T08:34:12.782863",
+      "endpoint": "https://debaterhub--qwen3-base-qwen3basemodel-serve.modal.run/v1",
+      "model": "Qwen/Qwen3-30B-A3B-Thinking-2507",
+      "label": "BASE"
+    },
+    {
+      "timestamp": "2026-02-19T08:38:13.449372",
+      "endpoint": "https://debaterhub--ipda-iter3-grpo-ipdamodel-serve.modal.run/v1",
+      "model": "dgonier/ipda-iter3-grpo-final",
+      "label": "TRAINED"
+    },
+    {
+      "timestamp": "2026-02-19T08:38:13.449450",
+      "endpoint": "https://debaterhub--ipda-iter3-grpo-ipdamodel-serve.modal.run/v1",
+      "model": "dgonier/ipda-iter3-grpo-final",
+      "label": "TRAINED"
+    },
+    {
+      "timestamp": "2026-02-19T08:43:09.802435",
+      "endpoint": "https://debaterhub--ipda-iter3-grpo-ipdamodel-serve.modal.run/v1",
+      "model": "dgonier/ipda-iter3-grpo-final",
+      "label": "TRAINED"
+    },
+    {
+      "timestamp": "2026-02-19T08:45:10.424349",
+      "endpoint": "https://debaterhub--qwen3-base-qwen3basemodel-serve.modal.run/v1",
+      "model": "Qwen/Qwen3-30B-A3B-Thinking-2507",
+      "label": "BASE"
+    },
+    {
+      "timestamp": "2026-02-19T08:49:33.073359",
+      "endpoint": "https://debaterhub--ipda-iter3-grpo-ipdamodel-serve.modal.run/v1",
+      "model": "dgonier/ipda-iter3-grpo-final",
+      "label": "TRAINED"
+    }
+  ],
+  "speeches": {
+    "AC": 660,
+    "NC": 618,
+    "1AR": 506,
+    "NR": 412,
+    "2AR": 383
+  },
+  "per_speech_scores": {},
+  "elapsed_s": 2017.6549150943756,
+  "all_ok": true
+}

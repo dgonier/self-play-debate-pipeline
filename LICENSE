@@ -1,0 +1,16 @@
+Copyright (c) 2026 DebaterHub
+
+The tournament results and analysis artifacts in `results/` are released under
+the Creative Commons Attribution 4.0 International License (CC BY 4.0).
+See https://creativecommons.org/licenses/by/4.0/ for the full license text.
+
+The paper source in `paper/` is released for the purpose of anonymous /
+double-blind peer review and non-commercial academic use. Redistribution or
+derivative works require the authors' written permission.
+
+The training pipeline, debate generation system, branching search, reward
+model, and RL training code described in the paper are NOT included in this
+repository and remain proprietary to DebaterHub.
+
+For reproducibility access or commercial inquiries, contact:
+    dgonier@debaterhub.com
