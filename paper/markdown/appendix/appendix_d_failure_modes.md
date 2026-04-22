@@ -1,0 +1,79 @@
+# Failure Mode Analysis
+
+This appendix documents three failure modes encountered during training with broader implications
+for RLAIF pipelines: the *Bicameral Mind Problem* (feedback hallucination in retry generation), the
+*Retry Assumption Failure* (inverted preference labels from unconditionally favoring retries), and
+the *Group C Regression* (catastrophic divergence from full-LoRA training on a Mixture-of-Experts
+base).
+
+## The Bicameral Mind Problem
+
+During iteration 10, we discovered that 35.6% of the model’s thinking sections contained
+hallucinated feedback—the model manufactured judge criticism even when no prior feedback existed in
+the prompt.
+
+**Quantification (644 samples):**
+
+- 226 contaminated samples from retry attempts
+
+- Only 3 contaminated samples from first-attempt generations
+
+- 28% of “chosen” preference pairs referenced non-existent feedback
+
+**Example (no feedback in prompt):**
+
+> “We are now in a correction phase. The judge’s feedback is severe: the agent failed to conduct any
+> searches...” \[No feedback was actually provided\]
+
+**Root cause:** During training, retry attempts included judge feedback in the conversation. The
+model learned to associate the debate task with receiving criticism, hallucinating this pattern in
+fresh prompts—a form of in-context learning contamination.
+
+**Solution: Proactive self-coaching.** Replace reactive framing (“the judge said you failed...”)
+with proactive framing (“when approaching this task, I should verify every citation...”). This
+prevents contamination because proactive thoughts don’t require imagining an external critic, and
+transfer cleanly to inference.
+
+**General principle:** Training patterns requiring external scaffolding will be hallucinated when
+that scaffolding is absent.
+
+## The Retry Assumption Failure
+
+We initially assumed retries were always better than originals, adding a fixed +0.2 score bonus to
+all retries. Dual evaluation revealed:
+
+| **Iter** | **Assumed Gap** |  **Actual Gap**  | **Retries Better** |
+|:---------|:---------------:|:----------------:|:------------------:|
+| 1        |     +0.183      | $-$<!-- -->0.016 |        48%         |
+| 2        |     +0.193      | $-$<!-- -->0.007 |        49%         |
+| 3        |     +0.191      | $-$<!-- -->0.008 |        48%         |
+| 4        |     +0.167      | $-$<!-- -->0.032 |        44%         |
+
+Retry assumption vs. reality. Retries outperform originals only 45% of the time.
+
+Cross-examination retries showed dramatic degradation: CX scores dropped from 0.448 to 0.067–0.233
+(60–85% degradation). Hindsight causes loss of natural conversational flow.
+
+**Solution: Dual evaluation.** Score both original and retry independently. Use higher score as
+chosen regardless of source. Minimum gap filter ($\geq 0.10$). Skip retry for scores $\geq 0.85$.
+Result: 0% inverted preference pairs (vs. 55% before).
+
+## GRPO Regression on MoE Architectures
+
+Group C GRPO training on Qwen3-30B-A3B initially produced a catastrophic regression: mean speech
+length dropped from $\sim$<!-- -->400 words to $\sim$<!-- -->100 words within three epochs, and
+validation accuracy fell below random (45%). Post-mortem identified three contributing factors.
+First, *aggressive LoRA targeting*: we initially adapted all seven linear projections (q/k/v/o +
+gate/up/down), producing 3.37B trainable parameters on a 30B base. For a Mixture-of-Experts model,
+adapting the expert gating projections (gate/up/down) destabilizes sparse expert routing under
+importance-weighted off-policy updates. Second, *wide epsilon clipping*: the PPO-style clip
+parameter $\varepsilon$ was set to $0.3$, permitting importance ratios to range over $[0.77, 1.30]$
+per step. Combined with a Mixture-of-Experts base, large ratios amplified into large output-space
+divergence. Third, *stale logprobs*: because Group B had merged into the canonical model between
+Group B logprob capture and Group C training, the reference policy $\pi_{\text{ref}}$ used in
+importance ratios was no longer the policy that generated the samples, producing biased gradient
+estimates. The combined effect was runaway divergence. The fix
+(Appendix [ref:app:grpo_groups]) was attention-only LoRA (53M parameters, a
+64$\times$ reduction), tightened $\varepsilon = 0.15$, and mandatory logprob recomputation after
+each group merge. These changes together eliminated the regression with no accuracy loss, and we
+adopted them as standard practice for all subsequent groups.
